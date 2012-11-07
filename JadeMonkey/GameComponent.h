@@ -36,7 +36,7 @@
 #include "IUpdateable.h"
 #include "Game.h"
 
-
+class Game;
 
 class GameComponent : public IUpdateable
 {
@@ -48,9 +48,9 @@ public:
 	virtual int Update(long time);
 
 	//members
-private:
+protected:
 	IDirect3DIndexBuffer9 *mIndBuf;
 	IDirect3DVertexBuffer9 *mVtxBuf;
-	Game* _game;
+	Game *_game;
 
 };

@@ -88,7 +88,7 @@ gameIO::gameIO(HINSTANCE hinstance, HWND hwnd): mKeyboardDev(NULL), mMouseDev(NU
 
 
 	// initialize the mouse
-	rc = initMouse(hwnd, DISCL_NONEXCLUSIVE|DISCL_FOREGROUND);
+	rc = initMouse(hwnd, DISCL_EXCLUSIVE|DISCL_FOREGROUND);
 	if (rc != 0) mMouseDev = NULL;
 
 

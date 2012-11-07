@@ -1,11 +1,15 @@
 #pragma once
-#include "IDrawable.h"
-#include "GameComponent.h"
 
-class DrawableGameComponent : public GameComponent, public IDrawable
+#include "GameComponent.h"
+#include "IDrawable.h"
+#include "DrawableGameComponent.h"
+
+class Game;
+
+class DrawableGameComponent : /*public GameComponent , */public IDrawable
 {
 public:
 	~DrawableGameComponent();
-	DrawableGameComponent(Game* game);
+	DrawableGameComponent(Game *game);
 	virtual int Draw(long time) = 0;
 };

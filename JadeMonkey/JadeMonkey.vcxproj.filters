@@ -28,6 +28,12 @@
     <Filter Include="Header Files\Interfaces">
       <UniqueIdentifier>{dc63385d-5f76-4f53-83fb-d3b28b5c7184}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{e7a41cde-d44d-4466-b9a7-f2a345775bd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects">
+      <UniqueIdentifier>{8d49208c-0042-468f-a42d-23ad697389c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h">
@@ -75,6 +81,12 @@
     <ClInclude Include="ICollideable.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="Surface.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="jade_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp">
@@ -103,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="DrawableGameComponent.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Surface.cpp">
+      <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

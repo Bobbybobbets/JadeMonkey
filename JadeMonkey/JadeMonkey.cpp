@@ -52,7 +52,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 {
 
 	// create the game
-	JadeMonkeyGame* jadeMonkeyGame = new JadeMonkeyGame(hInstance, "Scrolling Font ");
+	JadeMonkeyGame* jadeMonkeyGame = new JadeMonkeyGame(hInstance, "The Jade Monkey");
 
 	// initialize the game
 	// note that this is done via a virtual function.  Thus there is no need to update this function
