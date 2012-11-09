@@ -127,6 +127,12 @@ int JadeMonkeyGame::Update(long time)
 		}
 	}
 
+		D3DXVECTOR3 delta = mInput->mouseDelta();
+		if (delta.x != 0 && delta.y != 0) {
+			this->cam.changeLookAt(delta);
+			rc +=0;
+		}
+
 	// move the camera
 //	cam.moveForward(cam.getSpeed());
 

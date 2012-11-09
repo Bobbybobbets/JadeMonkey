@@ -55,6 +55,7 @@ public:
 	float getSpeed(void);
 	float getAcceleration(void);
 	void speedUp( float speedIncrease );
+	void changeLookAt(D3DXVECTOR3 delta);
 
 
 

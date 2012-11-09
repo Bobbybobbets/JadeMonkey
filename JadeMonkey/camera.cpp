@@ -419,6 +419,25 @@ int camera::updateSpeed(float speed)
 	return 0;
 }
 
+void camera::changeLookAt(D3DXVECTOR3 delta) {
+	D3DXMATRIX rotMat, rotMat1, rotMat2;	
+	D3DXVECTOR3 xaxis;
+
+	delta.x /= 1000;
+	delta.y /= 1000;
+
+	D3DXMatrixRotationAxis(&rotMat1, &upVector,delta.x);
+	D3DXVec3Cross(&xaxis, &upVector, &lookAtVector);
+	D3DXMatrixRotationAxis(&rotMat2, &xaxis,delta.y);
+
+	rotMat = rotMat2 *  rotMat1 ;
+
+	D3DXVec3TransformCoord(&upVector, &upVector, &rotMat);
+	D3DXVec3TransformCoord(&lookAtVector, &lookAtVector, &rotMat);
+
+	SetCursorPos( 200,300);
+}
+
 float camera::getSpeed(void)
 {
 	return(speed);
