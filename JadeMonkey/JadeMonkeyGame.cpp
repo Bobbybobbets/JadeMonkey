@@ -43,18 +43,18 @@
 
 #include "StdAfx.h"
 #include "JadeMonkeyGame.h"
-
+#include "meshSurface.h"
 #include <stdio.h>
 
-
-
-
+using namespace std;
 
 JadeMonkeyGame::JadeMonkeyGame(HINSTANCE hInstance, char* gameName):
 	Game(hInstance, gameName), 
 	x(0), 
 	fontCourier(NULL)
 {
+	ground = new meshSurface(100, 100, 20,20,this);
+	ground->setScale(1.0,4.0,1.0);
 }
 
 JadeMonkeyGame::~JadeMonkeyGame(void)
@@ -128,7 +128,7 @@ int JadeMonkeyGame::Update(long time)
 	}
 
 	// move the camera
-	cam.moveForward(cam.getSpeed());
+//	cam.moveForward(cam.getSpeed());
 
 
 
@@ -156,12 +156,15 @@ int JadeMonkeyGame::Draw(long time)
 	//&D3DXVECTOR3(0.0f, 1.0f, 0.0f)); // up Veotor
 	D3DXMatrixLookAtLH(&viewMat,&D3DXVECTOR3(50,1000,50), &D3DXVECTOR3(500,0,500), &D3DXVECTOR3(0,1,0));
 
-
+	RECT textbox1;
+		textbox1.bottom=20;
+	textbox1.right=300;
+	textbox1.left=0;
+	textbox1.top=0;
 	// set the camera matrix
 	cam.getViewMatrix(&viewMat);  // nuss1
 	// inform direct3d about the view transformation
 	rc = md3dDev->SetTransform(D3DTS_VIEW,&viewMat);
-
 
 	//// set up the projection transformation
 	//D3DXMatrixPerspectiveFovLH(&matProjection,  
@@ -180,8 +183,10 @@ int JadeMonkeyGame::Draw(long time)
 	if (rc != D3D_OK) {
 		i++;
 	}
+	
 	md3dDev->BeginScene();    // begins the 3D scene
-
+	
+	ground->Draw(time);
 
     md3dDev->EndScene();    // ends the 3D scene
 
@@ -235,11 +240,6 @@ int JadeMonkeyGame::Initialize(void)
 	y = this->getWndHeight() / 2;
 	dx = 1;
 	dy = 1;
-
-	textBox.top = 0;
-	textBox.left = 0;
-	textBox.bottom = 50;
-	textBox.right = 280;
 
 
 	// get the dimension of the window

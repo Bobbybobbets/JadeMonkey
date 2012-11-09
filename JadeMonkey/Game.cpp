@@ -308,7 +308,7 @@ int Game::initD3D(void)
     // Turn off D3D lighting, since we are providing our own vertex colors
     md3dDev->SetRenderState( D3DRS_LIGHTING, FALSE );
 
-
+	GameComponent::setd3dDev(md3dDev);
 	if (rc != S_OK) {
 		// release d3d (the com object
 		md3d->Release();

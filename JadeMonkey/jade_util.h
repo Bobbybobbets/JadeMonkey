@@ -1,5 +1,11 @@
 #pragma once
 
+
+/***************************************************************/
+
+// UTILITIES MACROS
+
+
 // macro for release the com objects (move to a utility file)
 #define COM_RELEASE(X) {if ((X) != NULL) {(X)->Release(); (X) = NULL;}}
 

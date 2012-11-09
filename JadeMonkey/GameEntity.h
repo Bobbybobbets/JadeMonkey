@@ -19,5 +19,7 @@ protected:
 	D3DXVECTOR3 _direction;	// direction of object
 	D3DXVECTOR3 _rotation;	// angle of rotation of the object
 	D3DXVECTOR3 _scale;		// scale of the object
-	
+	int numVtx;
+	int numQuads;
+	int numTriangles;
 };

@@ -43,7 +43,7 @@
 #pragma once
 #include "Game.h"
 #include "camera.h"
-
+#include "meshSurface.h"
 
 class JadeMonkeyGame : public Game
 {
@@ -64,6 +64,7 @@ public:
 	int dx;		// change in x at each frame
 	int dy;		// change in y at each frame
 	RECT textBox;	// rectangle for the text
+	meshSurface *ground;
 
 
 	char s[1024]; // string to be drawn
