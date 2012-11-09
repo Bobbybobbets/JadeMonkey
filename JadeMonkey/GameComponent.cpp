@@ -33,9 +33,6 @@
 #include "StdAfx.h"
 #include "GameComponent.h"
 
-IDirect3DDevice9 *GameComponent::md3dDev = NULL;
-
-
 GameComponent::GameComponent(Game* game):mIndBuf(NULL), mVtxBuf(NULL)
 {
 	this->_game = game;
@@ -52,13 +49,5 @@ int GameComponent::Initialize(void)
 
 int GameComponent::Update(long time)
 {
-	return 0;
-}
-
-int GameComponent::setd3dDev(IDirect3DDevice9 *d3ddev)
-{
-	if (md3dDev == NULL) {
-		md3dDev = d3ddev;
-	} else return (1);			//Device already set
 	return 0;
 }

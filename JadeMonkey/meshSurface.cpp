@@ -224,10 +224,10 @@ int meshSurface::createGraphicsBuffers(void)
 
 
 #ifdef NUSS_SHADERS
-	rc =  md3dDev->CreateVertexBuffer(this->numVtx*sizeof(struct meshVertex),D3DUSAGE_WRITEONLY,
+	rc =  _game->getGraphicsDevice()->CreateVertexBuffer(this->numVtx*sizeof(struct meshVertex),D3DUSAGE_WRITEONLY,
 										NULL,D3DPOOL_MANAGED,&this->mVtxBuf, NULL);
 #else 
-	rc =  md3dDev->CreateVertexBuffer(this->numVtx*sizeof(struct meshVertex),D3DUSAGE_WRITEONLY,
+	rc =  _game->getGraphicsDevice()->CreateVertexBuffer(this->numVtx*sizeof(struct meshVertex),D3DUSAGE_WRITEONLY,
 										MESH_VERTEX_FVF,D3DPOOL_MANAGED,&this->mVtxBuf, NULL);
 #endif
 
@@ -243,7 +243,7 @@ int meshSurface::createGraphicsBuffers(void)
 	rc = mVtxBuf->Unlock();
 
 
-	rc =  md3dDev->CreateIndexBuffer(this->numTriangles*3*sizeof(long),D3DUSAGE_WRITEONLY,
+	rc =  _game->getGraphicsDevice()->CreateIndexBuffer(this->numTriangles*3*sizeof(long),D3DUSAGE_WRITEONLY,
 										D3DFMT_INDEX32,D3DPOOL_MANAGED,&this->mIndBuf, NULL);
 
 
@@ -294,7 +294,7 @@ int meshSurface::createVtxDescription(void)
 		D3DDECL_END()};
 		decl[0].Offset = (char *) &v.pos - (char *) &v;
 		decl[1].Offset = (char *) &v.color - (char *) &v;
-		rc = md3dDev->CreateVertexDeclaration(decl, &mDecl);
+		rc = _game->getGraphicsDevice()->CreateVertexDeclaration(decl, &mDecl);
 	}
 
 
@@ -356,27 +356,27 @@ int meshSurface::Draw(long time)
 
 
 	//D3DXMatrixIdentity(&worldMat);
-	md3dDev->SetTransform(D3DTS_WORLD, &worldMat);
+	_game->getGraphicsDevice()->SetTransform(D3DTS_WORLD, &worldMat);
 
 	// set the source
-	rc = md3dDev->SetStreamSource( 0, mVtxBuf, 0, sizeof(meshVertex) );
+	rc = _game->getGraphicsDevice()->SetStreamSource( 0, mVtxBuf, 0, sizeof(meshVertex) );
 #ifdef NUSS_SHADERS
-	rc = md3dDev->SetVertexDeclaration(mDecl);
+	rc = _game->getGraphicsDevice()->SetVertexDeclaration(mDecl);
 #else
-	rc = md3dDev->SetFVF(MESH_VERTEX_FVF);
+	rc = _game->getGraphicsDevice()->SetFVF(MESH_VERTEX_FVF);
 #endif
 
 
 	// set the index buffer
-	md3dDev->SetIndices(mIndBuf);
+	_game->getGraphicsDevice()->SetIndices(mIndBuf);
 
 	// do  not use texture
-	md3dDev->SetTexture(0,NULL);
+	_game->getGraphicsDevice()->SetTexture(0,NULL);
 
-	//md3dDev->SetRenderState(D3DRS_COLORVERTEX, FALSE);
-	md3dDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
-	//md3dDev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
-	md3dDev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, this->numVtx, 0, this->numTriangles);
+	//_game->getGraphicsDevice()->SetRenderState(D3DRS_COLORVERTEX, FALSE);
+	_game->getGraphicsDevice()->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+	//_game->getGraphicsDevice()->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
+	_game->getGraphicsDevice()->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, this->numVtx, 0, this->numTriangles);
 
    
 	return 0;

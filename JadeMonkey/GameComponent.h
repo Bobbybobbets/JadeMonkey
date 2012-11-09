@@ -47,14 +47,10 @@ public:
 	virtual int Initialize();
 	virtual int Update(long time);
 
-	static int setd3dDev(IDirect3DDevice9 *d3dDev);  // setting the d3dDev global variable
-
 	//members
 protected:
 	IDirect3DIndexBuffer9 *mIndBuf;
 	IDirect3DVertexBuffer9 *mVtxBuf;
 	Game *_game;
-
-	static IDirect3DDevice9 *md3dDev;
 
 };
