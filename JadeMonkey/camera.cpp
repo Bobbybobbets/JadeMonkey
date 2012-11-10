@@ -47,6 +47,8 @@ Return:
 
 */
 
+#define MOUSE_SENSITIVITY_SCALE 1000
+
 camera::camera(void): position(0.0,0.0,(float)-50.0), lookAtVector(0.0,0.0,1.0), upVector(0.0,1.0,0.0)
 , speed((float)1.1)
 {
@@ -422,20 +424,33 @@ int camera::updateSpeed(float speed)
 void camera::changeLookAt(D3DXVECTOR3 delta) {
 	D3DXMATRIX rotMat, rotMat1, rotMat2;	
 	D3DXVECTOR3 xaxis;
+	D3DXVECTOR3 yaxis;
+	
+	// Initialize the axis to their respective values
+	yaxis.x = 0;
+	yaxis.y = 1;
+	yaxis.z = 0;
 
-	delta.x /= 1000;
-	delta.y /= 1000;
+	// Scale the change in mouse (configurable setting?)
+	delta.x /= MOUSE_SENSITIVITY_SCALE;
+	delta.y /= MOUSE_SENSITIVITY_SCALE;
 
-	D3DXMatrixRotationAxis(&rotMat1, &upVector,delta.x);
+	//Declare the rotation axis based on the x and y axis 
+	D3DXMatrixRotationAxis(&rotMat1, &yaxis,delta.x);
 	D3DXVec3Cross(&xaxis, &upVector, &lookAtVector);
 	D3DXMatrixRotationAxis(&rotMat2, &xaxis,delta.y);
 
+	// Compound the two rotation matrices
 	rotMat = rotMat2 *  rotMat1 ;
-
+	
+	// Transform the upvector and lookatvector based on the rotation matrix
 	D3DXVec3TransformCoord(&upVector, &upVector, &rotMat);
 	D3DXVec3TransformCoord(&lookAtVector, &lookAtVector, &rotMat);
 
-	SetCursorPos( 200,300);
+	// Ensure that the magnitudes are less than 1
+	D3DXVec3Normalize(&this->upVector, &this->upVector);
+	D3DXVec3Normalize(&this->lookAtVector, &this->lookAtVector);
+
 }
 
 float camera::getSpeed(void)

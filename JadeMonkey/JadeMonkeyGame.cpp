@@ -131,7 +131,11 @@ int JadeMonkeyGame::Update(long time)
 		if (delta.x != 0 && delta.y != 0) {
 			this->cam.changeLookAt(delta);
 			rc +=0;
+
+			// Make sure that the cursor is in the middle of the screen
+			SetCursorPos(mWndWidth/2 , mWndHeight/2);
 		}
+
 
 	// move the camera
 //	cam.moveForward(cam.getSpeed());
@@ -163,7 +167,7 @@ int JadeMonkeyGame::Draw(long time)
 	D3DXMatrixLookAtLH(&viewMat,&D3DXVECTOR3(50,1000,50), &D3DXVECTOR3(500,0,500), &D3DXVECTOR3(0,1,0));
 
 	RECT textbox1;
-		textbox1.bottom=20;
+	textbox1.bottom=20;
 	textbox1.right=300;
 	textbox1.left=0;
 	textbox1.top=0;
@@ -214,7 +218,7 @@ int JadeMonkeyGame::Initialize(void)
 	//cube v;
 
 	// set the intial location of the camera
-	cam.setCamera(D3DXVECTOR3(-40,70,-40), D3DXVECTOR3(50,0,50), D3DXVECTOR3(0,1,0));
+	cam.setCamera(D3DXVECTOR3(0,70,0), D3DXVECTOR3(50,70,50), D3DXVECTOR3(0,1,0));
 	//cam.setCamera(D3DXVECTOR3(0,0,1), D3DXVECTOR3(0,0,-1), D3DXVECTOR3(0,1,0));
 
 	// initialize the projection matrix
