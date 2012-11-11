@@ -50,6 +50,8 @@ public:
 	int changeAbsPoition(float x, float y, float z);		// change to a new position in space
 	int changeAbsPosition(D3DXVECTOR3 *v);					// change to a new position in space
 	D3DXVECTOR3 moveForward(float numUnits);  // moves the camera forward by the numUnits units along the lookAtVector
+	D3DXVECTOR3 strafe(float numUnits);  // moves the camera forward by the numUnits units along the lookAtVector
+
 	void setCamera(D3DXVECTOR3 position, D3DXVECTOR3 lookAtPoint, D3DXVECTOR3 upVector);
 	int updateSpeed(float speed);
 	float getSpeed(void);
@@ -57,12 +59,14 @@ public:
 	void speedUp( float speedIncrease );
 	void changeLookAt(D3DXVECTOR3 delta);
 
+	float getStrafeSpeed(void);
 
 
 private:
 	int updateOrientation(D3DXVECTOR3 rotVector, float angleRad); // update the camera's orientation in space
 	int updateYawOrientation( D3DXVECTOR3 rotVector, float angleRad);
-	
+	float strafeSpeed;
+	float speed;
 
 public:
 	D3DXMATRIX rotMat;
@@ -70,6 +74,6 @@ public:
 	D3DXVECTOR3 upVector;
 	D3DXVECTOR3 lookAtVector;
 	D3DMATRIX * getViewMatrix(D3DXMATRIX * viewMatrix);
-	float speed;
+
 	// change the speed of the camera motion
 };

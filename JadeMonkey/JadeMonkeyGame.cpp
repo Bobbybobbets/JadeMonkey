@@ -84,45 +84,21 @@ int JadeMonkeyGame::Update(long time)
 	if (mInput->keyboardPressed(DIK_ESCAPE)) {
 		rc = 1;
 	} else {
-		if (mInput->keyboardPressed(DIK_LEFT)) {
-			// move left
-			cam.yaw(-0.5);
-			rc = 0;
-		}
-		if (mInput->keyboardPressed(DIK_RIGHT)) {
-			// move right
-			cam.yaw(0.5);
-			rc = 0;
-		}
-		if (mInput->keyboardPressed(DIK_UP)) {
-			// pull up
-			cam.pitch(0.2);
-			rc = 0;
-		}
-		if (mInput->keyboardPressed(DIK_DOWN)) {
-			// dive
-			cam.pitch(-0.2);
-			rc = 0;
-		}
 		if (mInput->keyboardPressed(DIK_W)) {
-			// speed up
-			cam.updateSpeed( 0.02);
+			cam.moveForward(cam.getSpeed());
 			rc = 0;
 		}
 		if (mInput->keyboardPressed(DIK_S)) {
-			// slow down
-			if( cam.getSpeed() >= -0.2 )
-				cam.updateSpeed( -0.02);
-			rc = 0;
+			cam.moveForward(-cam.getSpeed());
 		}
 		if (mInput->keyboardPressed(DIK_A)) {
 			//roll left
-			cam.roll(0.2);  //CCW
+			cam.strafe(cam.getStrafeSpeed());  //CCW
 			rc = 0;
 		}
 		if (mInput->keyboardPressed(DIK_D)) {
 			// roll write
-			cam.roll(-0.2);  //CW
+			cam.strafe(-cam.getStrafeSpeed());
 			rc = 0;
 		}
 	}

@@ -51,6 +51,7 @@ Return:
 
 camera::camera(void): position(0.0,0.0,(float)-50.0), lookAtVector(0.0,0.0,1.0), upVector(0.0,1.0,0.0)
 , speed((float)1.1)
+, strafeSpeed(0.001)
 {
 
 }
@@ -306,8 +307,39 @@ D3DXVECTOR3 camera::moveForward(float numUnits)
 	magnitude = numUnits;
 
 	position.x = position.x + lookAtVector.x * magnitude;
-	position.y = position.y + lookAtVector.y * magnitude;
+	//position.y = position.y + lookAtVector.y * magnitude;
 	position.z = position.z + lookAtVector.z * magnitude;
+
+	return (position);
+}
+
+D3DXVECTOR3 camera::strafe(float numUnits)
+{
+	D3DXVECTOR3 strafeVec;
+	D3DXVECTOR3 lookDirection;
+	D3DXVECTOR3 yaxis(0,1,0);
+	lookDirection.x = lookAtVector.x;
+	lookDirection.y = 0;
+	lookDirection.z = lookAtVector.z;
+
+
+	//The strafe vector will be the cross between the forward direction and the y axis
+	D3DXVec3Cross(&strafeVec, &lookDirection , &yaxis);
+
+	strafeVec.x += numUnits;
+	strafeVec.z += numUnits;
+
+	if (numUnits > 0)
+		position += strafeVec;
+	else
+		position -= strafeVec;
+//	lookAtVector.x = strafeVec.x;
+//	lookAtVector.z = strafeVec.z;
+	
+	D3DXVec3Normalize(&lookAtVector, &lookAtVector);
+	//position.x = position.x + lookAtVector.x * magnitude;
+	//position.y = position.y + lookAtVector.y * magnitude;
+	//position.z = position.z + lookAtVector.z * magnitude;
 
 	return (position);
 }
@@ -456,4 +488,9 @@ void camera::changeLookAt(D3DXVECTOR3 delta) {
 float camera::getSpeed(void)
 {
 	return(speed);
+}
+
+float camera::getStrafeSpeed(void)
+{
+	return strafeSpeed;
 }
