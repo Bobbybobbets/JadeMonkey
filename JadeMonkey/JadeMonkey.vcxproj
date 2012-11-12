@@ -69,8 +69,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="DrawableGameComponent.h" />
+    <ClInclude Include="EntityComponent.h" />
+    <ClInclude Include="EntityFactory.h" />
     <ClInclude Include="GameEntity.h" />
+    <ClInclude Include="GameEntitiesContainer.h" />
     <ClInclude Include="GameMap.h" />
     <ClInclude Include="ICollideable.h" />
     <ClInclude Include="IDrawable.h" />
@@ -81,6 +85,8 @@
     <ClInclude Include="GameComponent.h" />
     <ClInclude Include="JadeMonkeyGame.h" />
     <ClInclude Include="jade_util.h" />
+    <ClInclude Include="MainEntityFactory.h" />
+    <ClInclude Include="PlayerFPInputComponent.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="meshSurface.h" />
@@ -88,13 +94,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="DrawableGameComponent.cpp" />
+    <ClCompile Include="EntityComponent.cpp" />
+    <ClCompile Include="EntityFactory.cpp" />
     <ClCompile Include="GameComponent.cpp" />
     <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="JadeMonkey.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="gameIO.cpp" />
     <ClCompile Include="JadeMonkeyGame.cpp" />
+    <ClCompile Include="MainEntityFactory.cpp" />
+    <ClCompile Include="PlayerFPInputComponent.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="meshSurface.cpp" />
   </ItemGroup>

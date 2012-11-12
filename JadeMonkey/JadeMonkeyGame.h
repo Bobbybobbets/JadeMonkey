@@ -44,6 +44,10 @@
 #include "Game.h"
 #include "camera.h"
 #include "meshSurface.h"
+#include <vector>
+#include "GameEntitiesContainer.h"
+
+using namespace std;
 
 class JadeMonkeyGame : public Game
 {
@@ -72,4 +76,6 @@ public:
 	 
 	LPD3DXFONT fontCourier; // font to be used 
 
+private:
+	GameEntitiesContainer _entitiesContainer;
 };

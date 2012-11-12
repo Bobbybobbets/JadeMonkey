@@ -13,13 +13,56 @@ GameEntity::~GameEntity()
 {
 }
 
+void GameEntity::AddComponent(EntityComponent* component)
+{
+	this->_components.push_back(component);
+}
+
+void GameEntity::AddComponent(EntityComponent* component, vector<EntityComponent*> dependencies)
+{
+	vector<EntityComponent*>::iterator maxIt;
+	vector<EntityComponent*>::iterator it;
+
+	for(it = this->_components.begin(); it < this->_components.end(); it++)
+	{
+		for(int i = 0; i < dependencies.size(); i++)
+		{
+			if(*it == dependencies[i])
+			{
+				maxIt = it;
+			}
+		}
+	}
+
+	if(maxIt != this->_components.end())
+	{
+		this->_components.insert(maxIt+1, component);
+	}
+	else{
+		this->AddComponent(component);
+	}
+}
+
 int GameEntity::Initialize()
 {
+	for(vector<EntityComponent*>::iterator it = this->_components.begin();
+		it < this->_components.end();
+		it++)
+	{
+		(*it)->Initialize();
+	}
 	return 0;
 }
 
 int GameEntity::Update(long time)
 {
+	for(vector<EntityComponent*>::iterator it = this->_components.begin();
+		it < this->_components.end();
+		it++)
+	{
+		(*it)->Update(this, time);
+	}
+	
 	return 0;
 }
 

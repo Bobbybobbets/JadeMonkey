@@ -45,6 +45,9 @@
 #include "JadeMonkeyGame.h"
 #include "meshSurface.h"
 #include <stdio.h>
+#include "GameEntity.h"
+#include "EntityFactory.h"
+#include "MainEntityFactory.h"
 
 using namespace std;
 
@@ -55,6 +58,7 @@ JadeMonkeyGame::JadeMonkeyGame(HINSTANCE hInstance, char* gameName):
 {
 	ground = new meshSurface(100, 100, 20,20,this);
 	ground->setScale(1.0,4.0,1.0);
+
 }
 
 JadeMonkeyGame::~JadeMonkeyGame(void)
@@ -83,7 +87,9 @@ int JadeMonkeyGame::Update(long time)
 	// check if escape key was pressed
 	if (mInput->keyboardPressed(DIK_ESCAPE)) {
 		rc = 1;
-	} else {
+	} 
+	
+	/*else {
 		if (mInput->keyboardPressed(DIK_W)) {
 			cam.moveForward(cam.getSpeed());
 			rc = 0;
@@ -111,7 +117,14 @@ int JadeMonkeyGame::Update(long time)
 			// Make sure that the cursor is in the middle of the screen
 			SetCursorPos(mWndWidth/2 , mWndHeight/2);
 		}
+	*/
 
+	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Entities.begin(); 
+		it < this->_entitiesContainer.Entities.end(); 
+		it++)
+	{
+		(*it)->Update(time);
+	}
 
 	// move the camera
 //	cam.moveForward(cam.getSpeed());
@@ -148,7 +161,8 @@ int JadeMonkeyGame::Draw(long time)
 	textbox1.left=0;
 	textbox1.top=0;
 	// set the camera matrix
-	cam.getViewMatrix(&viewMat);  // nuss1
+	//cam.getViewMatrix(&viewMat);  // nuss1
+	this->_entitiesContainer.Cameras[0]->GetViewMatrix(&viewMat);
 	// inform direct3d about the view transformation
 	rc = md3dDev->SetTransform(D3DTS_VIEW,&viewMat);
 
@@ -188,13 +202,14 @@ int JadeMonkeyGame::Draw(long time)
 
 int JadeMonkeyGame::Initialize(void)
 {
+	EntityFactory* factory = new MainEntityFactory(this);
 	int rc = 0;
 	rc = Game::Initialize();
 
 	//cube v;
 
 	// set the intial location of the camera
-	cam.setCamera(D3DXVECTOR3(0,70,0), D3DXVECTOR3(50,70,50), D3DXVECTOR3(0,1,0));
+	//cam.setCamera(D3DXVECTOR3(0,70,0), D3DXVECTOR3(50,70,50), D3DXVECTOR3(0,1,0));
 	//cam.setCamera(D3DXVECTOR3(0,0,1), D3DXVECTOR3(0,0,-1), D3DXVECTOR3(0,1,0));
 
 	// initialize the projection matrix
@@ -228,10 +243,16 @@ int JadeMonkeyGame::Initialize(void)
 	dy = 1;
 
 
-	// get the dimension of the window
+	//create game entities
+	this->_entitiesContainer = factory->GetContainer();
 
-	// initialize a cube
-
+	//intialize game entities
+	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Entities.begin(); 
+		it < this->_entitiesContainer.Entities.end(); 
+		it++)
+	{
+		(*it)->Initialize();
+	}
 
 	return 0;
 

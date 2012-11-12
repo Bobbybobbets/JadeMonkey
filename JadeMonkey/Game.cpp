@@ -415,6 +415,10 @@ int Game::gameLoop(void)
 	return 0;
 }
 
+gameIO* Game::getIOInterface(void)
+{
+	return this->mInput;
+}
 
 /******************************************************************/
 /*

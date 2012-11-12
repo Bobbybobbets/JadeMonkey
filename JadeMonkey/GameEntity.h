@@ -1,12 +1,18 @@
 #pragma once
 #include "Game.h"
 #include "GameComponent.h"
+#include "EntityComponent.h"
+#include <vector>
+
+using namespace std;
 
 class GameEntity : public GameComponent
 {
 public:
 	~GameEntity(void);
 	GameEntity(Game* game);
+	void AddComponent(EntityComponent* component);
+	void AddComponent(EntityComponent* component, vector<EntityComponent*> dependencies);
 	virtual int Initialize() override;
 	virtual int Update(long time) override;
 	D3DXVECTOR3 getPosition(void);
@@ -26,4 +32,5 @@ protected:
 	int numVtx;
 	int numQuads;
 	int numTriangles;
+	vector<EntityComponent*> _components;
 };

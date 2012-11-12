@@ -71,6 +71,7 @@ public:
 	virtual int Draw(long time) override;   // render the frame
 	virtual int Initialize(void) = 0;  // initialize the game
 	virtual int LoadContent(void) override; //load game content
+	gameIO* getIOInterface(void);
 
 	int gameLoop(void);					// start the game loop
 	D3DMATRIX * getProjMat(D3DXMATRIX * matProj);
@@ -115,7 +116,9 @@ protected:
 	gameIO *mInput;
 	int initGameInput(void);
 
-	int getWndWidth(void);
+	
 public:
+	int getWndWidth(void);
 	int getWndHeight(void);
+
 };
