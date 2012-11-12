@@ -2,7 +2,7 @@
 #include "GameEntity.h"
 
 GameEntity::GameEntity(Game* game) : 
-	GameComponent(game),
+	DrawableGameComponent(game),
 	_rotation(0.0, 0.0, 0.0), 
 	_position(0.0,0.0,0.0),
 	_direction(0.0,0.0,0.0)
@@ -15,6 +15,7 @@ GameEntity::~GameEntity()
 
 void GameEntity::AddComponent(EntityComponent* component)
 {
+	this->_visible = false;
 	this->_components.push_back(component);
 }
 
@@ -43,6 +44,12 @@ void GameEntity::AddComponent(EntityComponent* component, vector<EntityComponent
 	}
 }
 
+void GameEntity::AddGraphicsComponent(EntityComponent* component)
+{
+	this->_visible = true;
+	this->_graphicsComponents.push_back(component);
+}
+
 int GameEntity::Initialize()
 {
 	for(vector<EntityComponent*>::iterator it = this->_components.begin();
@@ -51,6 +58,14 @@ int GameEntity::Initialize()
 	{
 		(*it)->Initialize();
 	}
+
+	for(vector<EntityComponent*>::iterator it = this->_graphicsComponents.begin();
+		it < this->_graphicsComponents.end();
+		it++)
+	{
+		(*it)->Initialize();
+	}
+
 	return 0;
 }
 
@@ -65,6 +80,22 @@ int GameEntity::Update(long time)
 	
 	return 0;
 }
+
+int GameEntity::Draw(long time)
+{
+	if(this->_visible)
+	{
+		for(vector<EntityComponent*>::iterator it = this->_graphicsComponents.begin();
+			it < this->_graphicsComponents.end();
+			it++)
+		{
+			(*it)->Update(this, time);
+		}
+	}
+
+	return 0;
+}
+
 
 D3DXVECTOR3 GameEntity::getPosition()
 {

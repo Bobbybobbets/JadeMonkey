@@ -1,20 +1,22 @@
 #pragma once
 #include "Game.h"
-#include "GameComponent.h"
+#include "DrawableGameComponent.h"
 #include "EntityComponent.h"
 #include <vector>
 
 using namespace std;
 
-class GameEntity : public GameComponent
+class GameEntity : public DrawableGameComponent
 {
 public:
 	~GameEntity(void);
 	GameEntity(Game* game);
 	void AddComponent(EntityComponent* component);
 	void AddComponent(EntityComponent* component, vector<EntityComponent*> dependencies);
+	void AddGraphicsComponent(EntityComponent* component);
 	virtual int Initialize() override;
 	virtual int Update(long time) override;
+	virtual int Draw(long time) override;
 	D3DXVECTOR3 getPosition(void);
 	void setPosition(D3DXVECTOR3 position);
 	D3DXVECTOR3 getDirection(void);
@@ -23,6 +25,7 @@ public:
 	void setRotation(D3DXVECTOR3 rotation);
 	D3DXVECTOR3 getScale(void);
 	void setScale(D3DXVECTOR3 scale);
+	bool IsVisible(void);
 
 protected:
 	D3DXVECTOR3 _position;	// position of object
@@ -33,4 +36,6 @@ protected:
 	int numQuads;
 	int numTriangles;
 	vector<EntityComponent*> _components;
+	vector<EntityComponent*> _graphicsComponents;
+	bool _visible;
 };

@@ -34,7 +34,6 @@
 #include "d3dx9.h"
 #include "d3dx9math.h"
 #include "IUpdateable.h"
-#include "Game.h"
 
 class Game;
 
