@@ -30,7 +30,8 @@ public:
 	virtual int Draw(long time);
 	virtual int LoadContent();
 
-private:
+protected:
+
 	struct meshVertex *vtx;
 	long *ind;
 	int createVtxDescription(void);

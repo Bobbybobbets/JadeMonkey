@@ -1,7 +1,7 @@
 #pragma once
 #include "Game.h"
 #include "DrawableGameComponent.h"
-#include "EntityComponent.h"
+#include "BEntityComponent.h"
 #include <vector>
 
 using namespace std;
@@ -11,13 +11,14 @@ class GameEntity : public DrawableGameComponent
 public:
 	~GameEntity(void);
 	GameEntity(Game* game);
-	void AddComponent(EntityComponent* component);
-	void AddComponent(EntityComponent* component, vector<EntityComponent*> dependencies);
-	void AddGraphicsComponent(EntityComponent* component);
+	void AddComponent(BEntityComponent* component);
+	void AddComponent(BEntityComponent* component, vector<BEntityComponent*> dependencies);
+	void AddGraphicsComponent(BEntityComponent* component);
 	virtual int Initialize() override;
 	virtual int Update(long time) override;
 	virtual int Draw(long time) override;
 	D3DXVECTOR3 getPosition(void);
+	D3DXVECTOR3 getPositionBuffer(void);
 	void setPosition(D3DXVECTOR3 position);
 	D3DXVECTOR3 getDirection(void);
 	void setDirection(D3DXVECTOR3 direction);
@@ -29,13 +30,14 @@ public:
 
 protected:
 	D3DXVECTOR3 _position;	// position of object
+	D3DXVECTOR3 _positionBuffer;
 	D3DXVECTOR3 _direction;	// direction of object
 	D3DXVECTOR3 _rotation;	// angle of rotation of the object
 	D3DXVECTOR3 _scale;		// scale of the object
 	int numVtx;
 	int numQuads;
 	int numTriangles;
-	vector<EntityComponent*> _components;
-	vector<EntityComponent*> _graphicsComponents;
+	vector<BEntityComponent*> _components;
+	vector<BEntityComponent*> _graphicsComponents;
 	bool _visible;
 };

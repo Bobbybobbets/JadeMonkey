@@ -6,10 +6,10 @@ using namespace std;
 
 class GameEntity;
 
-class EntityComponent
+class BEntityComponent
 {
 public:
-	EntityComponent(Game* game, GameEntity* entity);
+	BEntityComponent(Game* game, GameEntity* entity);
 	virtual void Initialize(void);
 	virtual void Update(GameEntity* entity, long time);
 	virtual string GetName(void);

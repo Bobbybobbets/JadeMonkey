@@ -1,10 +1,10 @@
 #pragma once
 #include "GameEntity.h"
-#include "EntityComponent.h"
+#include "BEntityComponent.h"
 
 #define MOUSE_SENSITIVITY_SCALE 1000;
 
-class CameraComponent : public EntityComponent
+class CameraComponent : public BEntityComponent
 {
 public:
 	CameraComponent(Game* game, GameEntity* entity);

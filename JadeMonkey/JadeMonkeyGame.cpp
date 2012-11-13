@@ -186,7 +186,13 @@ int JadeMonkeyGame::Draw(long time)
 	
 	md3dDev->BeginScene();    // begins the 3D scene
 	
-	ground->Draw(time);
+	//ground->Draw(time);
+	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Entities.begin(); 
+		it < this->_entitiesContainer.Entities.end(); 
+		it++)
+	{
+		(*it)->Draw(time);
+	}
 
     md3dDev->EndScene();    // ends the 3D scene
 

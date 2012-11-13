@@ -1,7 +1,10 @@
 #include "CameraComponent.h"
+#include <iostream>
+
+using namespace std;
 
 CameraComponent::CameraComponent(Game* game, GameEntity* entity)
-	: EntityComponent(game, entity)
+	: BEntityComponent(game, entity)
 {
 }
 
@@ -13,6 +16,7 @@ void CameraComponent::Initialize(void)
 
 void CameraComponent::Update(GameEntity* entity, long time)
 {
+
 }
 
 D3DXVECTOR3 CameraComponent::UpVector(void)
@@ -111,7 +115,8 @@ D3DXMATRIX* CameraComponent::GetViewMatrix(D3DXMATRIX* viewMatrix)
 	D3DXVECTOR3 lookAt;
 
 	//lookAtVector = D3DXVECTOR3(.5,-.15,.5);
-	lookAt = this->Position() + this->_lookAtVector;
+	D3DXVECTOR3 position = this->Position();
+	lookAt = position + this->_lookAtVector;
 
 
 	return(D3DXMatrixLookAtLH(viewMatrix, &this->Position(),&lookAt, &this->_upVector));
@@ -123,7 +128,8 @@ D3DXVECTOR3 CameraComponent::MoveForward(float numUnits)
 	float magnitude;
 	magnitude = numUnits;
 
-	this->SetPositionDelta(this->_lookAtVector * magnitude);
+	D3DXVECTOR3 lookAt = this->_lookAtVector;
+	this->SetPositionDelta(D3DXVECTOR3(lookAt.x, 0, lookAt.z) * magnitude);
 
 	return (this->Position());
 }

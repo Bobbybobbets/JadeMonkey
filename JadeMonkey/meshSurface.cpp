@@ -30,17 +30,11 @@
 //
 // The code is provided as is without any warranty
 
-//=============================================================================
-
-
+//============================================================================
 
 #include "StdAfx.h"
 #include "meshSurface.h"
 #include "jade_util.h"
-
-
-
-
 
 IDirect3DVertexDeclaration9* meshSurface::mDecl = NULL;
 

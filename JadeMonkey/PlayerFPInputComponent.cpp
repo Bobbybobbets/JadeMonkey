@@ -2,7 +2,7 @@
 
 
 PlayerFPInputComponent::PlayerFPInputComponent(Game* game, GameEntity* entity, CameraComponent* camera)
-	: EntityComponent(game, entity)
+	: BEntityComponent(game, entity)
 {
 	this->_io = game->getIOInterface();
 	this->_camera = camera;
@@ -14,7 +14,7 @@ void PlayerFPInputComponent::Initialize()
 
 void PlayerFPInputComponent::Update(GameEntity* entity, long time)
 {
-	int wndWidth = _game->getWndWidth();
+	int wndWidth = this->_game->getWndWidth();
 	int wndHeight = _game->getWndHeight();
 	CameraComponent* cam = this->_camera;
 

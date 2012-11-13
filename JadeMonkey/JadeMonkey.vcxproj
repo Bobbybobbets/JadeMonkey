@@ -70,12 +70,15 @@
   <ItemGroup>
     <ClInclude Include="camera.h" />
     <ClInclude Include="CameraComponent.h" />
+    <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="DrawableGameComponent.h" />
-    <ClInclude Include="EntityComponent.h" />
+    <ClInclude Include="BEntityComponent.h" />
     <ClInclude Include="EntityFactory.h" />
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="GameEntitiesContainer.h" />
     <ClInclude Include="GameMap.h" />
+    <ClInclude Include="GameMap1GraphicsComponent.h" />
+    <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="ICollideable.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IUpdateable.h" />
@@ -86,7 +89,9 @@
     <ClInclude Include="JadeMonkeyGame.h" />
     <ClInclude Include="jade_util.h" />
     <ClInclude Include="MainEntityFactory.h" />
+    <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="PlayerFPInputComponent.h" />
+    <ClInclude Include="CuboidCollisionComponent.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="meshSurface.h" />
@@ -95,16 +100,20 @@
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
+    <ClCompile Include="CuboidCollisionComponent.cpp" />
     <ClCompile Include="DrawableGameComponent.cpp" />
-    <ClCompile Include="EntityComponent.cpp" />
+    <ClCompile Include="BEntityComponent.cpp" />
     <ClCompile Include="EntityFactory.cpp" />
     <ClCompile Include="GameComponent.cpp" />
     <ClCompile Include="GameEntity.cpp" />
+    <ClCompile Include="GameMap1GraphicsComponent.cpp" />
+    <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="JadeMonkey.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="gameIO.cpp" />
     <ClCompile Include="JadeMonkeyGame.cpp" />
     <ClCompile Include="MainEntityFactory.cpp" />
+    <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="PlayerFPInputComponent.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="meshSurface.cpp" />

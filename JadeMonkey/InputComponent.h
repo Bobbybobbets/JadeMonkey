@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "GameComponent.h"
 #include "GameEntity.h"
-#include "EntityComponent.h"
+#include "BEntityComponent.h"
 
 class InputComponent : public EntityComponent
 {

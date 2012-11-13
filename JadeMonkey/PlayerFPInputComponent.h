@@ -1,12 +1,12 @@
 #pragma once
 
-#include "InputComponent.h"
+#include "BEntityComponent.h"
 #include "Game.h"
 #include "GameEntity.h"
 #include "gameIO.h"
 #include "CameraComponent.h"
 
-class PlayerFPInputComponent : public EntityComponent
+class PlayerFPInputComponent : public BEntityComponent
 {
 public:
 	PlayerFPInputComponent(Game* game, GameEntity* entity, CameraComponent* camera);
