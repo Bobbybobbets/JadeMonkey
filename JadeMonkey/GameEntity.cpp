@@ -1,5 +1,7 @@
 #include "StdAfx.h"
 #include "GameEntity.h"
+#include "CollisionComponent.h"
+#include "GraphicsComponent.h"
 
 GameEntity::GameEntity(Game* game) : 
 	DrawableGameComponent(game),
@@ -45,12 +47,16 @@ void GameEntity::AddComponent(BEntityComponent* component, vector<BEntityCompone
 	}
 }
 
-void GameEntity::AddGraphicsComponent(BEntityComponent* component)
+void GameEntity::AddGraphicsComponent(GraphicsComponent* component)
 {
 	this->_visible = true;
 	this->_graphicsComponents.push_back(component);
 }
 
+void GameEntity::AddCollisionComponent(CollisionComponent* component)
+{
+	this->_collisionComponents.push_back(component);
+}
 int GameEntity::Initialize()
 {
 	for(vector<BEntityComponent*>::iterator it = this->_components.begin();
@@ -60,7 +66,7 @@ int GameEntity::Initialize()
 		(*it)->Initialize();
 	}
 
-	for(vector<BEntityComponent*>::iterator it = this->_graphicsComponents.begin();
+	for(vector<GraphicsComponent*>::iterator it = this->_graphicsComponents.begin();
 		it < this->_graphicsComponents.end();
 		it++)
 	{
@@ -86,7 +92,7 @@ int GameEntity::Draw(long time)
 {
 	if(this->_visible)
 	{
-		for(vector<BEntityComponent*>::iterator it = this->_graphicsComponents.begin();
+		for(vector<GraphicsComponent*>::iterator it = this->_graphicsComponents.begin();
 			it < this->_graphicsComponents.end();
 			it++)
 		{
@@ -142,4 +148,13 @@ D3DXVECTOR3 GameEntity::getScale()
 void GameEntity::setScale(D3DXVECTOR3 scale)
 {
 	this->_scale = scale;
+}
+
+GraphicsComponent* GameEntity::getGraphicsComponent()
+{
+	return _graphicsComponents.at(0);
+}
+vector<CollisionComponent*> GameEntity::getCollisionComponents()
+{
+	return _collisionComponents;
 }

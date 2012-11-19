@@ -1,11 +1,12 @@
 #include "PlayerFPInputComponent.h"
 
 
-PlayerFPInputComponent::PlayerFPInputComponent(Game* game, GameEntity* entity, CameraComponent* camera)
+PlayerFPInputComponent::PlayerFPInputComponent(Game* game, GameEntity* entity, CameraComponent* camera, PhysicsComponent* physics)
 	: BEntityComponent(game, entity)
 {
 	this->_io = game->getIOInterface();
 	this->_camera = camera;
+	this->_physics = physics;
 }
 
 void PlayerFPInputComponent::Initialize()
@@ -33,12 +34,14 @@ void PlayerFPInputComponent::Update(GameEntity* entity, long time)
 		cam->MoveForward(-cam->GetSpeed());
 	}
 	if (this->_io->keyboardPressed(DIK_A)) {
-		//roll left
 		cam->Strafe(cam->GetStrafeSpeed());  //CCW
 	}
 	if (this->_io->keyboardPressed(DIK_D)) {
-		// roll write
 		cam->Strafe(-cam->GetStrafeSpeed());
+	}
+	if (this->_io->keyboardPressed(DIK_SPACE) && _physics->getOnGround()) {
+		_physics->setAccelerationVector(D3DXVECTOR3(0.0f,5.0f,0.0f));
+		
 	}
 
 }

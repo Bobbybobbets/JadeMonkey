@@ -1,23 +1,23 @@
-#include "GameMap1GraphicsComponent.h"
+#include "GameMap2GraphicsComponent.h"
 #include "jade_util.h"
 
-GameMap1GraphicsComponent::GameMap1GraphicsComponent(int numRows, int numCols, Game* game, GameEntity* entity)
+GameMap2GraphicsComponent::GameMap2GraphicsComponent(int numRows, int numCols, Game* game, GameEntity* entity)
 	: GraphicsComponent(game, entity)
 {
 	this->ind=0; 
 	this->numVtx=0; 
 	this->numQuads=0;
 	this->numTriangles=0;
-	this->dz = 20;
+	this->dy = 20;
 	this->dx = 20;
 	this->vtx=NULL;
 	this->numRows=numRows;
 	this->numCols=numCols;
 	createVtxDescription();
-	this->_entity->setScale(D3DXVECTOR3(1.0, 4.0, 1.0));
+	this->_entity->setScale(D3DXVECTOR3(1.0, 1.0, 1.0));
 }
 
-void GameMap1GraphicsComponent::Initialize(void)
+void GameMap2GraphicsComponent::Initialize(void)
 {
 	int i,j,k;
 	D3DXVECTOR3 rowPos(0.0,0.0,0.0);
@@ -27,11 +27,6 @@ void GameMap1GraphicsComponent::Initialize(void)
 	float rangeMin = 0;
 
 	numVtx = numRows*numCols;
-	this->numRows = numRows;
-	this->numCols = numCols;
-	this->dx = dx;
-	this->dz = dz;
-
 	numQuads = (numRows-1) * (numCols-1);
 	numTriangles = numQuads * 2;
 
@@ -61,12 +56,12 @@ void GameMap1GraphicsComponent::Initialize(void)
 			vtx[k].pos =  colPos;
 			//vtx[k].pos.y = (long)((double)rand()/(RAND_MAX+1) * (rangeMax - rangeMin)
 			//	+ rangeMin);
-			vtx[k].pos.y = 0;
+			vtx[k].pos.z = 0;
 			vtx[k].color = initialColor;
 			colPos.x += dx;
 			k++;
 		}
-		rowPos.z += dz;
+		rowPos.y += dy;
 	}
 
 	// fill the index buffer
@@ -95,12 +90,12 @@ err:
 	FREE_MEMORY_MALLOC(ind);
 }
 
-void GameMap1GraphicsComponent::Update(GameEntity* entity, long time)
+void GameMap2GraphicsComponent::Update(GameEntity* entity, long time)
 {
 	GraphicsComponent::Update(this->_entity, time);
 }
 
-string GameMap1GraphicsComponent::GetName(void)
+string GameMap2GraphicsComponent::GetName(void)
 {
 	return "GameMap1GraphicsComponent";
 }

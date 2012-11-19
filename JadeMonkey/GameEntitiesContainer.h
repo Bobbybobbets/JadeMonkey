@@ -6,4 +6,6 @@ struct GameEntitiesContainer
 {
 	vector<CameraComponent*> Cameras;
 	vector<GameEntity*> Entities;
+	vector<GameEntity*> Walls;
+	vector<GameEntity*> Floors;
 };

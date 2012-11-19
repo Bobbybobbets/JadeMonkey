@@ -305,9 +305,13 @@ D3DXVECTOR3 camera::moveForward(float numUnits)
 {
 	float magnitude;
 	magnitude = numUnits;
+	D3DXVECTOR3 temp;
+
+	temp.x = position.x + lookAtVector.x * magnitude;
+	temp.z = position.z + lookAtVector.z * magnitude;
+
 
 	position.x = position.x + lookAtVector.x * magnitude;
-	//position.y = position.y + lookAtVector.y * magnitude;
 	position.z = position.z + lookAtVector.z * magnitude;
 
 	return (position);
@@ -333,13 +337,9 @@ D3DXVECTOR3 camera::strafe(float numUnits)
 		position += strafeVec;
 	else
 		position -= strafeVec;
-//	lookAtVector.x = strafeVec.x;
-//	lookAtVector.z = strafeVec.z;
 	
 	D3DXVec3Normalize(&lookAtVector, &lookAtVector);
-	//position.x = position.x + lookAtVector.x * magnitude;
-	//position.y = position.y + lookAtVector.y * magnitude;
-	//position.z = position.z + lookAtVector.z * magnitude;
+
 
 	return (position);
 }

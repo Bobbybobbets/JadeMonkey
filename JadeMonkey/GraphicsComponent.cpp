@@ -2,16 +2,15 @@
 
 IDirect3DVertexDeclaration9* GraphicsComponent::mDecl = NULL;
 
-GraphicsComponent::GraphicsComponent(Game* game, GameEntity* entity)
-	: BEntityComponent(game, entity)
+GraphicsComponent::GraphicsComponent(Game* game, GameEntity* entity): BEntityComponent(game, entity)
 {
-	
 }
 
 void GraphicsComponent::Update(GameEntity* entity, long time)
 {
 	D3DXVECTOR3 _position = this->_entity->getPosition();
 	D3DXVECTOR3 _scale = this->_entity->getScale();
+	D3DXVECTOR3 yaxis = D3DXVECTOR3(0.0, 1.0, 0.0);
 
     static int angle = 0;
 
@@ -22,10 +21,18 @@ void GraphicsComponent::Update(GameEntity* entity, long time)
 
 	D3DXMATRIX worldMat, viewMat, matTransform, matProjection, matScale, matTranslate,  matRotation;
 
+	//Declare the rotation axis based on the x and y axis 
+
 
 	D3DXMatrixScaling(&matScale,_scale.x, _scale.y, _scale.z);
 	worldMat = matScale;
 
+	if( this->_entity->getRotation().y > 0)
+		D3DXMatrixRotationAxis(&matRotation, &yaxis, -D3DXToRadian(this->_entity->getRotation().y));
+	else 
+		D3DXMatrixRotationAxis(&matRotation, &yaxis, D3DXToRadian(this->_entity->getRotation().y));
+
+	worldMat *= matRotation;
 	D3DXMatrixTranslation(&matTranslate, _position.x, _position.y, _position.z);
 	worldMat *= matTranslate;
 
@@ -108,4 +115,25 @@ void GraphicsComponent::createVtxDescription(void)
 		decl[1].Offset = (char *) &v.color - (char *) &v;
 		_game->getGraphicsDevice()->CreateVertexDeclaration(decl, &mDecl);
 	}
+}
+
+int GraphicsComponent::getNumRows()
+{
+	return numRows;
+}
+int GraphicsComponent::getNumCols()
+{
+	return numCols;
+}
+float GraphicsComponent::getDx()
+{
+	return dx;
+}
+float GraphicsComponent::getDy()
+{
+	return dy;
+}
+float GraphicsComponent::getDz()
+{
+	return dz;
 }

@@ -26,12 +26,16 @@ public:
 	float GetStrafeSpeed(void);
 	float GetSpeed(void);
 	int UpdateSpeed(float speed);
+	float getHeightOfPlayer();
+
 
 private:
+
 	D3DXVECTOR3 _lookAtVector;
 	D3DXVECTOR3 _upVector;
 	D3DXMATRIX _rotMat;
 	void updateOrientation(D3DXVECTOR3 rotVector, float angleRad);
 	float _speed;
 	float _strafeSpeed;
+	float heightOfPlayer; // how tall the player is
 };

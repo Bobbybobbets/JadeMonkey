@@ -43,11 +43,12 @@
 
 #include "StdAfx.h"
 #include "JadeMonkeyGame.h"
-#include "meshSurface.h"
 #include <stdio.h>
 #include "GameEntity.h"
 #include "EntityFactory.h"
 #include "MainEntityFactory.h"
+#include "CollisionComponent.h"
+#include "WallPointCollisionComponent.h"
 
 using namespace std;
 
@@ -56,8 +57,6 @@ JadeMonkeyGame::JadeMonkeyGame(HINSTANCE hInstance, char* gameName):
 	x(0), 
 	fontCourier(NULL)
 {
-	ground = new meshSurface(100, 100, 20,20,this);
-	ground->setScale(1.0,4.0,1.0);
 
 }
 
@@ -80,7 +79,6 @@ int JadeMonkeyGame::Update(long time)
 
 	// add code to update the game state
 
-
 	// poll the input
 	mInput->poll();
 	
@@ -88,36 +86,6 @@ int JadeMonkeyGame::Update(long time)
 	if (mInput->keyboardPressed(DIK_ESCAPE)) {
 		rc = 1;
 	} 
-	
-	/*else {
-		if (mInput->keyboardPressed(DIK_W)) {
-			cam.moveForward(cam.getSpeed());
-			rc = 0;
-		}
-		if (mInput->keyboardPressed(DIK_S)) {
-			cam.moveForward(-cam.getSpeed());
-		}
-		if (mInput->keyboardPressed(DIK_A)) {
-			//roll left
-			cam.strafe(cam.getStrafeSpeed());  //CCW
-			rc = 0;
-		}
-		if (mInput->keyboardPressed(DIK_D)) {
-			// roll write
-			cam.strafe(-cam.getStrafeSpeed());
-			rc = 0;
-		}
-	}
-
-		D3DXVECTOR3 delta = mInput->mouseDelta();
-		if (delta.x != 0 && delta.y != 0) {
-			this->cam.changeLookAt(delta);
-			rc +=0;
-
-			// Make sure that the cursor is in the middle of the screen
-			SetCursorPos(mWndWidth/2 , mWndHeight/2);
-		}
-	*/
 
 	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Entities.begin(); 
 		it < this->_entitiesContainer.Entities.end(); 
@@ -125,11 +93,6 @@ int JadeMonkeyGame::Update(long time)
 	{
 		(*it)->Update(time);
 	}
-
-	// move the camera
-//	cam.moveForward(cam.getSpeed());
-
-
 
 	return(rc);
 }
@@ -269,4 +232,36 @@ err:
 int JadeMonkeyGame::LoadContent(void)
 {
 	return 0;
+}
+
+bool JadeMonkeyGame::checkFloorCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end)
+{
+
+	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Floors.begin(); 
+		it < this->_entitiesContainer.Floors.end(); 
+		it++)
+	{
+		if( (*it)->getCollisionComponents().size() != 0)
+			if((*it)->getCollisionComponents().at(0)->checkCollision(start,end))
+						return true;
+			
+			
+	}
+	return false;
+}
+
+bool JadeMonkeyGame::checkWallCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end)
+{
+
+	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Walls.begin(); 
+		it < this->_entitiesContainer.Walls.end(); 
+		it++)
+	{
+		if( (*it)->getCollisionComponents().size() != 0)
+			if((*it)->getCollisionComponents().at(0)->checkCollision(start,end))
+						return true;
+			
+			
+	}
+	return false;
 }

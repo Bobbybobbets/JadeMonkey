@@ -1,3 +1,5 @@
+#pragma once
+
 #include "BEntityComponent.h"
 #include "GameEntity.h"
 
@@ -20,6 +22,12 @@ public:
 	virtual void Update(GameEntity* entity, long time);
 	virtual string GetName(void) = 0;
 
+	virtual int getNumRows() override;
+	int getNumCols() override ;
+	float getDx() override ;
+	float getDy() override ;
+	float getDz() override;
+
 protected:
 	virtual void createGraphicsBuffers(void);
 	virtual void createVtxDescription(void);
@@ -30,6 +38,7 @@ protected:
 	IDirect3DVertexBuffer9 *mVtxBuf;
 
 	float dx;
+	float dy;
 	float dz;
 
 	int numRows;
@@ -39,4 +48,5 @@ protected:
 	int numTriangles;
 
 	static IDirect3DVertexDeclaration9* mDecl;
+
 };

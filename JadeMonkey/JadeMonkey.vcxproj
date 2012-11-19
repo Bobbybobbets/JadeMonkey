@@ -74,10 +74,12 @@
     <ClInclude Include="DrawableGameComponent.h" />
     <ClInclude Include="BEntityComponent.h" />
     <ClInclude Include="EntityFactory.h" />
+    <ClInclude Include="FloorPointCollisionComponent.h" />
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="GameEntitiesContainer.h" />
     <ClInclude Include="GameMap.h" />
     <ClInclude Include="GameMap1GraphicsComponent.h" />
+    <ClInclude Include="GameMap2GraphicsComponent.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="ICollideable.h" />
     <ClInclude Include="IDrawable.h" />
@@ -92,10 +94,12 @@
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="PlayerFPInputComponent.h" />
     <ClInclude Include="CuboidCollisionComponent.h" />
+    <ClInclude Include="PointCollisionComponent.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="meshSurface.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="WallPointCollisionComponent.h" />
+    <ClInclude Include="WallPointXCollisionComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
@@ -104,9 +108,11 @@
     <ClCompile Include="DrawableGameComponent.cpp" />
     <ClCompile Include="BEntityComponent.cpp" />
     <ClCompile Include="EntityFactory.cpp" />
+    <ClCompile Include="FloorPointCollisionComponent.cpp" />
     <ClCompile Include="GameComponent.cpp" />
     <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="GameMap1GraphicsComponent.cpp" />
+    <ClCompile Include="GameMap2GraphicsComponent.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="JadeMonkey.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -115,8 +121,10 @@
     <ClCompile Include="MainEntityFactory.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="PlayerFPInputComponent.cpp" />
+    <ClCompile Include="PointCollisionComponent.cpp" />
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="meshSurface.cpp" />
+    <ClCompile Include="WallPointCollisionComponent.cpp" />
+    <ClCompile Include="WallPointXCollisionComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

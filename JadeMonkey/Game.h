@@ -71,12 +71,15 @@ public:
 	virtual int Draw(long time) override;   // render the frame
 	virtual int Initialize(void) = 0;  // initialize the game
 	virtual int LoadContent(void); //load game content
+	virtual bool checkFloorCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end) = 0;
+	virtual bool checkWallCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end) = 0;
 	gameIO* getIOInterface(void);
 
 	int gameLoop(void);					// start the game loop
 	D3DMATRIX * getProjMat(D3DXMATRIX * matProj);
 	void setProj(float nearPlane, float farPlane, float fieldOfView, float aspectRatio);
 	IDirect3DDevice9* getGraphicsDevice(void);
+
 
 
 private:

@@ -127,9 +127,15 @@ D3DXVECTOR3 CameraComponent::MoveForward(float numUnits)
 {
 	float magnitude;
 	magnitude = numUnits;
+	D3DXVECTOR3 temp;
 
+	temp.x = Position().x + LookAtVector().x * magnitude;
+	temp.z = Position().z + LookAtVector().z * magnitude;
+	temp.y = 0;
 	D3DXVECTOR3 lookAt = this->_lookAtVector;
-	this->SetPositionDelta(D3DXVECTOR3(lookAt.x, 0, lookAt.z) * magnitude);
+
+	if(	!_game->checkWallCollisions(Position() , temp))
+			this->SetPositionDelta(D3DXVECTOR3(lookAt.x, 0, lookAt.z) * magnitude);
 
 	return (this->Position());
 }
@@ -151,10 +157,17 @@ D3DXVECTOR3 CameraComponent::Strafe(float numUnits)
 	strafeVec.z += numUnits;
 
 	if (numUnits > 0)
-		this->SetPositionDelta(strafeVec);
+	{
+		if( !_game->checkWallCollisions(Position() , Position() + strafeVec ))
+			this->SetPositionDelta(strafeVec);
+	}
 	else
-		this->SetPositionDelta(-strafeVec);
-//	lookAtVector.x = strafeVec.x;
+	{	
+		if( !_game->checkWallCollisions(Position() , Position() - strafeVec ))
+				this->SetPositionDelta(-strafeVec);
+	}
+
+	//	lookAtVector.x = strafeVec.x;
 //	lookAtVector.z = strafeVec.z;
 	
 	D3DXVec3Normalize(&this->_lookAtVector, &this->_lookAtVector);
@@ -227,4 +240,9 @@ void CameraComponent::updateOrientation(D3DXVECTOR3 rotVector, float angleRad)
 	D3DXVec3Normalize(&this->_lookAtVector, &this->_lookAtVector);
 		
 	rc = D3DXVec3Dot(&this->_upVector,&this->_lookAtVector);
+}
+
+float CameraComponent::getHeightOfPlayer()
+{
+	return heightOfPlayer;
 }

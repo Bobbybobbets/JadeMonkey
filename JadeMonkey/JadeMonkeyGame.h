@@ -43,7 +43,6 @@
 #pragma once
 #include "Game.h"
 #include "camera.h"
-#include "meshSurface.h"
 #include <vector>
 #include "GameEntitiesContainer.h"
 
@@ -58,18 +57,14 @@ public:
 	virtual int Draw(long time) override;
 	virtual int Initialize(void) override;
 	virtual int LoadContent(void) override;
-
-	camera cam;		// nuss1
-
-
+	virtual bool checkFloorCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end) override;
+	virtual bool checkWallCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end) override;
 	// variables used to position the text on the screen
 	int x;	// x location of the string to be drawn
 	int y;	// y location of the string to be drawn
 	int dx;		// change in x at each frame
 	int dy;		// change in y at each frame
 	RECT textBox;	// rectangle for the text
-	meshSurface *ground;
-
 
 	char s[1024]; // string to be drawn
 
