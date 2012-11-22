@@ -4,7 +4,7 @@
 
 using namespace std;
 
-FloorPointCollisionComponent::FloorPointCollisionComponent(Game* game, GameEntity* entity) : PointCollisionComponent(game, entity)
+FloorPointCollisionComponent::FloorPointCollisionComponent(Game* game, GameEntity* entity, PlayerComponent *pc) : PointCollisionComponent(game, entity, pc)
 {
 	_position = entity->getPosition();
 	Initialize();
@@ -23,18 +23,18 @@ void FloorPointCollisionComponent::Initialize(void)
 	height = 0;
 }
 
-bool FloorPointCollisionComponent::checkCollision(D3DXVECTOR3 start, D3DXVECTOR3 end)
+D3DXVECTOR3 FloorPointCollisionComponent::checkCollision(D3DXVECTOR3 start, D3DXVECTOR3 end)
 {
-
+	int x = pc->getHeight();
 	if( end.x < _position.x + width && end.x > _position.x && end.z < _position.z + length && end.z > _position.z)
 	{
-		if(start.y > _position.y )
+		if(start.y >= _position.y + pc->getHeight())
 		{
-			if( end.y <= _position.y )
-				return true;
+			if( end.y <= _position.y + pc->getHeight())
+				return D3DXVECTOR3(-5000, _position.y +  pc->getHeight(), -5000);
 		}
 	}
-		return false;
+		return end;
 }
 
 string FloorPointCollisionComponent::GetName()

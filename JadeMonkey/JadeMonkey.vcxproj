@@ -92,6 +92,7 @@
     <ClInclude Include="jade_util.h" />
     <ClInclude Include="MainEntityFactory.h" />
     <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="PlayerFPInputComponent.h" />
     <ClInclude Include="CuboidCollisionComponent.h" />
     <ClInclude Include="PointCollisionComponent.h" />
@@ -120,6 +121,7 @@
     <ClCompile Include="JadeMonkeyGame.cpp" />
     <ClCompile Include="MainEntityFactory.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
+    <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="PlayerFPInputComponent.cpp" />
     <ClCompile Include="PointCollisionComponent.cpp" />
     <ClCompile Include="stdafx.cpp" />

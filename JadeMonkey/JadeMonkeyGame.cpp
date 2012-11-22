@@ -234,34 +234,41 @@ int JadeMonkeyGame::LoadContent(void)
 	return 0;
 }
 
-bool JadeMonkeyGame::checkFloorCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end)
+D3DXVECTOR3 JadeMonkeyGame::checkFloorCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end)
 {
-
+	D3DXVECTOR3 toReturn;
 	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Floors.begin(); 
 		it < this->_entitiesContainer.Floors.end(); 
 		it++)
 	{
 		if( (*it)->getCollisionComponents().size() != 0)
-			if((*it)->getCollisionComponents().at(0)->checkCollision(start,end))
-						return true;
-			
-			
+		{
+			toReturn = (*it)->getCollisionComponents().at(0)->checkCollision(start,end);
+
+			if(toReturn != end)
+				return toReturn;
+		}
 	}
-	return false;
+	return end;
 }
 
-bool JadeMonkeyGame::checkWallCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end)
+D3DXVECTOR3 JadeMonkeyGame::checkWallCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end)
 {
+	D3DXVECTOR3 toReturn;
 
 	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Walls.begin(); 
 		it < this->_entitiesContainer.Walls.end(); 
 		it++)
 	{
 		if( (*it)->getCollisionComponents().size() != 0)
-			if((*it)->getCollisionComponents().at(0)->checkCollision(start,end))
-						return true;
+		{
+			toReturn = (*it)->getCollisionComponents().at(0)->checkCollision(start,end);
+
+			// Check to see if the vector returned doesn't equal the end coordinates (would only happen when colliding with something)
+			if(toReturn != end)
+				return toReturn;
 			
-			
+		}
 	}
-	return false;
+	return end;
 }

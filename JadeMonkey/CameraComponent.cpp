@@ -128,14 +128,18 @@ D3DXVECTOR3 CameraComponent::MoveForward(float numUnits)
 	float magnitude;
 	magnitude = numUnits;
 	D3DXVECTOR3 temp;
+	D3DXVECTOR3 xzDirection;
+	xzDirection = D3DXVECTOR3(this->_lookAtVector.x, 0, this->_lookAtVector.z);
+	D3DXVec3Normalize(&xzDirection, &xzDirection);
 
-	temp.x = Position().x + LookAtVector().x * magnitude;
-	temp.z = Position().z + LookAtVector().z * magnitude;
-	temp.y = 0;
+	temp.x = Position().x + xzDirection.x * magnitude;
+	temp.z = Position().z + xzDirection.z * magnitude;
+	temp.y = Position().y;
 	D3DXVECTOR3 lookAt = this->_lookAtVector;
 
-	if(	!_game->checkWallCollisions(Position() , temp))
-			this->SetPositionDelta(D3DXVECTOR3(lookAt.x, 0, lookAt.z) * magnitude);
+	
+	temp = 	_game->checkWallCollisions(Position() , temp);
+	this->SetPositionAbs(temp);
 
 	return (this->Position());
 }
@@ -145,6 +149,7 @@ D3DXVECTOR3 CameraComponent::Strafe(float numUnits)
 	D3DXVECTOR3 strafeVec;
 	D3DXVECTOR3 lookDirection;
 	D3DXVECTOR3 yaxis(0,1,0);
+	D3DXVECTOR3 newPos;
 	lookDirection.x = this->_lookAtVector.x;
 	lookDirection.y = 0;
 	lookDirection.z = this->_lookAtVector.z;
@@ -158,18 +163,16 @@ D3DXVECTOR3 CameraComponent::Strafe(float numUnits)
 
 	if (numUnits > 0)
 	{
-		if( !_game->checkWallCollisions(Position() , Position() + strafeVec ))
-			this->SetPositionDelta(strafeVec);
+		newPos = _game->checkWallCollisions(Position() , Position() + strafeVec );
+		this->SetPositionAbs(newPos);
 	}
 	else
 	{	
-		if( !_game->checkWallCollisions(Position() , Position() - strafeVec ))
-				this->SetPositionDelta(-strafeVec);
+		newPos = _game->checkWallCollisions(Position() , Position() - strafeVec );
+		this->SetPositionAbs(newPos);
 	}
 
-	//	lookAtVector.x = strafeVec.x;
-//	lookAtVector.z = strafeVec.z;
-	
+
 	D3DXVec3Normalize(&this->_lookAtVector, &this->_lookAtVector);
 	//position.x = position.x + lookAtVector.x * magnitude;
 	//position.y = position.y + lookAtVector.y * magnitude;

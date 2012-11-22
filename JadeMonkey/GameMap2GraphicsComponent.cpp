@@ -95,6 +95,11 @@ void GameMap2GraphicsComponent::Update(GameEntity* entity, long time)
 	GraphicsComponent::Update(this->_entity, time);
 }
 
+int GameMap2GraphicsComponent::getHeight()
+{
+	return numRows * dy;
+}
+
 string GameMap2GraphicsComponent::GetName(void)
 {
 	return "GameMap1GraphicsComponent";
