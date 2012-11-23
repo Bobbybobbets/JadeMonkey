@@ -33,6 +33,8 @@ void PhysicsComponent::Update(GameEntity* entity, long time)
 		// If the object WAS on the ground and the acceleration of y is negative (didn't jump)
 		newVec.x = wouldBePosition.x;
 		newVec.z = wouldBePosition.z;
+		this->_acceleration = D3DXVECTOR3(0.0,-1.0,0.0); // And set a new acceleration vector to be just starting to fall
+
 	}
 
 	this->_entity->setPosition(newVec);

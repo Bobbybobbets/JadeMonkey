@@ -18,21 +18,23 @@ WallPointCollisionComponent::~WallPointCollisionComponent()
 
 void WallPointCollisionComponent::Initialize(void)
 {
-	width = this->_entity->getGraphicsComponent()->getDx() * this->_entity->getGraphicsComponent()->getNumCols();
+	width = this->_entity->getGraphicsComponent()->getDx() * (this->_entity->getGraphicsComponent()->getNumCols() - 1);
 	length = 0;
-	height = this->_entity->getGraphicsComponent()->getDy() * this->_entity->getGraphicsComponent()->getNumRows();
+	height = this->_entity->getGraphicsComponent()->getDy() * (this->_entity->getGraphicsComponent()->getNumRows() - 1);
 }
 
 D3DXVECTOR3 WallPointCollisionComponent::checkCollision(D3DXVECTOR3 start, D3DXVECTOR3 end)
 {
-//	return false;
+	if( height == 20)
+		int x = 0;
 	// Check the x
-	if( start.x > _position.x && start.x < _position.x + width && start.y < _position.y + height && start.y > _position.y)
+	if( start.x > _position.x && start.x < _position.x + width && start.y < _position.y + height + pc->getHeight() && start.y > _position.y)
 	{
 		if( start.z < _position.z)
 			if( end.z > _position.z)
 			{
-				if( height < 100000)
+				// Stepping over a step
+				if( height <= pc->getStepHeight())
 					return D3DXVECTOR3(end.x, end.y + height, end.z);
 				else
 					return start;
@@ -40,8 +42,9 @@ D3DXVECTOR3 WallPointCollisionComponent::checkCollision(D3DXVECTOR3 start, D3DXV
 		if( start.z > _position.z)
 			if(end.z < _position.z)
 			{
-				if( height < 100000)
-					return D3DXVECTOR3(end.x, end.y + height, end.z);
+				// Stepping over a step
+				if( height <= pc->getStepHeight())
+					return D3DXVECTOR3(end.x, end.y + height , end.z);
 				else
 					return start;
 			}

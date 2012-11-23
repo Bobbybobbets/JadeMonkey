@@ -16,7 +16,7 @@ void PlayerComponent::Initialize()
 	lives = 3;
 	stepHeight = 20;
 	currentLevel = 1;
-	height = 15;
+	height = 40;
 }
 
 void PlayerComponent::Update(GameEntity* entity, long time)

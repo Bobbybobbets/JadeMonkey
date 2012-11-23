@@ -34,7 +34,7 @@ D3DXVECTOR3 FloorPointCollisionComponent::checkCollision(D3DXVECTOR3 start, D3DX
 				return D3DXVECTOR3(-5000, _position.y +  pc->getHeight(), -5000);
 		}
 	}
-		return end;
+	return end;
 }
 
 string FloorPointCollisionComponent::GetName()

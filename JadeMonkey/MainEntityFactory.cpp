@@ -40,15 +40,85 @@ GameEntitiesContainer MainEntityFactory::GetContainer(void)
 	GameEntity* throwaway = new GameEntity(this->_game);
 	GameMap1GraphicsComponent* graphics = new GameMap1GraphicsComponent(20, 20, this->_game, throwaway);
 
-	container = AddFloor( 20,20, D3DXVECTOR3(0,0,0) , container, player);
-	container = AddWall( 100,100, D3DXVECTOR3(0,0,0) , container, player, false);
-	container = AddWall( 100,100, D3DXVECTOR3(0,0,0), container, player, true);
-	container = AddWall( 50,50, D3DXVECTOR3(150,0,150), container, player, true);
-	container = AddWall(50,50, D3DXVECTOR3(20 * graphics->getDx(),-50 * graphics->getDx(),0), container, player, true);
-	container = AddFloor(20,20, D3DXVECTOR3( -20 * graphics->getDx() ,100 * graphics->getDx(),0) , container, player);
-	//create collision bounding box for main character
 
+	// AddFloor( z numbers, z numbers, blah blah)
+	int height = 25;
+	int width = 50;
+	int length = 50;
+	// Create the bounding walls and floor
+	// F1
+	container = AddFloor( width , length, D3DXVECTOR3(0,0,0) , container, player);
+	// W1
+	container = AddWall( height, width, D3DXVECTOR3(0,0,0), container, player, true);
+	// W2
+	container = AddWall( height,length, D3DXVECTOR3(0,0,0) , container, player, false);
+	// W3
+	container = AddWall( height,width, D3DXVECTOR3(graphics->getDx() * 49, 0,0), container, player, true);
+	// W4
+	container = AddWall(height,length, D3DXVECTOR3(0,0, 49 * graphics->getDx()), container, player, false);
+	// F2
+	container = AddFloor( width,length , D3DXVECTOR3(0,24 * graphics->getDx(), 0), container, player);
+	
+	// Containing walls
+	// W5
+	container = AddWall( height, 26, D3DXVECTOR3(3 * graphics->getDx(), 0, 0) , container, player, true);
+	// W6
+	container = AddWall( (int)(height/2), 18 , D3DXVECTOR3( 3 * graphics->getDx(), 0 , 25 * graphics->getDx()), container, player, false);
+	// W7
+	container = AddWall( height, 7, D3DXVECTOR3( 24 * graphics->getDx() , 0 , 25 * graphics->getDx()), container, player, false);
+	// W8
+	container = AddWall( (int)(height / 2), 8 , D3DXVECTOR3( 30 * graphics->getDx(), 0, 25 * graphics->getDx()), container, player, false);
+	// W9
+	container = AddWall( height, 10 , D3DXVECTOR3( 37 * graphics->getDx(), 0, 25 * graphics->getDx()) , container, player, false);
+	// W10
+	container = AddWall( height, 22, D3DXVECTOR3( 46 * graphics->getDx(), 0, 4 * graphics->getDx()), container, player, true);
+	// W11
+	container = AddWall( height, 26, D3DXVECTOR3( 21 * graphics->getDx(), 0, 4 * graphics->getDx()),  container, player, false);
+	// W12
+	container = AddWall( height, 5, D3DXVECTOR3( 21 * graphics->getDx(), 0, 0), container, player, true);
+	// S1
+	container = AddStairs( 6, 4, D3DXVECTOR3( 20 * graphics->getDx(), 0 , 25 * graphics->getDx()), container, player, 4, false);
+	// Plateau for staircase
+	container = AddFloor( 5 , 5 , D3DXVECTOR3( 20 * graphics->getDx() , 6 * graphics->getDx(),  16 * graphics->getDx()), container, player );
+	// Second half of staircase
+	container = AddStairs( 6, 1, D3DXVECTOR3( 24 * graphics->getDx(), 6 * graphics->getDx(), 16 * graphics->getDx()), container, player , 4, true);
+	// Right  for 2nd floor
+	container = AddWall( height, 10 , D3DXVECTOR3( 20 * graphics->getDx(), 0 , 16 * graphics->getDx()), container, player, true);
+	// Left stair wall
+	container = AddWall( height, 6, D3DXVECTOR3( 24 * graphics->getDx(), 0, 20 * graphics->getDx()), container, player, true);
+	// W27
+	container = AddWall( height, 6, D3DXVECTOR3( 30 * graphics->getDx(), 0, 20 * graphics->getDx()), container, player, true);
+	//
+	container = AddWall( height, 7, D3DXVECTOR3( 24 * graphics->getDx(), 0, 20 * graphics->getDx()), container, player, false);
+	// 2nd floor at top of stairs
+	container = AddFloor( 22 , 8, D3DXVECTOR3( 30 * graphics->getDx() , (int)(height / 2) * graphics->getDx(), 4 * graphics->getDx()), container, player);
+	//
+	container = AddWall( height, 11, D3DXVECTOR3(20 * graphics->getDx(), 0, 16 * graphics->getDx()), container, player, false);
+	// W21
+	container = AddWall( (int)(height / 2) , 21 , D3DXVECTOR3( 37 * graphics->getDx() , (int)(height / 2) * graphics->getDx() , 5 * graphics->getDx()), container, player, true);
+	// W22
+	container = AddWall( (int)(height / 2) , 8, D3DXVECTOR3(30 * graphics->getDx() , (int)(height / 2) * graphics->getDx(), 4 * graphics->getDx()), container, player, true);
+	// W23
+	container = AddWall( (int)(height / 2) , 18, D3DXVECTOR3(13 * graphics->getDx() , (int)(height / 2) * graphics->getDx(), 11 * graphics->getDx()), container, player, false);
+	// W24
+	container = AddWall( (int)(height / 2) , 30, D3DXVECTOR3( 13 * graphics->getDx() , (int)(height / 2) * graphics->getDx(), 11 * graphics->getDx()), container, player, true);
+	// W25
+	container = AddWall(( int)(height / 2), 16, D3DXVECTOR3( 20 * graphics->getDx(), (int)(height / 2) * graphics->getDx(), 25 * graphics->getDx()), container, player, true);
+	// Floor for previous walls
+	container = AddFloor( 6, 18 , D3DXVECTOR3( 13 * graphics->getDx(), (int)(height/2) * graphics->getDx() , 11 * graphics->getDx()), container, player);
+	container = AddFloor( 14, 8, D3DXVECTOR3( 13 * graphics->getDx() , (int)(height/2) * graphics->getDx() , 16 * graphics->getDx()), container, player);
 
+	// Add floor extending into main room
+	container = AddFloor(8 , 2, D3DXVECTOR3( 19 * graphics->getDx(), (int)(height/2) * graphics->getDx(), 29 * graphics->getDx()), container, player);
+	container = AddFloor(8 , 2, D3DXVECTOR3( 13 * graphics->getDx(), (int)(height / 2) * graphics->getDx(), 29 * graphics->getDx()), container, player);
+	container = AddFloor(5 , 8, D3DXVECTOR3(13 * graphics->getDx() , (int)(height / 2) * graphics->getDx(), 36 * graphics->getDx()), container, player);
+
+	// W26
+	container = AddWall(height, 47 , D3DXVECTOR3( 0, 0, 40 * graphics->getDx()), container, player, false);
+	// W27
+	container = AddWall(height, 2, D3DXVECTOR3( 46 * graphics->getDx(), 0 , 40 * graphics->getDx()), container, player, true);
+	// W28
+	container = AddWall( height, 47, D3DXVECTOR3( 0, 0, 41 * graphics->getDx()), container, player, false);
 
 	container.Cameras.push_back(camera);
 	container.Entities.push_back(cameraEntity);
@@ -57,10 +127,10 @@ GameEntitiesContainer MainEntityFactory::GetContainer(void)
 	return container;
 }
 
-GameEntitiesContainer MainEntityFactory::AddFloor(int numCols, int numRows, D3DXVECTOR3 position, GameEntitiesContainer gc, PlayerComponent *player)
+GameEntitiesContainer MainEntityFactory::AddFloor(int numRows, int numCols, D3DXVECTOR3 position, GameEntitiesContainer gc, PlayerComponent *player)
 {
 	GameEntity* floor = new GameEntity(this->_game);
-	GameMap1GraphicsComponent* graphics6 = new GameMap1GraphicsComponent(numCols, numRows, this->_game, floor);
+	GameMap1GraphicsComponent* graphics6 = new GameMap1GraphicsComponent(numRows, numCols, this->_game, floor);
 	floor->AddGraphicsComponent(graphics6);
 	floor->setPosition( position);
 	FloorPointCollisionComponent* floorCollision = new FloorPointCollisionComponent(this->_game, floor, player);
@@ -94,6 +164,56 @@ GameEntitiesContainer MainEntityFactory::AddWall(int numCols, int numRows, D3DXV
 
 	return gc;
 }
+
+GameEntitiesContainer MainEntityFactory::AddStair(D3DXVECTOR3 position, GameEntitiesContainer gc, PlayerComponent *pc, int width, bool xStair)
+{
+	gc = AddWall( 2, width + 1, position, gc, pc, xStair);
+	
+	if( !xStair )
+		gc = AddFloor(2, width + 1, D3DXVECTOR3(position.x, position.y + 20, position.z - 20), gc, pc);
+	else
+		gc = AddFloor(width + 1, 2, D3DXVECTOR3(position.x, position.y + 20, position.z), gc, pc);
+		
+	return gc;
+}
+
+/* Add in a number of specified stairs in a given direction
+* 1 - positive x
+* 2 - negative x
+* 3 - positive z
+* 4 - negative z
+*/
+GameEntitiesContainer MainEntityFactory::AddStairs(int number, int direction, D3DXVECTOR3 position, GameEntitiesContainer gc, PlayerComponent *pc, int width, bool xStair)
+{
+	int x;
+	for( x = 0 ; x < number ; x++)
+	{
+		switch( direction )
+		{
+		case 1:
+			gc = AddWall(2, width + 1, D3DXVECTOR3(position.x + x * 20 , position.y + x * 20, position.z), gc, pc, xStair);
+			gc = AddFloor(width + 1, 2 , D3DXVECTOR3(position.x + x  * 20, position.y + (x + 1) * 20, position.z), gc, pc);
+			break;
+		case 2:
+			gc = AddWall( 2, width + 1, D3DXVECTOR3(position.x - x * 20 , position.y + x * 20 , position.z), gc, pc, xStair);
+			gc = AddFloor(width + 1, 2, D3DXVECTOR3(position.x - x * 20, position.y + (x + 1) * 20, position.z), gc, pc);
+			break;
+		case 3:
+			gc = AddWall( 2, width + 1, D3DXVECTOR3(position.x , position.y + x * 20 , position.z + x * 20), gc, pc, xStair);
+			gc = AddFloor(2, width + 1, D3DXVECTOR3(position.x, position.y + (x + 1) * 20, position.z + x * 20), gc, pc);
+			break;
+		default:
+			gc = AddWall( 2, width + 1, D3DXVECTOR3(position.x , position.y  + x * 20, position.z - x * 20), gc, pc, xStair);
+			gc = AddFloor(2, width + 1, D3DXVECTOR3(position.x , position.y + (x + 1) * 20, position.z - (x + 1) * 20), gc, pc);
+			break;
+
+
+		}
+	
+	}
+	return gc;
+}
+
 /* 	GameEntity* map = new GameEntity(this->_game);
 	map->setPosition(D3DXVECTOR3(0,0,0));
 	GameMap1GraphicsComponent* graphics = new GameMap1GraphicsComponent(100, 100, this->_game, map);

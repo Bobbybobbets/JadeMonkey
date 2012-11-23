@@ -10,7 +10,7 @@ CameraComponent::CameraComponent(Game* game, GameEntity* entity)
 
 void CameraComponent::Initialize(void)
 {
-	this->_speed = 1.1f;
+	this->_speed = 2.0f;
 	this->_strafeSpeed = 0.001f;
 }
 
@@ -153,6 +153,7 @@ D3DXVECTOR3 CameraComponent::Strafe(float numUnits)
 	lookDirection.x = this->_lookAtVector.x;
 	lookDirection.y = 0;
 	lookDirection.z = this->_lookAtVector.z;
+	
 
 
 	//The strafe vector will be the cross between the forward direction and the y axis
