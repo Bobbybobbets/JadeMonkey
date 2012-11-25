@@ -52,12 +52,12 @@
 
 using namespace std;
 
-JadeMonkeyGame::JadeMonkeyGame(HINSTANCE hInstance, char* gameName):
+JadeMonkeyGame::JadeMonkeyGame(HINSTANCE hInstance, char* gameName, EntityFactory* fact):
 	Game(hInstance, gameName), 
 	x(0), 
 	fontCourier(NULL)
 {
-
+	this->_entityFactory = fact;
 }
 
 JadeMonkeyGame::~JadeMonkeyGame(void)
@@ -171,7 +171,6 @@ int JadeMonkeyGame::Draw(long time)
 
 int JadeMonkeyGame::Initialize(void)
 {
-	EntityFactory* factory = new MainEntityFactory(this);
 	int rc = 0;
 	rc = Game::Initialize();
 
@@ -213,7 +212,7 @@ int JadeMonkeyGame::Initialize(void)
 
 
 	//create game entities
-	this->_entitiesContainer = factory->GetContainer();
+	this->_entitiesContainer = this->_entityFactory->GetContainer(this);
 
 	//intialize game entities
 	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Entities.begin(); 

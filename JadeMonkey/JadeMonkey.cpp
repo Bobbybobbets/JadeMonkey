@@ -32,6 +32,7 @@
 #include "stdafx.h"
 #include "JadeMonkey.h"
 #include "JadeMonkeyGame.h"
+#include "MainEntityFactory.h"
 
 #define MAX_LOADSTRING 100
 
@@ -52,7 +53,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 {
 
 	// create the game
-	JadeMonkeyGame* jadeMonkeyGame = new JadeMonkeyGame(hInstance, "The Jade Monkey");
+	JadeMonkeyGame* jadeMonkeyGame = new JadeMonkeyGame(hInstance, "The Jade Monkey", new MainEntityFactory());
 
 	// initialize the game
 	// note that this is done via a virtual function.  Thus there is no need to update this function

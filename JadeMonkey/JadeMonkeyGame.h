@@ -45,13 +45,14 @@
 #include "camera.h"
 #include <vector>
 #include "GameEntitiesContainer.h"
+#include "EntityFactory.h"
 
 using namespace std;
 
 class JadeMonkeyGame : public Game
 {
 public:
-	JadeMonkeyGame(HINSTANCE hInstance, char* gameName);
+	JadeMonkeyGame(HINSTANCE hInstance, char* gameName, EntityFactory* fact);
 	~JadeMonkeyGame(void);
 	virtual int Update(long time) override;
 	virtual int Draw(long time) override;
@@ -73,4 +74,5 @@ public:
 
 private:
 	GameEntitiesContainer _entitiesContainer;
+	EntityFactory* _entityFactory;
 };
