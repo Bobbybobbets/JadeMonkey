@@ -91,6 +91,7 @@
     <ClInclude Include="GameComponent.h" />
     <ClInclude Include="JadeMonkeyGame.h" />
     <ClInclude Include="jade_util.h" />
+    <ClInclude Include="KeyPartComponent.h" />
     <ClInclude Include="MainEntityFactory.h" />
     <ClInclude Include="PathNode.h" />
     <ClInclude Include="PatTestFactory.h" />
@@ -124,6 +125,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="gameIO.cpp" />
     <ClCompile Include="JadeMonkeyGame.cpp" />
+    <ClCompile Include="KeyPartComponent.cpp" />
     <ClCompile Include="MainEntityFactory.cpp" />
     <ClCompile Include="PathNode.cpp" />
     <ClCompile Include="PatTestFactory.cpp" />
