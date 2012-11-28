@@ -39,6 +39,7 @@ void PlayerFPInputComponent::Update(GameEntity* entity, long time)
 	if (this->_io->keyboardPressed(DIK_D)) {
 		cam->Strafe(-cam->GetStrafeSpeed());
 	}
+
 	if (this->_io->keyboardPressed(DIK_SPACE) && _physics->getOnGround()) {
 		_physics->setAccelerationVector(D3DXVECTOR3(0.0f,5.0f,0.0f));
 		

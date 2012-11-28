@@ -17,7 +17,7 @@ void PlayerComponent::Initialize()
 	stepHeight = 20;
 	currentLevel = 1;
 	height = 40;
-	numKeysParts=0;
+	numKeyParts=0;
 }
 
 void PlayerComponent::Update(GameEntity* entity, long time)
@@ -62,4 +62,9 @@ int PlayerComponent::getNumKeyParts()
 void PlayerComponent::setNumKeyParts(int numKeyParts)
 {
 	this->numKeyParts = numKeyParts;
+}
+
+void PlayerComponent::FoundKey()
+{
+	this->numKeyParts++;
 }

@@ -14,6 +14,8 @@ public:
 	virtual void Update(GameEntity* entity, long time);
 	virtual string GetName(void);
 
+	GameEntity* getEntity();
+
 	virtual int getNumRows(){return 0;};
 	virtual int getNumCols(){return 0;};
 	virtual float getDx(){return 0;};

@@ -29,5 +29,6 @@ public:
 	int getHeight();
 	int getNumKeyParts();
 	void setNumKeyParts(int numKeys);
+	void FoundKey();
 
 };

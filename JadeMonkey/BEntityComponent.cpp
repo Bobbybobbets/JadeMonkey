@@ -18,3 +18,8 @@ string BEntityComponent::GetName(void)
 {
 	return "Entity component";
 }
+
+GameEntity* BEntityComponent::getEntity()
+{
+	return this->_entity;
+}

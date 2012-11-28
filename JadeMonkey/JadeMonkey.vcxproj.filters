@@ -135,17 +135,8 @@
     <ClInclude Include="PlayerComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="AStarPathfindingComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="PathNode.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="VectorUtil.h">
       <Filter>Header Files\Util</Filter>
-    </ClInclude>
-    <ClInclude Include="PatTestFactory.h">
-      <Filter>Header Files\Factories</Filter>
     </ClInclude>
     <ClInclude Include="GraphicsComponent.h">
       <Filter>Header Files\Components\GraphicsComponents</Filter>
@@ -173,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="KeyPartComponent.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyGraphicsComponent.h">
+      <Filter>Header Files\Components\GraphicsComponents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -224,17 +218,8 @@
     <ClCompile Include="PlayerComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="AStarPathfindingComponent.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="PathNode.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
     <ClCompile Include="VectorUtil.cpp">
       <Filter>Source Files\Util</Filter>
-    </ClCompile>
-    <ClCompile Include="PatTestFactory.cpp">
-      <Filter>Source Files\Factories</Filter>
     </ClCompile>
     <ClCompile Include="KeyPartComponent.cpp">
       <Filter>Source Files\Components</Filter>
@@ -261,6 +246,9 @@
       <Filter>Source Files\Components\CollisionComponents</Filter>
     </ClCompile>
     <ClCompile Include="GraphicsComponent.cpp">
+      <Filter>Source Files\Components\GraphicsComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyGraphicsComponent.cpp">
       <Filter>Source Files\Components\GraphicsComponents</Filter>
     </ClCompile>
   </ItemGroup>

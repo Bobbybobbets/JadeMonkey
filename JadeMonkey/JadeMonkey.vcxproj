@@ -68,7 +68,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AStarPathfindingComponent.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CollisionComponent.h" />
@@ -91,10 +90,9 @@
     <ClInclude Include="GameComponent.h" />
     <ClInclude Include="JadeMonkeyGame.h" />
     <ClInclude Include="jade_util.h" />
+    <ClInclude Include="KeyGraphicsComponent.h" />
     <ClInclude Include="KeyPartComponent.h" />
     <ClInclude Include="MainEntityFactory.h" />
-    <ClInclude Include="PathNode.h" />
-    <ClInclude Include="PatTestFactory.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="PlayerFPInputComponent.h" />
@@ -108,7 +106,6 @@
     <ClInclude Include="WallPointXCollisionComponent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AStarPathfindingComponent.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="CuboidCollisionComponent.cpp" />
@@ -125,10 +122,9 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="gameIO.cpp" />
     <ClCompile Include="JadeMonkeyGame.cpp" />
+    <ClCompile Include="KeyGraphicsComponent.cpp" />
     <ClCompile Include="KeyPartComponent.cpp" />
     <ClCompile Include="MainEntityFactory.cpp" />
-    <ClCompile Include="PathNode.cpp" />
-    <ClCompile Include="PatTestFactory.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="PlayerFPInputComponent.cpp" />

@@ -1,29 +1,40 @@
 #include "KeyPartComponent.h"
 #include <math.h>
 
-float KeyPartComponent::pickupDistance = 20.0;
+float KeyPartComponent::keyWidth = 20.0;
 
-KeyPartComponent::KeyPartComponent( Game *game, GameEntity *entity, int keyNumber, D3DXVECTOR3 position) : BEntityComponent(game, entity)
+KeyPartComponent::KeyPartComponent( Game *game, GameEntity *entity, PlayerComponent *player, int keyNumber, D3DXVECTOR3 position) : BEntityComponent(game, entity)
 {
 	this->keyNumber = keyNumber;
 	this->_position = position;
+	this->_player = player;
 }
 
 void KeyPartComponent::Initialize(void)
 {
 	retrieved = false;
 }
+
+void KeyPartComponent::Update(GameEntity* entity, long time)
+{
+	if( !retrieved)
+		if(checkPickup(_player->getEntity()->getPosition()))
+		{
+			retrieved = true;
+			_player->FoundKey();
+			return;
+		}
+}
 bool KeyPartComponent::checkPickup( D3DXVECTOR3 toCheck)
 {
-	float distance;
-	distance = pow((_position.x - toCheck.x), 2) + pow((_position.y - toCheck.y), 2) + pow((_position.z + toCheck.z), 2);
-	distance = sqrt(distance);
+	// in the x bounds
+	if( toCheck.x > _position.x && toCheck.x < _position.x + keyWidth)
+		// In the z bounds
+		if( toCheck.z > _position.z && toCheck.z < _position.z + keyWidth)
+			// In the y bounds
+			if( toCheck.y > _position.y && toCheck.y <= _position.y + _player->getHeight())
+				return true;
 
-	if( distance <  pickupDistance)
-	{
-		retrieved = true;
-		return true;
-	}
 	return false;
 }
 
