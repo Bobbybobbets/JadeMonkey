@@ -43,7 +43,10 @@ GameEntitiesContainer MainEntityFactory::GetContainer(Game* game)
 	container.Cameras.push_back(camera);
 	container.Entities.push_back(cameraEntity);
 	
-	container = AddKey(D3DXVECTOR3(0,0,48), 1, container, player);
+	container = AddTrapDoor(8, 7, container, D3DXVECTOR3( 14, 12, 29), player); 
+
+	container = AddKey(D3DXVECTOR3(2,0,48), 1, container, player);
+	container = AddKey(D3DXVECTOR3(16,12,38), 2, container, player);
 
 	return container;
 }

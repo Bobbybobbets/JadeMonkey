@@ -18,7 +18,7 @@ FloorPointCollisionComponent::~FloorPointCollisionComponent()
 
 void FloorPointCollisionComponent::Initialize(void)
 {
-	width = this->_entity->getGraphicsComponent()->getDx() * this->_entity->getGraphicsComponent()->getNumCols();
+	width = this->_entity->getGraphicsComponent()->getDx() * (this->_entity->getGraphicsComponent()->getNumCols() - 1);
 	length = this->_entity->getGraphicsComponent()->getDz() * this->_entity->getGraphicsComponent()->getNumRows();
 	height = 0;
 }
