@@ -14,6 +14,8 @@
 #include "AIControllerComponent.h"
 #include "AStarPathfindingComponent.h"
 #include "ScaledBoxGraphicsComponent.h"
+#include "TrapDoorGraphicsComponent.h"
+#include "TrapDoorCollisionComponent.h"
 
 
 EntityFactory::EntityFactory(void)
@@ -102,14 +104,12 @@ GameEntitiesContainer EntityFactory::AddStairs(int number, int direction, D3DXVE
 
 GameEntitiesContainer EntityFactory::AddKey(D3DXVECTOR3 position, int keyNumber, GameEntitiesContainer gc, PlayerComponent *player)
 {
-	position = D3DXVECTOR3(1,0,4);
 	D3DXVECTOR3 newPos = D3DXVECTOR3(position.x * 20, position.y * 20, position.z * 20);
 	GameEntity *keyEntity = new GameEntity(this->_game);
 	KeyPartComponent *keyPartComponent = new KeyPartComponent(this->_game, keyEntity, player, keyNumber, newPos);
 	KeyGraphicsComponent *kg = new KeyGraphicsComponent(20,20,player, keyPartComponent, this->_game , keyEntity);
 	
-	keyEntity->setPosition(newPos);
-	
+	keyEntity->setPosition(newPos);	
 	keyEntity->AddComponent(keyPartComponent);
 	keyEntity->AddGraphicsComponent(kg);
 
@@ -117,9 +117,32 @@ GameEntitiesContainer EntityFactory::AddKey(D3DXVECTOR3 position, int keyNumber,
 	return gc;
 }
 
+GameEntitiesContainer EntityFactory::AddTrapDoor( int numRows, int numCols,GameEntitiesContainer container, D3DXVECTOR3 position, PlayerComponent* player)
+{
+	D3DXVECTOR3 newPos = D3DXVECTOR3(position.x * 20, position.y * 20, position.z * 20);
+	GameEntity *trapEntity = new GameEntity(this->_game);
+	trapEntity->setPosition(newPos);
+	TrapDoorComponent* trapDoor = new TrapDoorComponent(this->_game, trapEntity);
+	GameMap1GraphicsComponent* graphics6 = new GameMap1GraphicsComponent(numRows, numCols, this->_game, trapEntity);
+	trapEntity->AddGraphicsComponent(graphics6);
+
+	TrapDoorGraphicsComponent *trapDoorGraphics = new TrapDoorGraphicsComponent(numRows, numCols, trapDoor, this->_game, trapEntity);
+
+	TrapDoorCollisionComponent *trapDoorCollisions = new TrapDoorCollisionComponent(this->_game, trapEntity, player, trapDoor);
+
+	trapEntity->AddComponent(trapDoor);
+	trapEntity->AddGraphicsComponent(trapDoorGraphics);
+	trapEntity->AddCollisionComponent(trapDoorCollisions);
+
+	container.Floors.push_back(trapEntity);
+	container.Entities.push_back(trapEntity);
+	
+	return container;
+}
+
 GameEntitiesContainer EntityFactory::CreateLevel1(GameEntitiesContainer container, PlayerComponent *player)
 {
-		int height = 25;
+	int height = 25;
 	int width = 50;
 	int length = 50;
 	// Create the bounding walls and floor
@@ -181,6 +204,7 @@ GameEntitiesContainer EntityFactory::CreateLevel1(GameEntitiesContainer containe
 	container = AddWall( (int)(height / 2) , 30, D3DXVECTOR3( 13  , (int)(height / 2) , 11 ), container, true);
 	// W25
 	container = AddWall(( int)(height / 2), 16, D3DXVECTOR3( 20 , (int)(height / 2) , 25 ), container, true);
+
 	// Floor for previous walls
 	container = AddFloor( 6, 18 , D3DXVECTOR3( 13 , (int)(height/2)  , 11 ), container);
 	container = AddFloor( 14, 8, D3DXVECTOR3( 13  , (int)(height/2)  , 16 ), container);

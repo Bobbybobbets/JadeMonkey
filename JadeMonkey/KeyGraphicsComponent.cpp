@@ -69,53 +69,57 @@ err:
 
 void KeyGraphicsComponent::Update(GameEntity* entity, long time)
 {
-	D3DXVECTOR3 _position = this->_entity->getPosition();
-	D3DXVECTOR3 _scale = this->_entity->getScale();
-	D3DXVECTOR3 yaxis = D3DXVECTOR3(0.0, 1.0, 0.0);
-	float rad = 0;
+	 D3DXVECTOR3 _position = this->_entity->getPosition();
+	 D3DXVECTOR3 _scale = this->_entity->getScale();
+	 D3DXVECTOR3 yaxis = D3DXVECTOR3(0.0, 1.0, 0.0);
+	 float rad = 0;
 
-	D3DXMATRIX worldMat, viewMat, matTransform, matProjection, matScale, matTranslate,  matRotation;
-
-
-	// If they key has already been retrieved 
-//	if( _keyPart->getRetrieved())
-//		return;
-
-	D3DXVECTOR3 toLookAt = _player->getEntity()->getPosition() - this->_entity->getPosition();
-	D3DXVECTOR3 upVector;
-	//D3DXVec3Cross(&upVector, &toLookAt, &target);
-	//Declare the rotation axis based on the x and y axis 
-	//D3DXMatrixLookAtLH(&viewMat, &this->_entity->getPosition(), &this->_player->getEntity()->getPosition(), &D3DXVECTOR3(0,1,0));
+	 D3DXMATRIX worldMat, viewMat, matTransform, matProjection, matScale, matTranslate,  matRotation, billboardMat;
 
 
+	//  If they key has already been retrieved 
+	if( _keyPart->getRetrieved())
+		return;
 
-	D3DXMatrixScaling(&matScale,_scale.x, _scale.y, _scale.z);
-	worldMat = matScale;
+	 D3DXVECTOR3 toLookAt = _player->getEntity()->getPosition() - this->_entity->getPosition(); 
+	 D3DXMatrixScaling(&matScale,_scale.x, _scale.y, _scale.z);
+	 worldMat = matScale;
 
+	 D3DXMatrixIdentity(&viewMat);
+	 D3DXMatrixIdentity(&billboardMat);
 
+	 this->_game->getGraphicsDevice()->GetTransform(D3DTS_VIEW, &viewMat);
 
-	D3DXMatrixTranslation(&matTranslate, _position.x, _position.y, _position.z);
-	worldMat *= matTranslate;
+	 D3DXMatrixInverse(&billboardMat, NULL, &viewMat);
+	 billboardMat._41 = 0.0f;
+	 billboardMat._42 = 0.0f;
+	 billboardMat._43 = 0.0f;
 
-	_game->getGraphicsDevice()->SetTransform(D3DTS_WORLD, &worldMat);
+	 worldMat *= billboardMat;
 
+	 D3DXMatrixTranslation(&matTranslate, _position.x, _position.y, _position.z);
+	 worldMat *= matTranslate;
+
+	 _game->getGraphicsDevice()->SetTransform(D3DTS_WORLD, &worldMat);
+
+	 // set the source
 	// set the source
 	_game->getGraphicsDevice()->SetStreamSource( 0, mVtxBuf, 0, sizeof(MeshVertex) );
 
-#ifdef NUSS_SHADERS
-	_game->getGraphicsDevice()->SetVertexDeclaration(mDecl);
-#else
-	rc = _game->getGraphicsDevice()->SetFVF(MESH_VERTEX_FVF);
-#endif
+	#ifdef NUSS_SHADERS
+	 _game->getGraphicsDevice()->SetVertexDeclaration(mDecl);
+	#else
+	 rc = _game->getGraphicsDevice()->SetFVF(MESH_VERTEX_FVF);
+	#endif
 
 
-	// set the index buffer
-	_game->getGraphicsDevice()->SetIndices(mIndBuf);
+	 // set the index buffer
+	 _game->getGraphicsDevice()->SetIndices(mIndBuf);
 
-	// do  not use texture
-	_game->getGraphicsDevice()->SetTexture(0,NULL);
-	_game->getGraphicsDevice()->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
-	_game->getGraphicsDevice()->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, this->numVtx, 0, this->numTriangles);
+	 // do  not use texture
+	 _game->getGraphicsDevice()->SetTexture(0,NULL);
+	 _game->getGraphicsDevice()->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+	 _game->getGraphicsDevice()->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, this->numVtx, 0, this->numTriangles);
 }
 
 int KeyGraphicsComponent::getHeight()

@@ -3,6 +3,7 @@
 #include "GameEntity.h"
 #include "GameEntitiesContainer.h"
 #include "PlayerComponent.h"
+#include "TrapDoorComponent.h"
 
 class EntityFactory
 {
@@ -21,4 +22,5 @@ protected:
 	GameEntitiesContainer CreateLevel1(GameEntitiesContainer container, PlayerComponent *player);
 	GameEntity* CreateAIEntity(GameEntitiesContainer* container, D3DXVECTOR3 position, D3DXVECTOR3 size, D3DCOLOR color, long framesToWait);
 	GameEntity* CreateAIEntity(GameEntitiesContainer* container, D3DXVECTOR3 position, D3DXVECTOR3 size, D3DCOLOR color, long framesToWait, GameEntity* entityToFollow);
+	GameEntitiesContainer AddTrapDoor( int numRows, int numCols,GameEntitiesContainer container, D3DXVECTOR3 position, PlayerComponent* player);
 };

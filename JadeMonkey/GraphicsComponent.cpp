@@ -20,6 +20,7 @@ void GraphicsComponent::Update(GameEntity* entity, long time)
 	D3DXVECTOR3 _position = this->_entity->getPosition();
 	D3DXVECTOR3 _scale = this->_entity->getScale();
 	D3DXVECTOR3 yaxis = D3DXVECTOR3(0.0, 1.0, 0.0);
+	D3DXVECTOR3 xaxis = D3DXVECTOR3(1.0,0.0,0.0);
 
     static int angle = 0;
 
@@ -41,6 +42,13 @@ void GraphicsComponent::Update(GameEntity* entity, long time)
 	else 
 		D3DXMatrixRotationAxis(&matRotation, &yaxis, D3DXToRadian(this->_entity->getRotation().y));
 
+	if( this->_entity->getRotation().x != 0)
+	{
+		if( this->_entity->getRotation().x > 0)
+			D3DXMatrixRotationAxis(&matRotation, &xaxis, D3DXToRadian(this->_entity->getRotation().x));
+		else
+			D3DXMatrixRotationAxis(&matRotation, &xaxis, -D3DXToRadian(this->_entity->getRotation().x));
+	}
 	worldMat *= matRotation;
 	D3DXMatrixTranslation(&matTranslate, _position.x, _position.y, _position.z);
 	worldMat *= matTranslate;
@@ -90,7 +98,7 @@ void GraphicsComponent::createGraphicsBuffers(void)
 	mVtxBuf->Unlock();
 
 
-	_game->getGraphicsDevice()->CreateIndexBuffer(this->numIndices*sizeof(long),D3DUSAGE_WRITEONLY,
+	_game->getGraphicsDevice()->CreateIndexBuffer(this->numTriangles*3*sizeof(long),D3DUSAGE_WRITEONLY,
 										D3DFMT_INDEX32,D3DPOOL_MANAGED,&this->mIndBuf, NULL);
 
 

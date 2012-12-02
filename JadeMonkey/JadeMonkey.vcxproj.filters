@@ -213,6 +213,15 @@
     <ClInclude Include="Constants.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="TrapDoorComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TrapDoorGraphicsComponent.h">
+      <Filter>Header Files\Components\GraphicsComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="TrapDoorCollisionComponent.h">
+      <Filter>Header Files\Components\CollisionComponents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameIO.cpp">
@@ -355,6 +364,15 @@
     </ClCompile>
     <ClCompile Include="AIControllerComponent.cpp">
       <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="TrapDoorGraphicsComponent.cpp">
+      <Filter>Source Files\Components\GraphicsComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="TrapDoorCollisionComponent.cpp">
+      <Filter>Source Files\Components\CollisionComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="TrapDoorComponent.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
