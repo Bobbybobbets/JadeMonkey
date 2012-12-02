@@ -2,14 +2,35 @@
 #include "GameEntity.h"
 #include "CollisionComponent.h"
 #include "GraphicsComponent.h"
+#include "Constants.h"
 
 GameEntity::GameEntity(Game* game) : 
 	DrawableGameComponent(game),
 	_rotation(0.0, 0.0, 0.0), 
 	_position(0.0,0.0,0.0),
 	_positionBuffer(0.0, 0.0, 0.0),
-	_direction(0.0,0.0,0.0)
+	_direction(0.0,0.0,0.0),
+	_scale(1.0, 1.0, 1.0),
+	_speed(3.0),
+	_height(40),
+	_stepHeight(20)
 {
+	this->_visible = false;
+}
+
+GameEntity::GameEntity(Game* game, D3DXVECTOR3 size) : 
+	DrawableGameComponent(game),
+	_rotation(0.0, 0.0, 0.0), 
+	_position(0.0,0.0,0.0),
+	_positionBuffer(0.0, 0.0, 0.0),
+	_direction(0.0,0.0,0.0),
+	_scale(1.0, 1.0, 1.0),
+	_speed(3.0),
+	_height(40),
+	_stepHeight(20)
+{
+	this->setSize(size);
+	this->_visible = false;
 }
 
 GameEntity::~GameEntity()
@@ -18,7 +39,6 @@ GameEntity::~GameEntity()
 
 void GameEntity::AddComponent(BEntityComponent* component)
 {
-	this->_visible = false;
 	this->_components.push_back(component);
 }
 
@@ -128,6 +148,10 @@ D3DXVECTOR3 GameEntity::getDirection()
 void GameEntity::setDirection(D3DXVECTOR3 direction)
 {
 	this->_direction = direction;
+	D3DXVec3Normalize(&this->_direction, &this->_direction);
+
+	float yAngle = 180 - D3DXVec3Dot(&D3DXVECTOR3(1.0, 0.0, 0.0), &(this->_direction)) * 180 / PI;
+	this->setRotation(D3DXVECTOR3(0.0, yAngle, 0.0));
 }
 
 D3DXVECTOR3 GameEntity::getRotation()
@@ -148,6 +172,45 @@ D3DXVECTOR3 GameEntity::getScale()
 void GameEntity::setScale(D3DXVECTOR3 scale)
 {
 	this->_scale = scale;
+}
+
+D3DXVECTOR3 GameEntity::getSize()
+{
+	return this->_size;
+}
+
+void GameEntity::setSize(D3DXVECTOR3 size)
+{
+	this->_size = size;
+}
+float GameEntity::getSpeed(void)
+{
+	return this->_speed;
+}
+
+void GameEntity::setSpeed(float speed)
+{
+	this->_speed = speed;
+}
+
+int GameEntity::getHeight()
+{
+	return this->_height;
+}
+
+void GameEntity::setHeight(int height)
+{
+	this->_height = height;
+}
+
+int GameEntity::getStepHeight(void)
+{
+	return this->_stepHeight;
+}
+
+void GameEntity::setStepHeight(int stepHeight)
+{
+	this->_stepHeight = stepHeight;
 }
 
 GraphicsComponent* GameEntity::getGraphicsComponent()

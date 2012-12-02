@@ -16,7 +16,7 @@ void PhysicsComponent::Initialize(void)
 void PhysicsComponent::Update(GameEntity* entity, long time)
 {
 	D3DXVECTOR3 wouldBePosition = this->_entity->getPosition() +this->_acceleration;
-	D3DXVECTOR3 newVec = _game->checkFloorCollisions(this->_entity->getPosition(), this->_entity->getPosition() + this->_acceleration);
+	D3DXVECTOR3 newVec = _game->checkFloorCollisions(this->_entity->getPosition(), this->_entity->getPosition() + this->_acceleration, this->_entity);
 	if( newVec.x != -5000 && newVec.z != -5000)
 	{
 	

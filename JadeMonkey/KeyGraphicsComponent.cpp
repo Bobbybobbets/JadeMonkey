@@ -33,7 +33,7 @@ void KeyGraphicsComponent::Initialize(void)
 	numTriangles = numQuads * 2;
 
 	// allocate memory
-	vtx = (struct meshVertex *) malloc(sizeof(struct meshVertex) * numVtx);
+	vtx = (struct MeshVertex *) malloc(sizeof(struct MeshVertex) * numVtx);
 	if (vtx == NULL) {
 		// error
 		goto err;
@@ -100,7 +100,7 @@ void KeyGraphicsComponent::Update(GameEntity* entity, long time)
 	_game->getGraphicsDevice()->SetTransform(D3DTS_WORLD, &worldMat);
 
 	// set the source
-	_game->getGraphicsDevice()->SetStreamSource( 0, mVtxBuf, 0, sizeof(meshVertex) );
+	_game->getGraphicsDevice()->SetStreamSource( 0, mVtxBuf, 0, sizeof(MeshVertex) );
 
 #ifdef NUSS_SHADERS
 	_game->getGraphicsDevice()->SetVertexDeclaration(mDecl);

@@ -6,6 +6,15 @@ GraphicsComponent::GraphicsComponent(Game* game, GameEntity* entity): BEntityCom
 {
 }
 
+MeshDefinition GraphicsComponent::GetMesh(void)
+{
+	MeshDefinition def;
+	def.Vertices = this->vtx;
+	def.Size = this->numVtx;
+
+	return def;
+}
+
 void GraphicsComponent::Update(GameEntity* entity, long time)
 {
 	D3DXVECTOR3 _position = this->_entity->getPosition();
@@ -39,7 +48,7 @@ void GraphicsComponent::Update(GameEntity* entity, long time)
 	_game->getGraphicsDevice()->SetTransform(D3DTS_WORLD, &worldMat);
 
 	// set the source
-	_game->getGraphicsDevice()->SetStreamSource( 0, mVtxBuf, 0, sizeof(meshVertex) );
+	_game->getGraphicsDevice()->SetStreamSource( 0, mVtxBuf, 0, sizeof(MeshVertex) );
 
 #ifdef NUSS_SHADERS
 	_game->getGraphicsDevice()->SetVertexDeclaration(mDecl);
@@ -59,12 +68,12 @@ void GraphicsComponent::Update(GameEntity* entity, long time)
 
 void GraphicsComponent::createGraphicsBuffers(void)
 {
-	struct meshVertex *v = NULL;
+	struct MeshVertex *v = NULL;
 	long *ind = NULL;
 
 
 #ifdef NUSS_SHADERS
-	_game->getGraphicsDevice()->CreateVertexBuffer(this->numVtx*sizeof(struct meshVertex),D3DUSAGE_WRITEONLY,
+	_game->getGraphicsDevice()->CreateVertexBuffer(this->numVtx*sizeof(struct MeshVertex),D3DUSAGE_WRITEONLY,
 										NULL,D3DPOOL_MANAGED,&this->mVtxBuf, NULL);
 #else 
 	_game->getGraphicsDevice()->CreateVertexBuffer(this->numVtx*sizeof(struct meshVertex),D3DUSAGE_WRITEONLY,
@@ -74,16 +83,14 @@ void GraphicsComponent::createGraphicsBuffers(void)
 
 	// lock the buffer and copy the vertices (locking the entire array
 	mVtxBuf->Lock(0, 0, (void **) &v, 0);
-	/*if (rc != D3D_OK) {
-		goto err;
-	}*/
 
-	memcpy(v, this->vtx,numVtx*sizeof(struct meshVertex));
+
+	memcpy(v, this->vtx,numVtx*sizeof(struct MeshVertex));
 
 	mVtxBuf->Unlock();
 
 
-	_game->getGraphicsDevice()->CreateIndexBuffer(this->numTriangles*3*sizeof(long),D3DUSAGE_WRITEONLY,
+	_game->getGraphicsDevice()->CreateIndexBuffer(this->numIndices*sizeof(long),D3DUSAGE_WRITEONLY,
 										D3DFMT_INDEX32,D3DPOOL_MANAGED,&this->mIndBuf, NULL);
 
 
@@ -96,17 +103,13 @@ void GraphicsComponent::createGraphicsBuffers(void)
 	memcpy(ind, this->ind,numTriangles*3*sizeof(long));
 
 	mIndBuf->Unlock();
-
-	/*if (rc != D3D_OK) {
-		goto err;
-	}*/
 }
 
 void GraphicsComponent::createVtxDescription(void)
 {
 	// create the vertex decalation
 	if (this->mDecl == NULL) {
-		struct meshVertex v;
+		struct MeshVertex v;
 		D3DVERTEXELEMENT9 decl[] = 
 		{{0,0,D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_POSITION, 0},
 		 {0,0,D3DDECLTYPE_D3DCOLOR, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_COLOR, 0},
@@ -136,4 +139,8 @@ float GraphicsComponent::getDy()
 float GraphicsComponent::getDz()
 {
 	return dz;
+}
+string GraphicsComponent::GetName()
+{
+	return "Graphics component";
 }

@@ -116,7 +116,7 @@ int JadeMonkeyGame::Draw(long time)
 	//&D3DXVECTOR3(40.0f, 40.0f, 40.0f), // camera loc
 	//&D3DXVECTOR3(150.0f, 0.0f, -150.0f),  // look-at target 
 	//&D3DXVECTOR3(0.0f, 1.0f, 0.0f)); // up Veotor
-	D3DXMatrixLookAtLH(&viewMat,&D3DXVECTOR3(50,1000,50), &D3DXVECTOR3(500,0,500), &D3DXVECTOR3(0,1,0));
+	//D3DXMatrixLookAtLH(&viewMat,&D3DXVECTOR3(50,1000,50), &D3DXVECTOR3(500,0,500), &D3DXVECTOR3(0,1,0));
 
 	RECT textbox1;
 	textbox1.bottom=20;
@@ -233,7 +233,7 @@ int JadeMonkeyGame::LoadContent(void)
 	return 0;
 }
 
-D3DXVECTOR3 JadeMonkeyGame::checkFloorCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end)
+D3DXVECTOR3 JadeMonkeyGame::checkFloorCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end, GameEntity* entity)
 {
 	D3DXVECTOR3 toReturn;
 	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Floors.begin(); 
@@ -242,7 +242,7 @@ D3DXVECTOR3 JadeMonkeyGame::checkFloorCollisions(D3DXVECTOR3 start, D3DXVECTOR3 
 	{
 		if( (*it)->getCollisionComponents().size() != 0)
 		{
-			toReturn = (*it)->getCollisionComponents().at(0)->checkCollision(start,end);
+			toReturn = (*it)->getCollisionComponents().at(0)->checkCollision(start,end, entity);
 
 			if(toReturn != end)
 				return toReturn;
@@ -251,7 +251,7 @@ D3DXVECTOR3 JadeMonkeyGame::checkFloorCollisions(D3DXVECTOR3 start, D3DXVECTOR3 
 	return end;
 }
 
-D3DXVECTOR3 JadeMonkeyGame::checkWallCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end)
+D3DXVECTOR3 JadeMonkeyGame::checkWallCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end, GameEntity* entity)
 {
 	D3DXVECTOR3 toReturn;
 
@@ -261,7 +261,7 @@ D3DXVECTOR3 JadeMonkeyGame::checkWallCollisions(D3DXVECTOR3 start, D3DXVECTOR3 e
 	{
 		if( (*it)->getCollisionComponents().size() != 0)
 		{
-			toReturn = (*it)->getCollisionComponents().at(0)->checkCollision(start,end);
+			toReturn = (*it)->getCollisionComponents().at(0)->checkCollision(start,end, entity);
 
 			// Check to see if the vector returned doesn't equal the end coordinates (would only happen when colliding with something)
 			if(toReturn != end)
