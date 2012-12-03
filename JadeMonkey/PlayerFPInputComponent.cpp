@@ -30,30 +30,41 @@ void PlayerFPInputComponent::Update(GameEntity* entity, long time)
 		SetCursorPos(wndWidth/2 , wndHeight/2);
 	}
 
-	if (this->_io->keyboardPressed(DIK_W)) {
-		cam->MoveForward(cam->GetSpeed());
-	}
-	if (this->_io->keyboardPressed(DIK_S)) {
-		cam->MoveForward(-cam->GetSpeed());
-	}
-	if (this->_io->keyboardPressed(DIK_A)) {
-		cam->Strafe(cam->GetStrafeSpeed());  //CCW
-	}
-	if (this->_io->keyboardPressed(DIK_D)) {
-		cam->Strafe(-cam->GetStrafeSpeed());
-	}
-	if (this->_io->keyboardPressed(DIK_E)) {
-		if(_door->checkAttemptedOpenDoor())
-			if( _player->getNumKeyParts() < _door->getNumKeys())
-				_game->setMessage("You do not have enough keys to move on!");
-		
-	}
-	if (this->_io->keyboardPressed(DIK_SPACE) && _physics->getOnGround()) {
-		_physics->setAccelerationVector(D3DXVECTOR3(0.0f,5.0f,0.0f));
-	}
+	if( _game->getPlayScreen()) {
+		if (this->_io->keyboardPressed(DIK_W)) {
+			cam->MoveForward(cam->GetSpeed());
+		}
+		if (this->_io->keyboardPressed(DIK_S)) {
+			cam->MoveForward(-cam->GetSpeed());
+		}
+		if (this->_io->keyboardPressed(DIK_A)) {
+			cam->Strafe(cam->GetStrafeSpeed());  //CCW
+		}
+		if (this->_io->keyboardPressed(DIK_D)) {
+			cam->Strafe(-cam->GetStrafeSpeed());
+		}
+		if (this->_io->keyboardPressed(DIK_E)) {
+			if(_door->checkAttemptedOpenDoor()) {
 
-	if(this->_io->mouseButtonPressed(0))
+				if( _player->getNumKeyParts() < _door->getNumKeys())
+					_game->setMessage("You do not have enough keys to move on!");
+				else
+					_game->WonScreen();
+			}
+		}
+		if (this->_io->keyboardPressed(DIK_SPACE) && _physics->getOnGround()) {
+			_physics->setAccelerationVector(D3DXVECTOR3(0.0f,5.0f,0.0f));
+		}
+
+		if(this->_io->mouseButtonPressed(0))
+		{
+			this->_firebolt->Activate();
+		}
+	}
+	else if( _game->getDeadScreen() || _game->getOpeningScreen())
 	{
-		this->_firebolt->Activate();
+		if (this->_io->keyboardPressed(DIK_RETURN)){
+			_game->PlayScreen();
+		}
 	}
 }

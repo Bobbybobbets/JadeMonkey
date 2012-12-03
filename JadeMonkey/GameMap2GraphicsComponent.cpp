@@ -1,7 +1,7 @@
 #include "GameMap2GraphicsComponent.h"
 #include "jade_util.h"
 
-GameMap2GraphicsComponent::GameMap2GraphicsComponent(int numRows, int numCols, Game* game, GameEntity* entity)
+GameMap2GraphicsComponent::GameMap2GraphicsComponent(int numRows, int numCols, Game* game, GameEntity* entity, int color)
 	: GraphicsComponent(game, entity)
 {
 	this->ind=0; 
@@ -15,6 +15,8 @@ GameMap2GraphicsComponent::GameMap2GraphicsComponent(int numRows, int numCols, G
 	this->numCols=numCols;
 	createVtxDescription();
 	this->_entity->setScale(D3DXVECTOR3(1.0, 1.0, 1.0));
+	this->color = color;
+	fill = 3;
 }
 
 void GameMap2GraphicsComponent::Initialize(void)
@@ -22,7 +24,15 @@ void GameMap2GraphicsComponent::Initialize(void)
 	int i,j,k;
 	D3DXVECTOR3 rowPos(0.0,0.0,0.0);
 	D3DXVECTOR3 colPos(0.0,0.0,0.0);
-	D3DCOLOR initialColor = D3DCOLOR_XRGB(150, 100, 50);
+
+	D3DCOLOR initialColor;
+	if(color == 1)
+		initialColor = D3DCOLOR_XRGB(36, 156, 36);
+	else if (color == 2)
+		initialColor = D3DCOLOR_XRGB(172,181,172);
+	else
+		initialColor = D3DCOLOR_XRGB(225,232,86);
+
 	float rangeMax = 10;
 	float rangeMin = 0;
 

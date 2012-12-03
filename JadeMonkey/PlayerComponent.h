@@ -30,5 +30,6 @@ public:
 	int getNumKeyParts();
 	void setNumKeyParts(int numKeys);
 	void FoundKey();
+	void LoseLife();
 
 };

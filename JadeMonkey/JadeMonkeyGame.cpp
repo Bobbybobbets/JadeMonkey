@@ -90,38 +90,40 @@ int JadeMonkeyGame::Update(long time)
 	// poll the input
 	mInput->poll();
 	
+
 	// check if escape key was pressed
 	if (mInput->keyboardPressed(DIK_ESCAPE)) {
 		rc = 1;
 	} 
 
-	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Entities.begin(); 
-		it < this->_entitiesContainer.Entities.end(); 
-		it++)
-	{
-		if((*it)->IsActive())
+		for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Entities.begin(); 
+			it < this->_entitiesContainer.Entities.end(); 
+			it++)
 		{
-			(*it)->Update(time);
+			if((*it)->IsActive())
+			{
+				(*it)->Update(time);
+			}
 		}
-	}
 
-	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.EntitiesToRemove.begin();
-		it < this->_entitiesContainer.EntitiesToRemove.end();
-		it++)
-	{
-		delete((*it));
-		this->_entitiesContainer.Entities.erase(it);
-	}
+		for(vector<GameEntity*>::iterator it = this->_entitiesContainer.EntitiesToRemove.begin();
+			it < this->_entitiesContainer.EntitiesToRemove.end();
+			it++)
+		{
+			delete((*it));
+			this->_entitiesContainer.Entities.erase(it);
+		}
 
-	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.EntitiesToAdd.begin();
-		it < this->_entitiesContainer.EntitiesToAdd.end();
-		it++)
-	{
-		this->_entitiesContainer.Entities.push_back((*it));
-	}
+		for(vector<GameEntity*>::iterator it = this->_entitiesContainer.EntitiesToAdd.begin();
+			it < this->_entitiesContainer.EntitiesToAdd.end();
+			it++)
+		{
+			this->_entitiesContainer.Entities.push_back((*it));
+		}
 
-	this->_entitiesContainer.EntitiesToAdd.clear();
-	this->_entitiesContainer.EntitiesToRemove.clear();
+		this->_entitiesContainer.EntitiesToAdd.clear();
+		this->_entitiesContainer.EntitiesToRemove.clear();
+	
 
 	return(rc);
 }
@@ -181,30 +183,49 @@ int JadeMonkeyGame::Draw(long time)
 	md3dDev->BeginScene();    // begins the 3D scene	
 	//ground->Draw(time);
 
-	
-	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Entities.begin(); 
-		it < this->_entitiesContainer.Entities.end(); 
-		it++)
+	switch (state ) 
 	{
-		if((*it)->IsActive())
-		{
-			(*it)->Draw(time);
-		}
-	}
+	case 4:
+			for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Entities.begin(); 
+				it < this->_entitiesContainer.Entities.end(); 
+				it++)
+			{
+				if((*it)->IsActive())
+				{
+					(*it)->Draw(time);
+				}
+			}
 	
-	if(displayMessage && GetTickCount() - lastMessage < 5000)
-	{
-		textbox1.left = getWndWidth()/3;
-		textbox1.top = getWndHeight()/3;
-		textbox1.bottom = getWndHeight()/2 + 100;
-		textbox1.right = getWndWidth()/3 + 400;
+			if(displayMessage && GetTickCount() - lastMessage < 5000)
+			{
+				textbox1.left = getWndWidth()/3;
+				textbox1.top = getWndHeight()/3;
+				textbox1.bottom = getWndHeight()/2 + 100;
+				textbox1.right = getWndWidth()/3 + 400;
 
-		LPCTSTR str2 = message.c_str();
-		fontCourier->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 0, 0));
+				LPCTSTR str2 = message.c_str();
+				fontCourier->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 0, 0));
+			}
+			else
+				displayMessage = false;
+			break;
+	// Died
+	case 1:
+		RenderDeadScreen();
+		break;
+	// Won
+	case 2:
+		RenderWonScreen();
+		break;
+	// Lost
+	case 3:
+		RenderLostScreen();
+		break;
+	// start
+	case 0:
+		RenderStartScreen();
+		break;
 	}
-	else
-		displayMessage = false;
-
 
 	RenderUI();
 
@@ -217,6 +238,126 @@ int JadeMonkeyGame::Draw(long time)
 
 	 return 0;
  }
+
+ void JadeMonkeyGame::RenderStartScreen()
+ {
+	RECT textbox1;
+
+	LPD3DXFONT uiFont;
+
+		D3DXCreateFont(md3dDev,
+						20, // height of font
+						0,	// use the default width
+						FW_MEDIUM+50,
+						//FW_NORMAL,	// normal font weight
+						1, // no Mipmap
+						TRUE, // italic
+						DEFAULT_CHARSET, // default character set
+						OUT_DEFAULT_PRECIS, // default precision
+						DEFAULT_QUALITY, // default quality
+						DEFAULT_PITCH ||FF_DONTCARE, // more defaults...
+						"Courier",	// typeface “Courier"
+						&uiFont); 
+
+	textbox1.left = 0;
+	textbox1.bottom = getWndHeight()/2;
+	textbox1.top = getWndHeight()/2 - 150;
+	textbox1.right = getWndWidth();
+
+	stringstream ss2;//create a stringstream
+	LPCTSTR str2 = screenMessage.c_str();
+	uiFont->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
+
+ }
+
+ void JadeMonkeyGame::RenderDeadScreen()
+ {
+	 	RECT textbox1;
+
+	LPD3DXFONT uiFont;
+
+		D3DXCreateFont(md3dDev,
+						20, // height of font2
+						0,	// use the default width
+						FW_MEDIUM+50,
+						//FW_NORMAL,	// normal font weight
+						1, // no Mipmap
+						TRUE, // italic
+						DEFAULT_CHARSET, // default character set
+						OUT_DEFAULT_PRECIS, // default precision
+						DEFAULT_QUALITY, // default quality
+						DEFAULT_PITCH ||FF_DONTCARE, // more defaults...
+						"Courier",	// typeface “Courier"
+						&uiFont); 
+
+	textbox1.left = getWndWidth()/2 - 250;
+	textbox1.bottom = getWndHeight()/2;
+	textbox1.top = getWndHeight()/2 - 150;
+	textbox1.right = textbox1.left + 500;
+
+	stringstream ss2;//create a stringstream
+	LPCTSTR str2 = screenMessage.c_str();
+	uiFont->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
+ }
+ void JadeMonkeyGame::RenderWonScreen()
+ {
+	 	 	RECT textbox1;
+
+	LPD3DXFONT uiFont;
+
+		D3DXCreateFont(md3dDev,
+						20, // height of font
+						0,	// use the default width
+						FW_MEDIUM+50,
+						//FW_NORMAL,	// normal font weight
+						1, // no Mipmap
+						TRUE, // italic
+						DEFAULT_CHARSET, // default character set
+						OUT_DEFAULT_PRECIS, // default precision
+						DEFAULT_QUALITY, // default quality
+						DEFAULT_PITCH ||FF_DONTCARE, // more defaults...
+						"Courier",	// typeface “Courier"
+						&uiFont); 
+
+	textbox1.left =0;
+	textbox1.bottom = getWndHeight()/2;
+	textbox1.top = getWndHeight()/2 - 150;
+	textbox1.right = getWndWidth();
+
+	stringstream ss2;//create a stringstream
+	LPCTSTR str2 = screenMessage.c_str();
+	uiFont->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
+ }
+ void JadeMonkeyGame::RenderLostScreen()
+ {
+	 	 	RECT textbox1;
+
+	LPD3DXFONT uiFont;
+
+		D3DXCreateFont(md3dDev,
+						20, // height of font
+						0,	// use the default width
+						FW_MEDIUM+50,
+						//FW_NORMAL,	// normal font weight
+						1, // no Mipmap
+						TRUE, // italic
+						DEFAULT_CHARSET, // default character set
+						OUT_DEFAULT_PRECIS, // default precision
+						DEFAULT_QUALITY, // default quality
+						DEFAULT_PITCH ||FF_DONTCARE, // more defaults...
+						"Courier",	// typeface “Courier"
+						&uiFont); 
+
+	textbox1.left = getWndWidth()/2 - 300;
+	textbox1.bottom = getWndHeight()/2;
+	textbox1.top = getWndHeight()/2 - 150;
+	textbox1.right = textbox1.left + 650;
+
+	stringstream ss2;//create a stringstream
+	LPCTSTR str2 = screenMessage.c_str();
+	uiFont->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
+ }
+
 
 void JadeMonkeyGame::RenderUI()
 {

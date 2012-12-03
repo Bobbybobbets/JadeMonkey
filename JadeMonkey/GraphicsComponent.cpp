@@ -70,7 +70,7 @@ void GraphicsComponent::Update(GameEntity* entity, long time)
 
 	// do  not use texture
 	_game->getGraphicsDevice()->SetTexture(0,NULL);
-	_game->getGraphicsDevice()->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+	_game->getGraphicsDevice()->SetRenderState(D3DRS_FILLMODE,  D3DFILLMODE(fill));// D3DFILL_WIREFRAME); SOLID = 3
 	_game->getGraphicsDevice()->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, this->numVtx, 0, this->numTriangles);
 }
 

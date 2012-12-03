@@ -15,6 +15,7 @@ GameMap1GraphicsComponent::GameMap1GraphicsComponent(int numRows, int numCols, G
 	this->numCols=numCols;
 	createVtxDescription();
 	this->_entity->setScale(D3DXVECTOR3(1.0, 4.0, 1.0));
+	fill = 3;
 }
 
 void GameMap1GraphicsComponent::Initialize(void)
@@ -22,7 +23,7 @@ void GameMap1GraphicsComponent::Initialize(void)
 	int i,j,k;
 	D3DXVECTOR3 rowPos(0.0,0.0,0.0);
 	D3DXVECTOR3 colPos(0.0,0.0,0.0);
-	D3DCOLOR initialColor = D3DCOLOR_XRGB(150, 100, 50);
+	D3DCOLOR initialColor = D3DCOLOR_XRGB(127, 130, 127);
 	float rangeMax = 10;
 	float rangeMin = 0;
 

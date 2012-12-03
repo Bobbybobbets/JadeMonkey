@@ -27,16 +27,16 @@ GameEntitiesContainer PatTestFactory::GetContainer(Game* game)
 {
 	this->_game = game;
 	GameEntitiesContainer container;
-
+	/*
 	//create main character
 	GameEntity* cameraEntity = new GameEntity(game);
 	CameraComponent* camera = new CameraComponent(game, cameraEntity);
 	PlayerComponent* player = new PlayerComponent(game, cameraEntity);
 	DoorUseComponent* doorUse = AddDoor(25, 5, D3DXVECTOR3( 21 , 0, 0), container, player, true, camera);
 	PhysicsComponent* physics = new PhysicsComponent(game, cameraEntity);
-	FireboltSkillComponent* firebolt = new FireboltSkillComponent(game, cameraEntity, 10, Player);
-	PlayerFPInputComponent* input = new PlayerFPInputComponent(game, cameraEntity, camera, physics, firebolt, doorUse, player);
-	GridBasedCollisionComponent* collisionGrid = new GridBasedCollisionComponent(game, cameraEntity, 15, Player, Nothing);
+	//FireboltSkillComponent* firebolt = new FireboltSkillComponent(game, cameraEntity, 10, Player);
+//	PlayerFPInputComponent* input = new PlayerFPInputComponent(game, cameraEntity, camera, physics, firebolt, doorUse, player);
+	GridBasedCollisionComponent* collisionGrid = new GridBasedCollisionComponent(game, cameraEntity, 15, Player, Nothing, player);
 	
 	camera->SetCamera(D3DXVECTOR3(-500, 100, -500), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0,1,0));
 
@@ -51,25 +51,30 @@ GameEntitiesContainer PatTestFactory::GetContainer(Game* game)
 
 	AStarPathfindingGraph* graph = PathfindingUtil::CreateAStarGraphFromFloors(50, 50, 20, 20, D3DXVECTOR3(-35, 0, -35));
 	//create AI controller character
-	GameEntity* aiEntity1 = this->CreateAIEntity(&container, D3DXVECTOR3(10, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 0, BasicEnemy, aiEntitiesContainer, graph);
-	GameEntity* aiEntity2 = this->CreateAIEntity(&container, D3DXVECTOR3(50, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 1, RangedEnemy, aiEntitiesContainer, graph);
-	GameEntity* aiEntity3 = this->CreateAIEntity(&container, D3DXVECTOR3(90, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 2, BasicEnemy, aiEntitiesContainer, graph);
-	GameEntity* aiEntity4 = this->CreateAIEntity(&container, D3DXVECTOR3(130, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 3, RangedEnemy, aiEntitiesContainer, graph);
-	GameEntity* aiEntity5 = this->CreateAIEntity(&container, D3DXVECTOR3(170, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 4, BasicEnemy, aiEntitiesContainer, graph);
+	GameEntity* aiEntity1 = this->CreateAIEntity(&container, D3DXVECTOR3(10, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 0, BasicEnemy, aiEntitiesContainer, graph, player);
+	GameEntity* aiEntity2 = this->CreateAIEntity(&container, D3DXVECTOR3(50, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 1, RangedEnemy, aiEntitiesContainer, graph, player);
+	GameEntity* aiEntity3 = this->CreateAIEntity(&container, D3DXVECTOR3(90, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 2, BasicEnemy, aiEntitiesContainer, graph, player);
+	GameEntity* aiEntity4 = this->CreateAIEntity(&container, D3DXVECTOR3(130, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 3, RangedEnemy, aiEntitiesContainer, graph, player);
+	GameEntity* aiEntity5 = this->CreateAIEntity(&container, D3DXVECTOR3(170, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 4, BasicEnemy, aiEntitiesContainer, graph, player);
 
 	//create floor
 	container = this->AddFloor(50, 50, D3DXVECTOR3(-35, 0, -35), container);
 
 
 	container.Cameras.push_back(camera);
-	container.Entities.push_back(cameraEntity);
+	container.Entities.push_back(cameraEntity);*/
 	return container;
 }
 
 DoorUseComponent* PatTestFactory::AddDoor(int numCols, int numRows, D3DXVECTOR3 position, GameEntitiesContainer gc, PlayerComponent *player, bool xDoor, CameraComponent *camera)
 {
+	int color;
 	GameEntity* door = new GameEntity(this->_game);
-	GameMap2GraphicsComponent* graphics = new GameMap2GraphicsComponent(numCols, numRows, this->_game, door);
+	if( xDoor )
+		color = 1;
+	else
+		color = 2;
+	GameMap2GraphicsComponent* graphics = new GameMap2GraphicsComponent(numCols, numRows, this->_game, door, color);
 	DoorComponent *doorComponent = new DoorComponent( this->_game, door, 2);
 	door->AddGraphicsComponent(graphics);
 	door->setPosition( D3DXVECTOR3(position.x * 20, position.y * 20, position.z * 20));

@@ -54,6 +54,7 @@ protected:
 	int numQuads;
 	int numTriangles;
 	int numIndices;
+	int fill;
 
 	static IDirect3DVertexDeclaration9* mDecl;
 

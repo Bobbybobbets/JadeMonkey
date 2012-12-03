@@ -2,13 +2,14 @@
 #include "CollisionComponent.h"
 #include <vector>
 #include "Enums.h"
+#include "PlayerComponent.h"
 
 using namespace std;
 
 class GridBasedCollisionComponent : public CollisionComponent
 {
 public:
-	GridBasedCollisionComponent(Game* game, GameEntity* entity, float radius, CollisionGroup group, CollisionConsequence consequence);
+	GridBasedCollisionComponent(Game* game, GameEntity* entity, float radius, CollisionGroup group, CollisionConsequence consequence, PlayerComponent *player);
 	void Initialize(void){}
 	void Update(GameEntity* entity, long time);
 	CollisionGroup GetGroup(void);
@@ -23,4 +24,5 @@ private:
 	CollisionComponent* _lastCollision;
 	bool _collision;
 	CollisionConsequence _consequence;
+	PlayerComponent *_player;
 };

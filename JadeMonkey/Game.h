@@ -128,12 +128,23 @@ protected:
 	
 	gameIO *mInput;
 	int initGameInput(void);
+	int state;
+	string screenMessage;
 
-	
 public:
 	int getWndWidth(void);
 	int getWndHeight(void);
 	void setNumLives(int lives);
 	void setNumKeys(int keys);
+	void LossScreen();
+	void DeadScreen();
+	void WonScreen();
+	void StartScreen();
+	void PlayScreen();
 
+	bool getDeadScreen();
+	bool getLossScreen();
+	bool getWonScreen();
+	bool getOpeningScreen();
+	bool getPlayScreen();
 };

@@ -83,7 +83,12 @@ private:
 	string message;
 	DWORD lastMessage;
 	bool displayMessage;
+	
 	void RenderUI();
+	void RenderDeadScreen();
+	void RenderWonScreen();
+	void RenderLostScreen();
+	void RenderStartScreen();
 
 	RECT textbox;
 };

@@ -71,3 +71,17 @@ void PlayerComponent::FoundKey()
 {
 	this->numKeyParts++;
 }
+
+void PlayerComponent::LoseLife()
+{
+	if( lives > 0)
+		lives --;
+	if(lives <= 0)
+	{
+		_game->LossScreen();
+	}
+	else
+	{
+		_game->DeadScreen();
+	}
+}

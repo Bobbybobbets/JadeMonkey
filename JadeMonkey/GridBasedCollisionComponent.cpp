@@ -5,13 +5,14 @@
 
 vector<GridBasedCollisionComponent*> GridBasedCollisionComponent::_colliders;
 
-GridBasedCollisionComponent::GridBasedCollisionComponent(Game* game, GameEntity* entity, float radius, CollisionGroup group, CollisionConsequence consequence)
+GridBasedCollisionComponent::GridBasedCollisionComponent(Game* game, GameEntity* entity, float radius, CollisionGroup group, CollisionConsequence consequence, PlayerComponent *player)
 	: CollisionComponent(game, entity)
 {
 	this->_radius = radius;
 	this->_group = group;
 	this->_colliders.push_back(this);
 	this->_consequence = consequence;
+	this->_player = player;
 }
 
 CollisionGroup GridBasedCollisionComponent::GetGroup(void)
@@ -54,6 +55,7 @@ void GridBasedCollisionComponent::Update(GameEntity* entity, long time)
 					if(otherEntity->GetType() == HumanPlayer)
 					{
 						otherEntity->setPosition(D3DXVECTOR3(30, 70, 30));
+						_player->LoseLife();
 					}
 					else if(otherEntity->GetType() == Enemy)
 					{

@@ -157,6 +157,9 @@ Game::Game(HINSTANCE hInstance, char * gameName) :
 	else strncpy(this->mGameName, gameName,GAME_TITLE_SISE);
 	init();
 
+	// Initial screen
+	StartScreen();
+
   }
 
 /******************************************************************/
@@ -543,4 +546,56 @@ void Game::setNumLives(int lives)
 void Game::setNumKeys(int keys)
 {
 	this->numKeys = keys;
+}
+
+void Game::StartScreen()
+{
+	state = 0;
+	screenMessage="Welcome to The Legend of the Jade Monkey! Press enter to start";
+}
+void Game::LossScreen()
+{
+	state = 3;
+	screenMessage="You are completely out of lives... Please try again";
+}
+
+void Game::DeadScreen()
+{
+	state = 1;
+	screenMessage="You have died! Press enter to spawn again";
+}
+
+void Game::WonScreen()
+{
+	state = 2;
+	screenMessage="Congratulations you've won! If we had more levels you'd be there";
+}
+
+void Game::PlayScreen()
+{
+	state = 4;
+}
+
+bool Game::getOpeningScreen()
+{
+	return state == 0;
+}
+bool Game::getDeadScreen()
+{
+	return state == 1;
+}
+
+bool Game::getWonScreen()
+{
+	return state == 2;
+}
+
+bool Game::getLossScreen()
+{
+	return state == 3;
+}
+
+bool Game::getPlayScreen()
+{
+	return state == 4;
 }
