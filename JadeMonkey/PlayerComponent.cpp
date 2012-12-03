@@ -17,13 +17,13 @@ void PlayerComponent::Initialize()
 	stepHeight = 20;
 	currentLevel = 1;
 	height = 40;
-	numKeyParts=0;
+	numKeyParts = 0;
 }
 
 void PlayerComponent::Update(GameEntity* entity, long time)
 {
-}
 
+}
 int PlayerComponent::getLives()
 {
 	return lives;

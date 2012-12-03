@@ -10,6 +10,12 @@
 #include "BehaviourBuilder.h"
 #include "Enums.h"
 #include "FireboltSkillComponent.h"
+#include "PlayerComponent.h"
+#include "DoorUseComponent.h"
+#include "WallPointXCollisionComponent.h"
+#include "WallPointCollisionComponent.h"
+#include "GameMap2GraphicsComponent.h"
+
 
 PatTestFactory::PatTestFactory()
 	: EntityFactory()
@@ -24,11 +30,11 @@ GameEntitiesContainer PatTestFactory::GetContainer(Game* game)
 	//create main character
 	GameEntity* cameraEntity = new GameEntity(game);
 	CameraComponent* camera = new CameraComponent(game, cameraEntity);
-	
+	PlayerComponent* player = new PlayerComponent(game, cameraEntity);
+	DoorUseComponent* doorUse = AddDoor(25, 5, D3DXVECTOR3( 21 , 0, 0), container, player, true, camera);
 	PhysicsComponent* physics = new PhysicsComponent(game, cameraEntity);
 	FireboltSkillComponent* firebolt = new FireboltSkillComponent(game, cameraEntity, 10);
-	PlayerFPInputComponent* input = new PlayerFPInputComponent(game, cameraEntity, camera, physics, firebolt);
-	
+	PlayerFPInputComponent* input = new PlayerFPInputComponent(game, cameraEntity, camera, physics, firebolt, doorUse, player);
 	
 	camera->SetCamera(D3DXVECTOR3(-500, 100, -500), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0,1,0));
 
@@ -36,6 +42,7 @@ GameEntitiesContainer PatTestFactory::GetContainer(Game* game)
 	cameraEntity->AddComponent(physics);
 	cameraEntity->AddComponent(camera);
 	cameraEntity->AddComponent(input);
+	cameraEntity->AddComponent(player);
 
 	AIEntitiesInteractionContainer aiEntitiesContainer(cameraEntity, nullptr, vector<GameEntity*>());
 
@@ -51,9 +58,33 @@ GameEntitiesContainer PatTestFactory::GetContainer(Game* game)
 	container = this->AddFloor(50, 50, D3DXVECTOR3(-35, 0, -35), container);
 
 
-	
-	
 	container.Cameras.push_back(camera);
 	container.Entities.push_back(cameraEntity);
 	return container;
+}
+
+DoorUseComponent* PatTestFactory::AddDoor(int numCols, int numRows, D3DXVECTOR3 position, GameEntitiesContainer gc, PlayerComponent *player, bool xDoor, CameraComponent *camera)
+{
+	GameEntity* door = new GameEntity(this->_game);
+	GameMap2GraphicsComponent* graphics = new GameMap2GraphicsComponent(numCols, numRows, this->_game, door);
+	DoorComponent *doorComponent = new DoorComponent( this->_game, door, 2);
+	door->AddGraphicsComponent(graphics);
+	door->setPosition( D3DXVECTOR3(position.x * 20, position.y * 20, position.z * 20));
+
+	DoorUseComponent *doorUse = new DoorUseComponent(this->_game, door, camera, player, doorComponent, xDoor);
+	if( xDoor )
+	{
+		WallPointXCollisionComponent* wallCollision = new WallPointXCollisionComponent(this->_game, door);
+		door->AddCollisionComponent(wallCollision);
+		door->setRotation(D3DXVECTOR3(0, 90, 0));
+	}
+	else
+	{
+		WallPointCollisionComponent* wallCollision = new WallPointCollisionComponent(this->_game, door);
+		door->AddCollisionComponent(wallCollision);
+	}
+	container.Entities.push_back(door);
+	container.Walls.push_back(door);
+
+	return doorUse;
 }

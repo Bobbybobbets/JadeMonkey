@@ -73,7 +73,14 @@ public:
 	 
 	LPD3DXFONT fontCourier; // font to be used 
 
+	virtual void setMessage(string message) override;
+
 private:
 	GameEntitiesContainer _entitiesContainer;
 	EntityFactory* _entityFactory;
+	string message;
+	DWORD lastMessage;
+	bool displayMessage;
+
+	RECT textbox;
 };

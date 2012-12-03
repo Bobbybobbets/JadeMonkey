@@ -49,6 +49,7 @@
 #include "MainEntityFactory.h"
 #include "CollisionComponent.h"
 #include "WallPointCollisionComponent.h"
+#include <sstream>
 
 using namespace std;
 
@@ -58,6 +59,7 @@ JadeMonkeyGame::JadeMonkeyGame(HINSTANCE hInstance, char* gameName, EntityFactor
 	fontCourier(NULL)
 {
 	this->_entityFactory = fact;
+	displayMessage = false;
 }
 
 JadeMonkeyGame::~JadeMonkeyGame(void)
@@ -117,7 +119,6 @@ int JadeMonkeyGame::Draw(long time)
 	float rad = 0;
 	D3DXMATRIX worldMat, viewMat, matTransform, matProjection, matScale, matTranslate,  matRotation;
 
-
 	//// set up the camera location
 	//D3DXMatrixLookAtLH(&viewMat, 
 	//&D3DXVECTOR3(40.0f, 40.0f, 40.0f), // camera loc
@@ -157,15 +158,30 @@ int JadeMonkeyGame::Draw(long time)
 	//clear z buffer
 	md3dDev->Clear(0, NULL, D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 	
-	md3dDev->BeginScene();    // begins the 3D scene
-	
+	md3dDev->BeginScene();    // begins the 3D scene	
 	//ground->Draw(time);
+
+	
 	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Entities.begin(); 
 		it < this->_entitiesContainer.Entities.end(); 
 		it++)
 	{
 		(*it)->Draw(time);
 	}
+	
+	if(displayMessage && GetTickCount() - lastMessage < 5000)
+	{
+		textbox1.left = getWndWidth()/3;
+		textbox1.top = getWndHeight()/3;
+		textbox1.bottom = getWndHeight()/2 + 100;
+		textbox1.right = getWndWidth()/3 + 400;
+
+		LPCTSTR str2 = message.c_str();
+		fontCourier->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 0, 0));
+	}
+	else
+		displayMessage = false;
+
 
     md3dDev->EndScene();    // ends the 3D scene
 
@@ -217,6 +233,8 @@ int JadeMonkeyGame::Initialize(void)
 	if (rc != S_OK) {
 		rc = 1;
 	}
+
+
 
 	x = this->getWndWidth() / 2;
 	y = this->getWndHeight() / 2;
@@ -283,4 +301,11 @@ D3DXVECTOR3 JadeMonkeyGame::checkWallCollisions(D3DXVECTOR3 start, D3DXVECTOR3 e
 		}
 	}
 	return end;
+}
+
+void JadeMonkeyGame::setMessage(string message) 
+{
+	this->message = message;
+	lastMessage = GetTickCount();
+	displayMessage = true;
 }

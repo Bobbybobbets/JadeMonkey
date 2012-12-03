@@ -1,13 +1,15 @@
 #include "PlayerFPInputComponent.h"
 
 
-PlayerFPInputComponent::PlayerFPInputComponent(Game* game, GameEntity* entity, CameraComponent* camera, PhysicsComponent* physics, FireboltSkillComponent* fireboltSkill)
+PlayerFPInputComponent::PlayerFPInputComponent(Game* game, GameEntity* entity, CameraComponent* camera, PhysicsComponent* physics, FireboltSkillComponent* fireboltSkillComponent, DoorUseComponent *door, PlayerComponent *player)
 	: BEntityComponent(game, entity)
 {
 	this->_io = game->getIOInterface();
 	this->_camera = camera;
 	this->_physics = physics;
-	this->_firebolt = fireboltSkill;
+	this->_firebolt = fireboltSkillComponent;
+	this->_door = door;
+	this->_player = player;
 }
 
 void PlayerFPInputComponent::Initialize()
@@ -40,7 +42,12 @@ void PlayerFPInputComponent::Update(GameEntity* entity, long time)
 	if (this->_io->keyboardPressed(DIK_D)) {
 		cam->Strafe(-cam->GetStrafeSpeed());
 	}
-
+	if (this->_io->keyboardPressed(DIK_E)) {
+		if(_door->checkAttemptedOpenDoor())
+			if( _player->getNumKeyParts() < _door->getNumKeys())
+				_game->setMessage("You do not have enough keys to move on!");
+		
+	}
 	if (this->_io->keyboardPressed(DIK_SPACE) && _physics->getOnGround()) {
 		_physics->setAccelerationVector(D3DXVECTOR3(0.0f,5.0f,0.0f));
 	}
