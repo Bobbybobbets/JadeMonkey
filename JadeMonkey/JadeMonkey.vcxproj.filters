@@ -46,17 +46,26 @@
     <Filter Include="Source Files\Util">
       <UniqueIdentifier>{2d3c6572-f5f1-4f4a-bb34-08eab0e480ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Components\GraphicsComponents">
-      <UniqueIdentifier>{af361134-8870-4e27-8349-4521c119c7e3}</UniqueIdentifier>
+    <Filter Include="Source Files\Components\AI">
+      <UniqueIdentifier>{7e3ac838-d97c-4b50-a8ad-172668d143b5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Components\CollisionComponents">
-      <UniqueIdentifier>{d8604c02-162e-4efb-9e4b-e90ecc8ec0b8}</UniqueIdentifier>
+    <Filter Include="Source Files\Components\Collision">
+      <UniqueIdentifier>{182da368-35d4-4511-8f27-07f9f4323da7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Components\GraphicsComponents">
-      <UniqueIdentifier>{63bf0a5f-b90e-491a-8657-80416b013cbd}</UniqueIdentifier>
+    <Filter Include="Source Files\Components\Physics">
+      <UniqueIdentifier>{d9e3c803-da09-4c84-a9f7-2151a37af71d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Components\CollisionComponents">
-      <UniqueIdentifier>{7b065254-d25d-4ed0-8e35-6aff170d398e}</UniqueIdentifier>
+    <Filter Include="Source Files\Components\Graphics">
+      <UniqueIdentifier>{b63f8ae3-fcdb-488c-a4cb-08c97f8ae8d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\Input">
+      <UniqueIdentifier>{4c104153-fc01-458f-b27b-a37724f306f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\Camera">
+      <UniqueIdentifier>{dbf59bc0-ca94-434e-9b1e-cfa7d18cdb27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems">
+      <UniqueIdentifier>{32e01339-e543-44eb-91f6-093801699a4f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -85,12 +94,6 @@
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawableGameComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="JadeMonkeyGame.h">
@@ -138,35 +141,77 @@
     <ClInclude Include="VectorUtil.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
-    <ClInclude Include="GraphicsComponent.h">
-      <Filter>Header Files\Components\GraphicsComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMap1GraphicsComponent.h">
-      <Filter>Header Files\Components\GraphicsComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMap2GraphicsComponent.h">
-      <Filter>Header Files\Components\GraphicsComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="WallPointCollisionComponent.h">
-      <Filter>Header Files\Components\CollisionComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="WallPointXCollisionComponent.h">
-      <Filter>Header Files\Components\CollisionComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="PointCollisionComponent.h">
-      <Filter>Header Files\Components\CollisionComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="FloorPointCollisionComponent.h">
-      <Filter>Header Files\Components\CollisionComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionComponent.h">
-      <Filter>Header Files\Components\CollisionComponents</Filter>
-    </ClInclude>
     <ClInclude Include="KeyPartComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="VectorUtil.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="ScaledBoxGraphicsComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PathfindingGraphNode.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AStarNode.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PathfindingGraphComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PathfindingUtil.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="AStarPathfindingComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawableGameComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="FloorPointCollisionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap1GraphicsComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap2GraphicsComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
     <ClInclude Include="KeyGraphicsComponent.h">
-      <Filter>Header Files\Components\GraphicsComponents</Filter>
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PointCollisionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="WallPointCollisionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="WallPointXCollisionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PatTestFactory.h">
+      <Filter>Header Files\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="AStarPathfindingGraph.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AIControllerComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="TrapDoorComponent.h">
       <Filter>Header Files\Components</Filter>
@@ -185,9 +230,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gameIO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -212,9 +254,6 @@
     <ClCompile Include="DrawableGameComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CameraComponent.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
     <ClCompile Include="MainEntityFactory.cpp">
       <Filter>Source Files\Factories</Filter>
     </ClCompile>
@@ -224,11 +263,26 @@
     <ClCompile Include="BEntityComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="PhysicsComponent.cpp">
+    <ClCompile Include="PlayerComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerFPInputComponent.cpp">
-      <Filter>Source Files\Components</Filter>
+    <ClCompile Include="VectorUtil.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="PatTestFactory.cpp">
+      <Filter>Source Files\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="WallPointXCollisionComponent.cpp">
+      <Filter>Source Files\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="PointCollisionComponent.cpp">
+      <Filter>Source Files\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="WallPointCollisionComponent.cpp">
+      <Filter>Source Files\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>Source Files\Components\Physics</Filter>
     </ClCompile>
     <ClCompile Include="PlayerComponent.cpp">
       <Filter>Source Files\Components</Filter>
@@ -245,26 +299,77 @@
     <ClCompile Include="WallPointXCollisionComponent.cpp">
       <Filter>Source Files\Components\CollisionComponents</Filter>
     </ClCompile>
-    <ClCompile Include="FloorPointCollisionComponent.cpp">
-      <Filter>Source Files\Components\CollisionComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMap1GraphicsComponent.cpp">
-      <Filter>Source Files\Components\GraphicsComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMap2GraphicsComponent.cpp">
-      <Filter>Source Files\Components\GraphicsComponents</Filter>
-    </ClCompile>
     <ClCompile Include="PointCollisionComponent.cpp">
       <Filter>Source Files\Components\CollisionComponents</Filter>
     </ClCompile>
+    <ClCompile Include="GraphicsComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMap1GraphicsComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMap2GraphicsComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFPInputComponent.cpp">
+      <Filter>Source Files\Components\Input</Filter>
+    </ClCompile>
     <ClCompile Include="CuboidCollisionComponent.cpp">
-      <Filter>Source Files\Components\CollisionComponents</Filter>
+      <Filter>Source Files\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Source Files\Components\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="FloorPointCollisionComponent.cpp">
+      <Filter>Source Files\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="ScaledBoxGraphicsComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="PathfindingGraphNode.cpp">
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AStarNode.cpp">
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="PathfindingGraphComponent.cpp">
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="PathfindingUtil.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Source Files\Components\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CuboidCollisionComponent.cpp">
+      <Filter>Source Files\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="FloorPointCollisionComponent.cpp">
+      <Filter>Source Files\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMap1GraphicsComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMap2GraphicsComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="GraphicsComponent.cpp">
-      <Filter>Source Files\Components\GraphicsComponents</Filter>
+      <Filter>Source Files\Components\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="KeyGraphicsComponent.cpp">
-      <Filter>Source Files\Components\GraphicsComponents</Filter>
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFPInputComponent.cpp">
+      <Filter>Source Files\Components\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="AStarPathfindingComponent.cpp">
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AStarPathfindingGraph.cpp">
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AIControllerComponent.cpp">
+      <Filter>Source Files\Components\AI</Filter>
     </ClCompile>
     <ClCompile Include="TrapDoorGraphicsComponent.cpp">
       <Filter>Source Files\Components\GraphicsComponents</Filter>

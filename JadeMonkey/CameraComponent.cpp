@@ -138,7 +138,7 @@ D3DXVECTOR3 CameraComponent::MoveForward(float numUnits)
 	D3DXVECTOR3 lookAt = this->_lookAtVector;
 
 	
-	temp = 	_game->checkWallCollisions(Position() , temp);
+	temp = 	_game->checkWallCollisions(Position() , temp, this->_entity);
 	this->SetPositionAbs(temp);
 
 	return (this->Position());
@@ -164,12 +164,12 @@ D3DXVECTOR3 CameraComponent::Strafe(float numUnits)
 
 	if (numUnits > 0)
 	{
-		newPos = _game->checkWallCollisions(Position() , Position() + strafeVec );
+		newPos = _game->checkWallCollisions(Position() , Position() + strafeVec, this->_entity);
 		this->SetPositionAbs(newPos);
 	}
 	else
 	{	
-		newPos = _game->checkWallCollisions(Position() , Position() - strafeVec );
+		newPos = _game->checkWallCollisions(Position() , Position() - strafeVec, this->_entity);
 		this->SetPositionAbs(newPos);
 	}
 

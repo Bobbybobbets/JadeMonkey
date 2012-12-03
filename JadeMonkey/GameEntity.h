@@ -16,6 +16,7 @@ class GameEntity : public DrawableGameComponent
 public:
 	~GameEntity(void);
 	GameEntity(Game* game);
+	GameEntity(Game* game, D3DXVECTOR3 size);
 	void AddComponent(BEntityComponent* component);
 	void AddComponent(BEntityComponent* component, vector<BEntityComponent*> dependencies);
 	void AddGraphicsComponent(GraphicsComponent* component);
@@ -31,6 +32,14 @@ public:
 	void setRotation(D3DXVECTOR3 rotation);
 	D3DXVECTOR3 getScale(void);
 	void setScale(D3DXVECTOR3 scale);
+	D3DXVECTOR3 getSize(void);
+	void setSize(D3DXVECTOR3 size);
+	float getSpeed(void);
+	void setSpeed(float speed);
+	int getHeight(void);
+	void setHeight(int height);
+	int getStepHeight(void);
+	void setStepHeight(int stepHeight);
 	bool IsVisible(void);
 	GraphicsComponent* getGraphicsComponent();
 	vector<CollisionComponent*> getCollisionComponents();
@@ -43,6 +52,10 @@ protected:
 	D3DXVECTOR3 _direction;	// direction of object
 	D3DXVECTOR3 _rotation;	// angle of rotation of the object
 	D3DXVECTOR3 _scale;
+	D3DXVECTOR3 _size;
+	int _height;
+	int _stepHeight;
+	float _speed;
 	int numVtx;
 	int numQuads;
 	int numTriangles;

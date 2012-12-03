@@ -6,7 +6,7 @@
 
 using namespace std;
 
-WallPointXCollisionComponent::WallPointXCollisionComponent(Game* game, GameEntity* entity, PlayerComponent *pc) : PointCollisionComponent(game, entity, pc)
+WallPointXCollisionComponent::WallPointXCollisionComponent(Game* game, GameEntity* entity) : PointCollisionComponent(game, entity)
 {
 	Initialize();
 	_position = entity->getPosition();
@@ -25,9 +25,9 @@ void WallPointXCollisionComponent::Initialize(void)
 	height = this->_entity->getGraphicsComponent()->getDy() * (this->_entity->getGraphicsComponent()->getNumRows() - 1);
 }
 
-D3DXVECTOR3 WallPointXCollisionComponent::checkCollision(D3DXVECTOR3 start, D3DXVECTOR3 end)
+D3DXVECTOR3 WallPointXCollisionComponent::checkCollision(D3DXVECTOR3 start, D3DXVECTOR3 end, GameEntity* entity)
 {
-
+	GameEntity* pc = entity;
 	
 	if( start.z > _position.z && start.z < _position.z + width && start.y < _position.y + height + pc->getHeight() && start.y > _position.y)
 	{

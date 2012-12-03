@@ -4,9 +4,10 @@
 
 using namespace std;
 
-TrapDoorCollisionComponent::TrapDoorCollisionComponent(Game* game, GameEntity* entity, PlayerComponent *pc, TrapDoorComponent *trapDoor) : PointCollisionComponent(game, entity, pc)
+TrapDoorCollisionComponent::TrapDoorCollisionComponent(Game* game, GameEntity* entity, PlayerComponent *pc, TrapDoorComponent *trapDoor) : PointCollisionComponent(game, entity)
 {
 	_position = entity->getPosition();
+	this->pc = pc;
 	_trapDoor = trapDoor;
 	Initialize();
 }
@@ -17,6 +18,7 @@ TrapDoorCollisionComponent::~TrapDoorCollisionComponent()
 
 }
 
+
 void TrapDoorCollisionComponent::Initialize(void)
 {
 	width = this->_entity->getGraphicsComponent()->getDx() * (this->_entity->getGraphicsComponent()->getNumCols() - 1);
@@ -24,7 +26,7 @@ void TrapDoorCollisionComponent::Initialize(void)
 	height = 0;
 }
 
-D3DXVECTOR3 TrapDoorCollisionComponent::checkCollision(D3DXVECTOR3 start, D3DXVECTOR3 end)
+D3DXVECTOR3 TrapDoorCollisionComponent::checkCollision(D3DXVECTOR3 start, D3DXVECTOR3 end, GameEntity* entity)
 {
 
 	if( !_trapDoor->getTriggered())

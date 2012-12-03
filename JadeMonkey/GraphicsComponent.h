@@ -5,11 +5,17 @@
 
 #define NUSS_SHADERS 1
 
-struct meshVertex {
+struct MeshVertex {
 	D3DXVECTOR3 pos;
     DWORD color;        // The vertex color
-
 };
+
+struct MeshDefinition
+{
+	struct MeshVertex* Vertices;
+	unsigned int Size;
+};
+
 #ifndef NUSS_SHADERS
 #define MESH_VERTEX_FVF (D3DFVF_XYZ | D3DFVF_DIFFUSE)
 #endif
@@ -20,7 +26,8 @@ public:
 	GraphicsComponent(Game* game, GameEntity* entity);
 	virtual void Initialize(void) = 0;
 	virtual void Update(GameEntity* entity, long time);
-	virtual string GetName(void) = 0;
+	virtual string GetName(void);
+	struct MeshDefinition GetMesh(void);
 
 	virtual int getNumRows() override;
 	int getNumCols() override ;
@@ -32,7 +39,7 @@ protected:
 	virtual void createGraphicsBuffers(void);
 	virtual void createVtxDescription(void);
 
-	struct meshVertex *vtx;
+	struct MeshVertex *vtx;
 	long *ind;
 	IDirect3DIndexBuffer9 *mIndBuf;
 	IDirect3DVertexBuffer9 *mVtxBuf;
@@ -46,6 +53,7 @@ protected:
 	int numVtx;
 	int numQuads;
 	int numTriangles;
+	int numIndices;
 
 	static IDirect3DVertexDeclaration9* mDecl;
 

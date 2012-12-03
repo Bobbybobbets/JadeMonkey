@@ -13,8 +13,3 @@ vector<PathfindingGraphNode*> PathfindingGraphComponent::GetGraphNodes(void)
 {
 	return this->_nodes;
 }
-
-vector<PathfindingGraphNode*> PathfindingGraphComponent::GetActiveGraph(void)
-{
-	return *PathfindingGraphComponent::_activeGraph;
-}

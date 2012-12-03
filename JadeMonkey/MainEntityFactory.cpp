@@ -65,13 +65,13 @@ DoorUseComponent* MainEntityFactory::AddDoor(int numCols, int numRows, D3DXVECTO
 	DoorUseComponent *doorUse = new DoorUseComponent(this->_game, door, camera, player, doorComponent, xDoor);
 	if( xDoor )
 	{
-		WallPointXCollisionComponent* wallCollision = new WallPointXCollisionComponent(this->_game, door, player);
+		WallPointXCollisionComponent* wallCollision = new WallPointXCollisionComponent(this->_game, door);
 		door->AddCollisionComponent(wallCollision);
 		door->setRotation(D3DXVECTOR3(0, 90, 0));
 	}
 	else
 	{
-		WallPointCollisionComponent* wallCollision = new WallPointCollisionComponent(this->_game, door, player);
+		WallPointCollisionComponent* wallCollision = new WallPointCollisionComponent(this->_game, door);
 		door->AddCollisionComponent(wallCollision);
 	}
 	container.Entities.push_back(door);

@@ -60,6 +60,9 @@
 
 using namespace std;
 
+class GameEntity;
+
+
 class Game : public IUpdateable, public IDrawable
 {
 //FUNCTIONS
@@ -72,9 +75,12 @@ public:
 	virtual int Draw(long time) override;   // render the frame
 	virtual int Initialize(void) = 0;  // initialize the game
 	virtual int LoadContent(void); //load game content
+
 	virtual void setMessage(string message) = 0; // set the message to be displayed
-	virtual D3DXVECTOR3 checkFloorCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end) = 0;
-	virtual D3DXVECTOR3 checkWallCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end) = 0;
+
+	virtual D3DXVECTOR3 checkFloorCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end, GameEntity* entity) = 0;
+	virtual D3DXVECTOR3 checkWallCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end, GameEntity* entity) = 0;
+
 	gameIO* getIOInterface(void);
 
 	int gameLoop(void);					// start the game loop

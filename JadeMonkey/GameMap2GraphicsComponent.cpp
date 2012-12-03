@@ -29,9 +29,10 @@ void GameMap2GraphicsComponent::Initialize(void)
 	numVtx = numRows*numCols;
 	numQuads = (numRows-1) * (numCols-1);
 	numTriangles = numQuads * 2;
+	numIndices = numTriangles * 3;
 
 	// allocate memory
-	vtx = (struct meshVertex *) malloc(sizeof(struct meshVertex) * numVtx);
+	vtx = (struct MeshVertex *) malloc(sizeof(struct MeshVertex) * numVtx);
 	if (vtx == NULL) {
 		// error
 		goto err;

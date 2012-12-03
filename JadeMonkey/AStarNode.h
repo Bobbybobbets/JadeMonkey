@@ -1,34 +1,47 @@
 #pragma once
 #include "Game.h"
 #include <vector>
+#include "Enums.h"
 
 using namespace std;
 
-class PathNode
+class AStarNode
 {
 public:
 	float GScore;
 	float FScore;
 	bool Visited;
-	PathNode(D3DXVECTOR3 position);
-	PathNode(D3DXVECTOR3 position, PathNode* neighbours[]);
+	bool Processed;
+	AStarNode();
+	AStarNode(D3DXVECTOR3 position);
+	AStarNode(D3DXVECTOR3 position, AStarNode* neighbours[]);
+	void Initialize();
 	D3DXVECTOR3 Position(void);
-	vector<PathNode*> Neighbours();
-	PathNode* OptimalPathParent();
-	void SetOptimalPathParent(PathNode* node);
-	void AddNeighbour(PathNode* node);
-
-	friend bool operator <(
-		const PathNode& x, const PathNode& y)
-	{
-		if(x.FScore < y.FScore)
-			return true;
-
-		return false;
-	}
+	vector<AStarNode*> Neighbours();
+	AStarNode* GetNeighbour(AStarNeighbourDirection direction);
+	AStarNode* OptimalPathParent();
+	void SetOptimalPathParent(AStarNode* node);
+	void AddNeighbour(AStarNode* node, AStarNeighbourDirection direction);
 
 protected:
 	D3DXVECTOR3 _position;
-	vector<PathNode*> _neighbours;
-	PathNode* _optimalPathParent;
+	vector<AStarNode*> _neighbours;
+	AStarNode* _top;
+	AStarNode* _topRight;
+	AStarNode* _right;
+	AStarNode* _downRight;
+	AStarNode* _down;
+	AStarNode* _downLeft;
+	AStarNode* _left;
+	AStarNode* _topLeft;
+	AStarNode* _optimalPathParent;
+};
+
+struct AStarNodeComparison
+{
+public:
+	bool AStarNodeComparison::operator()(AStarNode* lhs, AStarNode* rhs)
+	{
+		return (lhs->FScore > rhs->FScore);
+	};
 };
