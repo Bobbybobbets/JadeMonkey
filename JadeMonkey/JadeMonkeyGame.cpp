@@ -183,6 +183,8 @@ int JadeMonkeyGame::Draw(long time)
 		displayMessage = false;
 
 
+	RenderUI();
+
     md3dDev->EndScene();    // ends the 3D scene
 
     rc = md3dDev->Present(NULL, NULL, NULL, NULL);   // displays the created frame on the screen
@@ -192,6 +194,54 @@ int JadeMonkeyGame::Draw(long time)
 
 	 return 0;
  }
+
+void JadeMonkeyGame::RenderUI()
+{
+	RECT textbox1;
+	RECT textbox2;
+
+	LPD3DXFONT uiFont;
+
+		D3DXCreateFont(md3dDev,
+						20, // height of font
+						0,	// use the default width
+						FW_MEDIUM+50,
+						//FW_NORMAL,	// normal font weight
+						1, // no Mipmap
+						FALSE, // italic
+						DEFAULT_CHARSET, // default character set
+						OUT_DEFAULT_PRECIS, // default precision
+						DEFAULT_QUALITY, // default quality
+						DEFAULT_PITCH ||FF_DONTCARE, // more defaults...
+						"Courier",	// typeface “Courier"
+						&uiFont); 
+
+	textbox1.left = 0;
+	textbox1.bottom = getWndHeight() - 50;
+	textbox1.top = getWndHeight() - 100;
+	textbox1.right = 250;
+
+	textbox2.left = getWndWidth() - 220;
+	textbox2.bottom = getWndHeight() - 50;
+	textbox2.right = getWndWidth() - 10;
+	textbox2.top = getWndHeight() - 100;
+
+
+	stringstream ss2;//create a stringstream
+	ss2 << "Lives: " << numLives;
+	string numberLives;
+	numberLives = ss2.str();//return a string with the contents of the stream
+	LPCTSTR str2 = numberLives.c_str();
+	uiFont->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
+
+	stringstream ss3;//create a stringstream
+	ss3 << "Keys Collected: " << numKeys;
+	string numberKeys;
+	numberKeys = ss3.str();//return a string with the contents of the stream
+	LPCTSTR str3 = numberKeys.c_str();
+	uiFont->DrawText(NULL, str3, -1, &textbox2, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
+
+}
 
 GameEntitiesContainer* JadeMonkeyGame::GetEntitiesContainer(void)
 {

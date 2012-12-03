@@ -70,7 +70,8 @@ public:
 
 	char s[1024]; // string to be drawn
 
-	 
+	
+
 	LPD3DXFONT fontCourier; // font to be used 
 
 	virtual void setMessage(string message) override;
@@ -81,6 +82,7 @@ private:
 	string message;
 	DWORD lastMessage;
 	bool displayMessage;
+	void RenderUI();
 
 	RECT textbox;
 };

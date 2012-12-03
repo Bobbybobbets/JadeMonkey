@@ -528,7 +528,6 @@ D3DMATRIX * Game::getProjMat(D3DXMATRIX * matProj)
 
 
 void Game::setProj(float nearPlane, float farPlane, float fieldOfView, float aspectRatio)
-
 {
 	this->nearPlane = nearPlane;
 	this->farPlane = farPlane;
@@ -536,3 +535,12 @@ void Game::setProj(float nearPlane, float farPlane, float fieldOfView, float asp
 	this->aspectRatio = aspectRatio;
 }
 
+void Game::setNumLives(int lives)
+{
+	this->numLives = lives;
+}
+
+void Game::setNumKeys(int keys)
+{
+	this->numKeys = keys;
+}

@@ -123,6 +123,8 @@ protected:
 	float fieldOfView;
 	float aspectRatio;
 
+	int numLives;
+	int numKeys;
 	
 	gameIO *mInput;
 	int initGameInput(void);
@@ -131,5 +133,7 @@ protected:
 public:
 	int getWndWidth(void);
 	int getWndHeight(void);
+	void setNumLives(int lives);
+	void setNumKeys(int keys);
 
 };
