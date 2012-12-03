@@ -71,6 +71,8 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CollisionComponent.h" />
+    <ClInclude Include="DoorUseComponent.h" />
+    <ClInclude Include="DoorComponent.h" />
     <ClInclude Include="DrawableGameComponent.h" />
     <ClInclude Include="BEntityComponent.h" />
     <ClInclude Include="EntityFactory.h" />
@@ -112,6 +114,8 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="CuboidCollisionComponent.cpp" />
+    <ClCompile Include="DoorComponent.cpp" />
+    <ClCompile Include="DoorUseComponent.cpp" />
     <ClCompile Include="DrawableGameComponent.cpp" />
     <ClCompile Include="BEntityComponent.cpp" />
     <ClCompile Include="EntityFactory.cpp" />

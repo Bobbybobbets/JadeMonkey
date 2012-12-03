@@ -12,6 +12,7 @@
 #include "FloorPointCollisionComponent.h"
 #include "TrapDoorGraphicsComponent.h"
 #include "TrapDoorCollisionComponent.h"
+#include "DoorUseComponent.h"
 
 EntityFactory::EntityFactory(void)
 {

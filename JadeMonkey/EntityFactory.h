@@ -4,6 +4,7 @@
 #include "GameEntitiesContainer.h"
 #include "PlayerComponent.h"
 #include "TrapDoorComponent.h"
+#include "DoorUseComponent.h"
 
 class EntityFactory
 {
@@ -13,6 +14,7 @@ public:
 
 protected:
 	Game* _game;
+	GameEntitiesContainer container;
 
 	GameEntitiesContainer AddFloor(int numCols, int num, D3DXVECTOR3 position, GameEntitiesContainer gc, PlayerComponent *player);
 	GameEntitiesContainer AddWall(int numCols, int numRows, D3DXVECTOR3 position, GameEntitiesContainer gc, PlayerComponent *player, bool xWall);
@@ -21,4 +23,5 @@ protected:
 	GameEntitiesContainer AddKey(D3DXVECTOR3 position, int keyNumber, GameEntitiesContainer gc, PlayerComponent *player);
 	GameEntitiesContainer CreateLevel1(GameEntitiesContainer container, PlayerComponent *player);
 	GameEntitiesContainer AddTrapDoor( int numRows, int numCols,GameEntitiesContainer container, D3DXVECTOR3 position, PlayerComponent* player);
+
 };

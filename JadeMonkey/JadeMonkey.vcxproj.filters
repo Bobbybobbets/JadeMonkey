@@ -177,6 +177,12 @@
     <ClInclude Include="TrapDoorCollisionComponent.h">
       <Filter>Header Files\Components\CollisionComponents</Filter>
     </ClInclude>
+    <ClInclude Include="DoorComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="DoorUseComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp">
@@ -267,6 +273,12 @@
       <Filter>Source Files\Components\CollisionComponents</Filter>
     </ClCompile>
     <ClCompile Include="TrapDoorComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="DoorComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="DoorUseComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>

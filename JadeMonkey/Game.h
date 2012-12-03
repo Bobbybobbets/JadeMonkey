@@ -51,13 +51,14 @@
 #include "IDrawable.h"
 #include "GameComponent.h"
 #include "DrawableGameComponent.h"
+#include <string>
 
 
 // DEFINES
 
 #define GAME_TITLE_SISE 128
 
-
+using namespace std;
 
 class Game : public IUpdateable, public IDrawable
 {
@@ -71,6 +72,7 @@ public:
 	virtual int Draw(long time) override;   // render the frame
 	virtual int Initialize(void) = 0;  // initialize the game
 	virtual int LoadContent(void); //load game content
+	virtual void setMessage(string message) = 0; // set the message to be displayed
 	virtual D3DXVECTOR3 checkFloorCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end) = 0;
 	virtual D3DXVECTOR3 checkWallCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end) = 0;
 	gameIO* getIOInterface(void);
