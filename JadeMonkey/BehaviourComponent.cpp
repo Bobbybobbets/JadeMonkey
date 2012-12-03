@@ -18,7 +18,7 @@ BehaviourComponent::BehaviourComponent(Game* game, GameEntity* entity, enum Beha
 		this->_rootNode = BehaviourBuilder::BuildBasicEnemy(this, entitiesContainer.Player, pathfinding);
 		break;
 	case RangedEnemy:
-		FireboltSkillComponent* firebolt = new FireboltSkillComponent(this->_game, this->getEntity(), 10, entitiesContainer.Group);
+		FireboltSkillComponent* firebolt = new FireboltSkillComponent(this->_game, this->getEntity(), 50, entitiesContainer.Group);
 		this->_entity->AddComponent(firebolt);
 		this->_rootNode = BehaviourBuilder::BuildRangedEnemy(this, entitiesContainer.Player, pathfinding, firebolt);
 		break;

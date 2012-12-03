@@ -27,13 +27,14 @@ GameEntitiesContainer MainEntityFactory::GetContainer(Game* game)
 
 	//create main character
 	GameEntity* cameraEntity = new GameEntity(game);
+	cameraEntity->SetType(HumanPlayer);
 	CameraComponent* camera = new CameraComponent(game, cameraEntity);
 	PlayerComponent* player = new PlayerComponent(game, cameraEntity);
 	PhysicsComponent* physics = new PhysicsComponent(game, cameraEntity);
 	FireboltSkillComponent* firebolt = new FireboltSkillComponent(game, cameraEntity, 10, Player);
 	DoorUseComponent* doorUse = AddDoor(25, 5, D3DXVECTOR3( 21 , 0, 0), container, player, true, camera);
 	PlayerFPInputComponent* input = new PlayerFPInputComponent(game, cameraEntity, camera, physics, firebolt, doorUse, player);
-	GridBasedCollisionComponent* collisionGrid = new GridBasedCollisionComponent(game, cameraEntity, 15, Player, Nothing);
+	GridBasedCollisionComponent* collisionGrid = new GridBasedCollisionComponent(game, cameraEntity, 10, Player, Nothing);
 	
 	camera->SetCamera(D3DXVECTOR3(30,70,30), D3DXVECTOR3(100,70,100), D3DXVECTOR3(0,1,0));
 

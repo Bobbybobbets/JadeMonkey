@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include "Enums.h"
 #include "Game.h"
 #include "DrawableGameComponent.h"
 #include "BEntityComponent.h"
@@ -48,6 +48,8 @@ public:
 	bool IsVisible(void);
 	bool IsActive();
 	void SetStatus(bool active);
+	EntityType GetType(void);
+	void SetType(EntityType type);
 	GraphicsComponent* getGraphicsComponent();
 	vector<CollisionComponent*> getCollisionComponents();
 	void AddCollisionComponent(CollisionComponent* component);
@@ -69,6 +71,7 @@ protected:
 	int numQuads;
 	int numTriangles;
 	bool _active;
+	EntityType _type;
 	vector<BEntityComponent*> _components;
 
 	vector<CollisionComponent*> _collisionComponents;

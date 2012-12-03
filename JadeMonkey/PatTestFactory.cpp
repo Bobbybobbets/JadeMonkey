@@ -40,11 +40,11 @@ GameEntitiesContainer PatTestFactory::GetContainer(Game* game)
 	
 	camera->SetCamera(D3DXVECTOR3(-500, 100, -500), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0,1,0));
 
+	cameraEntity->AddComponent(input);
 	cameraEntity->AddComponent(collisionGrid);
 	cameraEntity->AddComponent(firebolt);
 	cameraEntity->AddComponent(physics);
 	cameraEntity->AddComponent(camera);
-	cameraEntity->AddComponent(input);
 	cameraEntity->AddComponent(player);
 
 	AIEntitiesInteractionContainer aiEntitiesContainer(cameraEntity, nullptr, vector<GameEntity*>(), Enemies);

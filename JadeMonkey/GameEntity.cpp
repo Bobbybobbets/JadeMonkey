@@ -15,7 +15,8 @@ GameEntity::GameEntity(Game* game) :
 	_height(40),
 	_stepHeight(20),
 	_velocity(0),
-	_active(true)
+	_active(true),
+	_type(Enemy)
 {
 	this->_visible = false;
 	this->_life = 100;
@@ -32,7 +33,8 @@ GameEntity::GameEntity(Game* game, D3DXVECTOR3 size) :
 	_height(40),
 	_stepHeight(20),
 	_velocity(0),
-	_active(true)
+	_active(true),
+	_type(Enemy)
 {
 	this->setSize(size);
 	this->_visible = false;
@@ -257,6 +259,16 @@ bool GameEntity::IsActive(void)
 void GameEntity::SetStatus(bool active)
 {
 	this->_active = active;
+}
+
+EntityType GameEntity::GetType(void)
+{
+	return this->_type;
+}
+
+void GameEntity::SetType(EntityType type)
+{
+	this->_type = type;
 }
 
 GraphicsComponent* GameEntity::getGraphicsComponent()

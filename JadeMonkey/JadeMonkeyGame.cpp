@@ -60,6 +60,7 @@ JadeMonkeyGame::JadeMonkeyGame(HINSTANCE hInstance, char* gameName, EntityFactor
 {
 	this->_entityFactory = fact;
 	displayMessage = false;
+	this->Restart = false;
 }
 
 JadeMonkeyGame::~JadeMonkeyGame(void)
@@ -78,6 +79,11 @@ JadeMonkeyGame::~JadeMonkeyGame(void)
 int JadeMonkeyGame::Update(long time)
 {
 	int rc = 0;
+
+	if(this->Restart)
+	{
+		this->Initialize();	
+	}
 
 	// add code to update the game state
 

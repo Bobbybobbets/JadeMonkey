@@ -234,7 +234,7 @@ GameEntitiesContainer EntityFactory::CreateLevel1(GameEntitiesContainer containe
 	GameEntity* aiEntity3 = this->CreateAIEntity(&container, D3DXVECTOR3(350, 60, 700), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 2, BasicEnemy, aiEntitiesContainer, graph);
 	GameEntity* aiEntity4 = this->CreateAIEntity(&container, D3DXVECTOR3(650, 60, 650), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 3, RangedEnemy, aiEntitiesContainer, graph);
 	GameEntity* aiEntity5 = this->CreateAIEntity(&container, D3DXVECTOR3(550, 60, 550), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 4, BasicEnemy, aiEntitiesContainer, graph);
-	GameEntity* aiEntity6 = this->CreateAIEntity(&container, D3DXVECTOR3(650, 60, 700), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 5, RangedEnemy, aiEntitiesContainer, graph);
+	//GameEntity* aiEntity6 = this->CreateAIEntity(&container, D3DXVECTOR3(650, 60, 700), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 5, RangedEnemy, aiEntitiesContainer, graph);
 	return container;
 }
 
@@ -269,7 +269,7 @@ GameEntity* EntityFactory::CreateAIEntity(
 	AIControllerComponent* aiController = new AIControllerComponent(this->_game, entity);
 	AStarPathfindingComponent* pathfinding = new AStarPathfindingComponent(this->_game, entity, aiController, framesToWait, graph);
 	ScaledBoxGraphicsComponent* graphics = new ScaledBoxGraphicsComponent(this->_game, entity, color);
-	GridBasedCollisionComponent* collision = new GridBasedCollisionComponent(this->_game, entity, 15, Enemies, MinusSize);
+	GridBasedCollisionComponent* collision = new GridBasedCollisionComponent(this->_game, entity, 20, Enemies, Kill);
 
 	BehaviourComponent* behaviourComponent = new BehaviourComponent(this->_game, entity, behaviour, entitiesContainer, pathfinding);
 

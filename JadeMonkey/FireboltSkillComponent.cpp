@@ -16,9 +16,10 @@ FireboltSkillComponent::FireboltSkillComponent(Game* game, GameEntity* entity, i
 
 void FireboltSkillComponent::fireSkill(void)
 {
-	if(this->_children.size() < 10)
+	if(this->_children.size() < 4)
 	{
 		GameEntity* firebolt = new GameEntity(this->_game, D3DXVECTOR3(5, 5, 5));
+		firebolt->SetType(Projectile);
 		firebolt->setPosition(this->_entity->getPosition());
 		firebolt->setDirection(D3DXVECTOR3(this->_entity->getDirection().x, 0, this->_entity->getDirection().z));
 		firebolt->setVelocity(5);

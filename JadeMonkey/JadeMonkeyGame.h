@@ -67,6 +67,7 @@ public:
 	int dx;		// change in x at each frame
 	int dy;		// change in y at each frame
 	RECT textBox;	// rectangle for the text
+	bool Restart;
 
 	char s[1024]; // string to be drawn
 

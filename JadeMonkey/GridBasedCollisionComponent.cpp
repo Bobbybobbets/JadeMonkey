@@ -35,7 +35,7 @@ void GridBasedCollisionComponent::Update(GameEntity* entity, long time)
 			GameEntity* otherEntity = this->_colliders[i]->getEntity();
 			D3DXVECTOR3 positionOther = this->_colliders[i]->getEntity()->getPosition();
 			D3DXVECTOR3 positionThis = this->_entity->getPosition();
-			float distance = VectorUtil::Distance3f(D3DXVECTOR3(positionOther.x, 0, positionOther.z), D3DXVECTOR3(positionThis.x, 0, positionThis.z));
+			float distance = VectorUtil::Distance3f(D3DXVECTOR3(positionOther.x, positionOther.y, positionOther.z), D3DXVECTOR3(positionThis.x, positionThis.y, positionThis.z));
 
 			if(distance < this->_radius + this->_colliders[i]->GetRadius())
 			{
@@ -51,7 +51,15 @@ void GridBasedCollisionComponent::Update(GameEntity* entity, long time)
 					otherEntity->reduceLife(25);
 					break;
 				case Kill:
-					otherEntity->SetStatus(false);
+					if(otherEntity->GetType() == HumanPlayer)
+					{
+						otherEntity->setPosition(D3DXVECTOR3(30, 70, 30));
+					}
+					else if(otherEntity->GetType() == Enemy)
+					{
+						otherEntity->SetStatus(false);
+					}
+					break;
 				case Nothing:
 					break;
 				}

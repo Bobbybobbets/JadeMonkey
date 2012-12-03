@@ -55,3 +55,10 @@ enum CollisionConsequence
 	Kill,
 	Nothing
 };
+
+enum EntityType
+{
+	HumanPlayer,
+	Enemy,
+	Projectile
+};
