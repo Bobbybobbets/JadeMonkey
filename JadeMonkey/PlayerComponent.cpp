@@ -11,6 +11,8 @@ PlayerComponent::~PlayerComponent()
 
 }
 
+
+
 void PlayerComponent::Initialize()
 {
 	lives = 3;
@@ -22,7 +24,8 @@ void PlayerComponent::Initialize()
 
 void PlayerComponent::Update(GameEntity* entity, long time)
 {
-
+	this->_game->setNumKeys(numKeyParts);
+	this->_game->setNumLives(lives);
 }
 int PlayerComponent::getLives()
 {
