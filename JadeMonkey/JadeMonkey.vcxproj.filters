@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{7de6bd81-0add-4ba2-a205-5d218c514788}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities">
+      <UniqueIdentifier>{51dfb07d-6b44-413f-8bec-602be9c1c3c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderers">
+      <UniqueIdentifier>{96de8cde-40cd-4cd3-8adb-3303b701d1d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderers">
+      <UniqueIdentifier>{ab2d4fb6-901d-463d-bed9-1dd5533b001b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Interfaces">
+      <UniqueIdentifier>{dc63385d-5f76-4f53-83fb-d3b28b5c7184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{f0342649-e07f-4bba-988c-7121b1635eae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{fa03fa63-54bf-4c53-9535-d39138127917}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Factories">
+      <UniqueIdentifier>{ab5b28aa-bf9a-4d72-88ad-c21c67e7b79d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Factories">
+      <UniqueIdentifier>{fb01ded5-be49-46e2-8230-b3f169adf497}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Util">
+      <UniqueIdentifier>{a77e0792-ad64-47e8-9aab-cfe284739a9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{2d3c6572-f5f1-4f4a-bb34-08eab0e480ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\AI">
+      <UniqueIdentifier>{7e3ac838-d97c-4b50-a8ad-172668d143b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\Collision">
+      <UniqueIdentifier>{182da368-35d4-4511-8f27-07f9f4323da7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\Physics">
+      <UniqueIdentifier>{d9e3c803-da09-4c84-a9f7-2151a37af71d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\Graphics">
+      <UniqueIdentifier>{b63f8ae3-fcdb-488c-a4cb-08c97f8ae8d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\Input">
+      <UniqueIdentifier>{4c104153-fc01-458f-b27b-a37724f306f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\Camera">
+      <UniqueIdentifier>{dbf59bc0-ca94-434e-9b1e-cfa7d18cdb27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems">
+      <UniqueIdentifier>{32e01339-e543-44eb-91f6-093801699a4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components\AI">
+      <UniqueIdentifier>{28e4d6d2-5b42-42c3-95d8-4c5a80f6dda8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components\AI\BehaviourNodes">
+      <UniqueIdentifier>{8d96c922-5419-4018-aafb-8e7ca62cbd83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\AI\BehaviourNodes">
+      <UniqueIdentifier>{d64f3a97-65f3-4820-a0d2-4d5a5265a20b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components\Skills">
+      <UniqueIdentifier>{992ca297-b387-45c1-add9-3577554d1d66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\Skills">
+      <UniqueIdentifier>{96cbf2df-7696-4a98-9627-e53749c34ea1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameIO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JadeMonkey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IUpdateable.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IDrawable.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JadeMonkeyGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEntity.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="ICollideable.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="jade_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFPInputComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityFactory.h">
+      <Filter>Header Files\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="MainEntityFactory.h">
+      <Filter>Header Files\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEntitiesContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BEntityComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CuboidCollisionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorUtil.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyPartComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorUtil.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="ScaledBoxGraphicsComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PathfindingGraphNode.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PathfindingGraphComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PathfindingUtil.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawableGameComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="FloorPointCollisionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap1GraphicsComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap2GraphicsComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyGraphicsComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PointCollisionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="WallPointCollisionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="WallPointXCollisionComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PatTestFactory.h">
+      <Filter>Header Files\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TrapDoorComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TrapDoorCollisionComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TrapDoorGraphicsComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AStarNode.h">
+      <Filter>Header Files\Components\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AStarPathfindingComponent.h">
+      <Filter>Header Files\Components\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AStarPathfindingGraph.h">
+      <Filter>Header Files\Components\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourComponent.h">
+      <Filter>Header Files\Components\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourTreeNode.h">
+      <Filter>Header Files\Components\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="CondPlayerProximityBehaviourNode.h">
+      <Filter>Header Files\Components\AI\BehaviourNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionMoveToPlayerBehaviourNode.h">
+      <Filter>Header Files\Components\AI\BehaviourNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourBuilder.h">
+      <Filter>Header Files\Components\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="PrioritySelectorBehaviourNode.h">
+      <Filter>Header Files\Components\AI\BehaviourNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AIEntitiesInteractionContainer.h">
+      <Filter>Header Files\Components\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="BehavioursEnum.h">
+      <Filter>Header Files\Components\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="SequenceSelectorBehaviourNode.h">
+      <Filter>Header Files\Components\AI\BehaviourNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AIControllerComponent.h">
+      <Filter>Header Files\Components\AI\BehaviourNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillComponent.h">
+      <Filter>Header Files\Components\Skills</Filter>
+    </ClInclude>
+    <ClInclude Include="FireboltSkillComponent.h">
+      <Filter>Header Files\Components\Skills</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionShootFireboltBehaviourNode.h">
+      <Filter>Header Files\Components\AI\BehaviourNodes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="gameIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JadeMonkey.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JadeMonkeyGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEntity.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawableGameComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainEntityFactory.cpp">
+      <Filter>Source Files\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityFactory.cpp">
+      <Filter>Source Files\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="BEntityComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="VectorUtil.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="PatTestFactory.cpp">
+      <Filter>Source Files\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="WallPointXCollisionComponent.cpp">
+      <Filter>Source Files\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="PointCollisionComponent.cpp">
+      <Filter>Source Files\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="WallPointCollisionComponent.cpp">
+      <Filter>Source Files\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>Source Files\Components\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="VectorUtil.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyPartComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="WallPointCollisionComponent.cpp">
+      <Filter>Source Files\Components\CollisionComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="WallPointXCollisionComponent.cpp">
+      <Filter>Source Files\Components\CollisionComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="PointCollisionComponent.cpp">
+      <Filter>Source Files\Components\CollisionComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMap1GraphicsComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMap2GraphicsComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFPInputComponent.cpp">
+      <Filter>Source Files\Components\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="CuboidCollisionComponent.cpp">
+      <Filter>Source Files\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Source Files\Components\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="FloorPointCollisionComponent.cpp">
+      <Filter>Source Files\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="ScaledBoxGraphicsComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="PathfindingGraphNode.cpp">
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AStarNode.cpp">
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="PathfindingGraphComponent.cpp">
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="PathfindingUtil.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Source Files\Components\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CuboidCollisionComponent.cpp">
+      <Filter>Source Files\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="FloorPointCollisionComponent.cpp">
+      <Filter>Source Files\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMap1GraphicsComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMap2GraphicsComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyGraphicsComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFPInputComponent.cpp">
+      <Filter>Source Files\Components\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="AStarPathfindingComponent.cpp">
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AStarPathfindingGraph.cpp">
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AIControllerComponent.cpp">
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="TrapDoorComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TrapDoorCollisionComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TrapDoorGraphicsComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourComponent.cpp">
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourTreeNode.cpp">
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="CondPlayerProximityBehaviourNode.cpp">
+      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionMoveToPlayerBehaviourNode.cpp">
+      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="PrioritySelectorBehaviourNode.cpp">
+      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="SequenceSelectorBehaviourNode.cpp">
+      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillComponent.cpp">
+      <Filter>Source Files\Components\Skills</Filter>
+    </ClCompile>
+    <ClCompile Include="FireboltSkillComponent.cpp">
+      <Filter>Source Files\Components\Skills</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionShootFireboltBehaviourNode.cpp">
+      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

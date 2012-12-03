@@ -6,6 +6,7 @@
 #include "Enums.h"
 #include "AStarPathfindingComponent.h"
 #include "ActionMoveToPlayerBehaviourNode.h"
+#include "FireboltSkillComponent.h"
 
 
 class BehaviourBuilder
@@ -23,5 +24,9 @@ public:
 		aggro->AddChild(actionMoveToPlayer);
 
 		return root;
+	}
+
+	static BehaviourTreeNode* BuildRangedEnemy(BehaviourComponent* behaviourComponent, GameEntity* player, AStarPathfindingComponent* pathfinding, FireboltSkillComponent* firebolt)
+	{
 	}
 };
