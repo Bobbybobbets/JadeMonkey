@@ -224,24 +224,44 @@ GameEntitiesContainer EntityFactory::CreateLevel1(GameEntitiesContainer containe
 	return container;
 }
 
-GameEntity* EntityFactory::CreateAIEntity(GameEntitiesContainer* container, D3DXVECTOR3 position, D3DXVECTOR3 size, D3DCOLOR color, long framesToWait)
+GameEntity* EntityFactory::CreateAIEntity(
+	GameEntitiesContainer* container, 
+	D3DXVECTOR3 position, 
+	D3DXVECTOR3 size, 
+	D3DCOLOR color, 
+	long framesToWait,
+	Behaviour behaviour,
+	AIEntitiesInteractionContainer entitiesContainer,
+	AStarPathfindingGraph* graph)
 {
-	return this->CreateAIEntity(container, position, size, color, framesToWait, nullptr);
+	return this->CreateAIEntity(container, position, size, color, framesToWait, behaviour, entitiesContainer, graph, nullptr);
 }
 
-GameEntity* EntityFactory::CreateAIEntity(GameEntitiesContainer* container, D3DXVECTOR3 position, D3DXVECTOR3 size, D3DCOLOR color, long framesToWait, GameEntity* entityToFollow)
+GameEntity* EntityFactory::CreateAIEntity(
+	GameEntitiesContainer* container, 
+	D3DXVECTOR3 position, 
+	D3DXVECTOR3 size, 
+	D3DCOLOR color, 
+	long framesToWait, 
+	Behaviour behaviour,
+	AIEntitiesInteractionContainer entitiesContainer,
+	AStarPathfindingGraph* graph,
+	GameEntity* entityToFollow)
 {
 	GameEntity* entity = new GameEntity(this->_game);
 	entity->setPosition(position);
 	entity->setSize(size);
 	PhysicsComponent* physics = new PhysicsComponent(this->_game, entity);
 	AIControllerComponent* aiController = new AIControllerComponent(this->_game, entity);
-	AStarPathfindingComponent* pathfinding = new AStarPathfindingComponent(this->_game, entity, aiController, framesToWait);
+	AStarPathfindingComponent* pathfinding = new AStarPathfindingComponent(this->_game, entity, aiController, framesToWait, graph);
 	ScaledBoxGraphicsComponent* graphics = new ScaledBoxGraphicsComponent(this->_game, entity, color);
+
+	BehaviourComponent* behaviourComponent = new BehaviourComponent(this->_game, entity, behaviour, entitiesContainer, pathfinding);
 
 	entity->AddComponent(physics);
 	entity->AddComponent(aiController);
 	entity->AddComponent(pathfinding);
+	entity->AddComponent(behaviourComponent);
 	entity->AddGraphicsComponent(graphics);
 
 	if(entityToFollow != nullptr)

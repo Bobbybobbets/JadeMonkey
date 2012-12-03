@@ -9,7 +9,7 @@
 class AStarPathfindingComponent : public BEntityComponent
 {
 public:
-	AStarPathfindingComponent(Game* game, GameEntity* entity, AIControllerComponent* aiController, long framesToWait);
+	AStarPathfindingComponent(Game* game, GameEntity* entity, AIControllerComponent* aiController, long framesToWait, AStarPathfindingGraph* graph);
 	virtual void Initialize(void) override;
 	virtual void Update(GameEntity* entity, long time) override;
 	void FollowEntity(GameEntity* entity);
@@ -24,6 +24,7 @@ protected:
 	GameEntity* _entityToFollow;
 	D3DXVECTOR3 _entityToFollowPosBuffer;
 	bool _followEntity;
+	bool _switchedEntity;
 	long _frameThreshold;
 	long _frameCount;
 	long _frameWait;

@@ -1,12 +1,13 @@
 #include "PlayerFPInputComponent.h"
 
 
-PlayerFPInputComponent::PlayerFPInputComponent(Game* game, GameEntity* entity, CameraComponent* camera, PhysicsComponent* physics)
+PlayerFPInputComponent::PlayerFPInputComponent(Game* game, GameEntity* entity, CameraComponent* camera, PhysicsComponent* physics, FireboltSkillComponent* fireboltSkill)
 	: BEntityComponent(game, entity)
 {
 	this->_io = game->getIOInterface();
 	this->_camera = camera;
 	this->_physics = physics;
+	this->_firebolt = fireboltSkill;
 }
 
 void PlayerFPInputComponent::Initialize()
@@ -42,7 +43,10 @@ void PlayerFPInputComponent::Update(GameEntity* entity, long time)
 
 	if (this->_io->keyboardPressed(DIK_SPACE) && _physics->getOnGround()) {
 		_physics->setAccelerationVector(D3DXVECTOR3(0.0f,5.0f,0.0f));
-		
 	}
 
+	if(this->_io->mouseButtonPressed(0))
+	{
+		this->_firebolt->Activate();
+	}
 }

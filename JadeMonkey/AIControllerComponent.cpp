@@ -37,3 +37,4 @@ void AIControllerComponent::MoveTo(D3DXVECTOR3 position)
 	this->_moveToPosition = position;
 	this->_moving = true;
 }
+

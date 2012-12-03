@@ -94,6 +94,13 @@ int JadeMonkeyGame::Update(long time)
 		(*it)->Update(time);
 	}
 
+	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.EntitiesToAdd.begin();
+		it < this->_entitiesContainer.EntitiesToAdd.end();
+		it++)
+	{
+		this->_entitiesContainer.Entities.push_back((*it));
+	}
+
 	return(rc);
 }
 /**************************************************************************/
@@ -146,6 +153,9 @@ int JadeMonkeyGame::Draw(long time)
 	if (rc != D3D_OK) {
 		i++;
 	}
+
+	//clear z buffer
+	md3dDev->Clear(0, NULL, D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 	
 	md3dDev->BeginScene();    // begins the 3D scene
 	
@@ -167,7 +177,10 @@ int JadeMonkeyGame::Draw(long time)
 	 return 0;
  }
 
-
+GameEntitiesContainer* JadeMonkeyGame::GetEntitiesContainer(void)
+{
+	return &(this->_entitiesContainer);
+}
 
 int JadeMonkeyGame::Initialize(void)
 {

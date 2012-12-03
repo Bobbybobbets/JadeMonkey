@@ -60,6 +60,7 @@ public:
 	virtual int LoadContent(void) override;
 	virtual D3DXVECTOR3 checkFloorCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end, GameEntity* entity) override;
 	virtual D3DXVECTOR3 checkWallCollisions(D3DXVECTOR3 start, D3DXVECTOR3 end, GameEntity* entity) override;
+	GameEntitiesContainer* GetEntitiesContainer(void);
 	// variables used to position the text on the screen
 	int x;	// x location of the string to be drawn
 	int y;	// y location of the string to be drawn

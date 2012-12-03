@@ -288,7 +288,7 @@ int Game::initD3D(void)
 	md3dpp.hDeviceWindow = mhwnd;				// pass the handle to the window
 	md3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;    // discard old frames
 	//md3dpp.BackBufferFormat = D3DFMT_UNKNOWN;
-	//md3dpp.EnableAutoDepthStencil = TRUE;		// allow depth buffer
+	md3dpp.EnableAutoDepthStencil = TRUE;		// allow depth buffer
 	md3dpp.AutoDepthStencilFormat = D3DFMT_D24S8;  // stencil buffer format
 
 

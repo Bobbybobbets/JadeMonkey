@@ -4,6 +4,14 @@
 #include "GameEntitiesContainer.h"
 #include "PlayerComponent.h"
 #include "TrapDoorComponent.h"
+#include "BehaviourBuilder.h"
+#include <vector>
+#include "AIEntitiesInteractionContainer.h"
+#include "AStarPathfindingGraph.h"
+
+using namespace std;
+
+
 
 class EntityFactory
 {
@@ -20,7 +28,7 @@ protected:
 	GameEntitiesContainer AddStairs(int number, int direction, D3DXVECTOR3 position, GameEntitiesContainer gc, int width, bool xStair);
 	GameEntitiesContainer AddKey(D3DXVECTOR3 position, int keyNumber, GameEntitiesContainer gc, PlayerComponent *player);
 	GameEntitiesContainer CreateLevel1(GameEntitiesContainer container, PlayerComponent *player);
-	GameEntity* CreateAIEntity(GameEntitiesContainer* container, D3DXVECTOR3 position, D3DXVECTOR3 size, D3DCOLOR color, long framesToWait);
-	GameEntity* CreateAIEntity(GameEntitiesContainer* container, D3DXVECTOR3 position, D3DXVECTOR3 size, D3DCOLOR color, long framesToWait, GameEntity* entityToFollow);
+	GameEntity* CreateAIEntity(GameEntitiesContainer* container, D3DXVECTOR3 position, D3DXVECTOR3 size, D3DCOLOR color, long framesToWait, Behaviour behaviour, AIEntitiesInteractionContainer entitiesContainer, AStarPathfindingGraph* graph);
+	GameEntity* CreateAIEntity(GameEntitiesContainer* container, D3DXVECTOR3 position, D3DXVECTOR3 size, D3DCOLOR color, long framesToWait, Behaviour behaviour, AIEntitiesInteractionContainer entitiesContainer, AStarPathfindingGraph* graph, GameEntity* entityToFollow);
 	GameEntitiesContainer AddTrapDoor( int numRows, int numCols,GameEntitiesContainer container, D3DXVECTOR3 position, PlayerComponent* player);
 };

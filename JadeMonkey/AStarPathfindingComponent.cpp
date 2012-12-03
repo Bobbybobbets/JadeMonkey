@@ -7,22 +7,24 @@
 
 using namespace std;
 
-AStarPathfindingComponent::AStarPathfindingComponent(Game* game, GameEntity* entity, AIControllerComponent* aiController, long framesToWait)
+AStarPathfindingComponent::AStarPathfindingComponent(Game* game, GameEntity* entity, AIControllerComponent* aiController, long framesToWait, AStarPathfindingGraph* graph)
 	: BEntityComponent(game, entity)
 {
+	this->_graph = graph;
 	this->_aiController = aiController;
 	this->_entityToFollow = nullptr;
 	this->_followEntity = false;
-	this->_frameThreshold = 50;
+	this->_switchedEntity = false;
+	this->_frameThreshold = 30;
 	this->_frameCount = 0;
 	this->_frameWait = framesToWait;
 }
 
 void AStarPathfindingComponent::Initialize(void)
 {
-	this->_graph = PathfindingUtil::CreateAStarGraphFromFloors(70, 70, 20, 20, D3DXVECTOR3(-35, 0, -35));
+	//this->_graph = PathfindingUtil::CreateAStarGraphFromFloors(70, 70, 20, 20, D3DXVECTOR3(-35, 0, -35));
 	this->_path = stack<AStarNode*>();
-	this->_doSearch = true;
+	this->_doSearch = false;
 }
 
 void AStarPathfindingComponent::Update(GameEntity* entity, long time)
@@ -39,7 +41,7 @@ void AStarPathfindingComponent::Update(GameEntity* entity, long time)
 			
 		}
 		else
-			goalNode = &this->_graph->Nodes[4600];
+			goalNode = this->_graph->GetClosestNode(this->_goalPosition);
 
 
 		this->findPosition(
@@ -70,6 +72,7 @@ void AStarPathfindingComponent::FollowEntity(GameEntity* entity)
 {
 	this->_entityToFollow = entity;
 	this->_followEntity = true;
+	this->_switchedEntity = true;
 	this->_doSearch = true;
 }
 
@@ -177,7 +180,7 @@ bool AStarPathfindingComponent::ensureGoalIntegrity(long time)
 			{
 				if(!this->_doSearch)
 				{
-					if(this->_entityToFollowPosBuffer != this->_entityToFollow->getPosition())
+					if(this->_entityToFollowPosBuffer != this->_entityToFollow->getPosition() || this->_switchedEntity)
 					{
 						return false;
 					}

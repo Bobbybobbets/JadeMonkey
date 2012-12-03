@@ -8,4 +8,5 @@ struct GameEntitiesContainer
 	vector<GameEntity*> Entities;
 	vector<GameEntity*> Walls;
 	vector<GameEntity*> Floors;
+	vector<GameEntity*> EntitiesToAdd;
 };

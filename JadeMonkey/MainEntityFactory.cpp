@@ -9,6 +9,7 @@
 #include "WallPointCollisionComponent.h"
 #include "FloorPointCollisionComponent.h"
 #include "PlayerComponent.h"
+#include "FireboltSkillComponent.h"
 
 
 using namespace std;
@@ -29,7 +30,8 @@ GameEntitiesContainer MainEntityFactory::GetContainer(Game* game)
 	CameraComponent* camera = new CameraComponent(game, cameraEntity);
 	PlayerComponent* player = new PlayerComponent(game, cameraEntity);
 	PhysicsComponent* physics = new PhysicsComponent(game, cameraEntity);
-	PlayerFPInputComponent* input = new PlayerFPInputComponent(game, cameraEntity, camera, physics);
+	FireboltSkillComponent* firebolt = new FireboltSkillComponent(game, cameraEntity, 10);
+	PlayerFPInputComponent* input = new PlayerFPInputComponent(game, cameraEntity, camera, physics, firebolt);
 	
 	camera->SetCamera(D3DXVECTOR3(30,70,30), D3DXVECTOR3(100,70,100), D3DXVECTOR3(0,1,0));
 

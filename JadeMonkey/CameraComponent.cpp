@@ -10,8 +10,8 @@ CameraComponent::CameraComponent(Game* game, GameEntity* entity)
 
 void CameraComponent::Initialize(void)
 {
-	this->_speed = 2.0f;
-	this->_strafeSpeed = 0.001f;
+	this->_speed = 5.0f;
+	this->_strafeSpeed = 5.0f;
 }
 
 void CameraComponent::Update(GameEntity* entity, long time)
@@ -108,6 +108,8 @@ void CameraComponent::ChangeLookAt(D3DXVECTOR3 delta)
 	// Ensure that the magnitudes are less than 1
 	D3DXVec3Normalize(&this->_upVector, &this->_upVector);
 	D3DXVec3Normalize(&this->_lookAtVector, &this->_lookAtVector);
+
+	this->_entity->setDirection(this->_lookAtVector);
 }
 
 D3DXMATRIX* CameraComponent::GetViewMatrix(D3DXMATRIX* viewMatrix)
@@ -157,10 +159,17 @@ D3DXVECTOR3 CameraComponent::Strafe(float numUnits)
 
 
 	//The strafe vector will be the cross between the forward direction and the y axis
-	D3DXVec3Cross(&strafeVec, &lookDirection , &yaxis);
+	if(numUnits > 0)
+	{
+		D3DXVec3Cross(&strafeVec, &lookDirection , &yaxis);
+	}
+	else
+	{
+		D3DXVec3Cross(&strafeVec, &yaxis, &lookDirection);
+	}
 
-	strafeVec.x += numUnits;
-	strafeVec.z += numUnits;
+	D3DXVec3Normalize(&strafeVec, &strafeVec);
+	strafeVec *= numUnits;
 
 	if (numUnits > 0)
 	{
@@ -244,6 +253,9 @@ void CameraComponent::updateOrientation(D3DXVECTOR3 rotVector, float angleRad)
 	D3DXVec3Normalize(&this->_lookAtVector, &this->_lookAtVector);
 		
 	rc = D3DXVec3Dot(&this->_upVector,&this->_lookAtVector);
+
+	D3DXVECTOR3 entityDirection = D3DXVECTOR3(this->_lookAtVector.x, 0, this->_lookAtVector.z);
+	
 }
 
 float CameraComponent::getHeightOfPlayer()

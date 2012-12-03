@@ -13,7 +13,8 @@ GameEntity::GameEntity(Game* game) :
 	_scale(1.0, 1.0, 1.0),
 	_speed(3.0),
 	_height(40),
-	_stepHeight(20)
+	_stepHeight(20),
+	_velocity(0)
 {
 	this->_visible = false;
 }
@@ -27,7 +28,8 @@ GameEntity::GameEntity(Game* game, D3DXVECTOR3 size) :
 	_scale(1.0, 1.0, 1.0),
 	_speed(3.0),
 	_height(40),
-	_stepHeight(20)
+	_stepHeight(20),
+	_velocity(0)
 {
 	this->setSize(size);
 	this->_visible = false;
@@ -105,6 +107,7 @@ int GameEntity::Update(long time)
 		(*it)->Update(this, time);
 	}
 	
+	this->setPosition(this->getPosition() += this->getDirection()*this->_velocity);
 	return 0;
 }
 
@@ -212,6 +215,17 @@ void GameEntity::setStepHeight(int stepHeight)
 {
 	this->_stepHeight = stepHeight;
 }
+
+float GameEntity::getVelocity(void)
+{
+	return this->_velocity;
+}
+
+void GameEntity::setVelocity(float velocity)
+{
+	this->_velocity = velocity;
+}
+
 
 GraphicsComponent* GameEntity::getGraphicsComponent()
 {

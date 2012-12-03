@@ -158,6 +158,7 @@ void ScaledBoxGraphicsComponent::Update(GameEntity* entity, long time)
 	d3ddev->SetStreamSource(0, v_buffer, 0, sizeof(CUSTOMVERTEX));
 	d3ddev->SetIndices(i_buffer);
 
+	d3ddev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 	// draw the cube
 	d3ddev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 8, 0, 12);
 }
