@@ -14,9 +14,11 @@ GameEntity::GameEntity(Game* game) :
 	_speed(3.0),
 	_height(40),
 	_stepHeight(20),
-	_velocity(0)
+	_velocity(0),
+	_active(true)
 {
 	this->_visible = false;
+	this->_life = 100;
 }
 
 GameEntity::GameEntity(Game* game, D3DXVECTOR3 size) : 
@@ -29,14 +31,20 @@ GameEntity::GameEntity(Game* game, D3DXVECTOR3 size) :
 	_speed(3.0),
 	_height(40),
 	_stepHeight(20),
-	_velocity(0)
+	_velocity(0),
+	_active(true)
 {
 	this->setSize(size);
 	this->_visible = false;
+	this->_life = 100;
 }
 
 GameEntity::~GameEntity()
 {
+	for(int i = 0; i < this->_components.size(); i++)
+	{
+		delete(this->_components[i]);
+	}
 }
 
 void GameEntity::AddComponent(BEntityComponent* component)
@@ -226,6 +234,30 @@ void GameEntity::setVelocity(float velocity)
 	this->_velocity = velocity;
 }
 
+int GameEntity::getLife(void)
+{
+	return this->_life;
+}
+
+void GameEntity::setLife(int life)
+{
+	this->_life = life;
+}
+
+void GameEntity::reduceLife(int amount)
+{
+	this->_life -= amount;
+}
+
+bool GameEntity::IsActive(void)
+{
+	return this->_active;
+}
+
+void GameEntity::SetStatus(bool active)
+{
+	this->_active = active;
+}
 
 GraphicsComponent* GameEntity::getGraphicsComponent()
 {

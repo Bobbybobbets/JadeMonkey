@@ -4,6 +4,6 @@
 class PrioritySelectorBehaviourNode : public BehaviourTreeNode
 {
 public :
-	PrioritySelectorBehaviourNode(BehaviourComponent* behaviourComponent);
+	PrioritySelectorBehaviourNode(BehaviourComponent* behaviourComponent, string name);
 	bool Update(void);
 };

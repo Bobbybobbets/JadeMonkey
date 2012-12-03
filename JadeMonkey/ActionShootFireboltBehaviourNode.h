@@ -5,10 +5,10 @@ class FireboltSkillComponent;
 class BehaviourComponent;
 class GameEntity;
 
-class ActionShootFireboltBehaviourNode : BehaviourTreeNode
+class ActionShootFireboltBehaviourNode : public BehaviourTreeNode
 {
 public:
-	ActionShootFireboltBehaviourNode(BehaviourComponent* behaviourComponent, GameEntity* player, FireboltSkillComponent* fireboltComponent);
+	ActionShootFireboltBehaviourNode(BehaviourComponent* behaviourComponent, GameEntity* player, FireboltSkillComponent* fireboltComponent, string name);
 	bool Update(void);
 
 protected:

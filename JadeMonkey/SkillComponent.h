@@ -1,6 +1,7 @@
 #pragma once
 #include "BEntityComponent.h"
 #include <vector>
+#include <list>
 
 using namespace std;
 
@@ -17,4 +18,5 @@ protected:
 	int _cooldown;
 	int _timeCounter;
 	vector<GameEntity*> _targets;
+
 };

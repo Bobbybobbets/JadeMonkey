@@ -42,7 +42,12 @@ public:
 	void setStepHeight(int stepHeight);
 	float getVelocity(void);
 	void setVelocity(float velocity);
+	int getLife(void);
+	void setLife(int life);
+	void reduceLife(int amount);
 	bool IsVisible(void);
+	bool IsActive();
+	void SetStatus(bool active);
 	GraphicsComponent* getGraphicsComponent();
 	vector<CollisionComponent*> getCollisionComponents();
 	void AddCollisionComponent(CollisionComponent* component);
@@ -55,6 +60,7 @@ protected:
 	D3DXVECTOR3 _rotation;	// angle of rotation of the object
 	D3DXVECTOR3 _scale;
 	D3DXVECTOR3 _size;
+	int _life;
 	float _velocity;
 	int _height;
 	int _stepHeight;
@@ -62,6 +68,7 @@ protected:
 	int numVtx;
 	int numQuads;
 	int numTriangles;
+	bool _active;
 	vector<BEntityComponent*> _components;
 
 	vector<CollisionComponent*> _collisionComponents;

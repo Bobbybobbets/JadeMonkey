@@ -5,7 +5,7 @@
 class CondPlayerProximityBehaviourNode : public BehaviourTreeNode
 {
 public:
-	CondPlayerProximityBehaviourNode(BehaviourComponent* behaviourComponent, GameEntity* player, float distance);
+	CondPlayerProximityBehaviourNode(BehaviourComponent* behaviourComponent, GameEntity* player, float distance, string name);
 	bool Update(void);
 
 protected:

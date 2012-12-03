@@ -93,7 +93,18 @@ int JadeMonkeyGame::Update(long time)
 		it < this->_entitiesContainer.Entities.end(); 
 		it++)
 	{
-		(*it)->Update(time);
+		if((*it)->IsActive())
+		{
+			(*it)->Update(time);
+		}
+	}
+
+	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.EntitiesToRemove.begin();
+		it < this->_entitiesContainer.EntitiesToRemove.end();
+		it++)
+	{
+		delete((*it));
+		this->_entitiesContainer.Entities.erase(it);
 	}
 
 	for(vector<GameEntity*>::iterator it = this->_entitiesContainer.EntitiesToAdd.begin();
@@ -102,6 +113,9 @@ int JadeMonkeyGame::Update(long time)
 	{
 		this->_entitiesContainer.Entities.push_back((*it));
 	}
+
+	this->_entitiesContainer.EntitiesToAdd.clear();
+	this->_entitiesContainer.EntitiesToRemove.clear();
 
 	return(rc);
 }
@@ -166,7 +180,10 @@ int JadeMonkeyGame::Draw(long time)
 		it < this->_entitiesContainer.Entities.end(); 
 		it++)
 	{
-		(*it)->Draw(time);
+		if((*it)->IsActive())
+		{
+			(*it)->Draw(time);
+		}
 	}
 	
 	if(displayMessage && GetTickCount() - lastMessage < 5000)

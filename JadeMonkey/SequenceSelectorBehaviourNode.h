@@ -4,6 +4,6 @@
 class SequenceSelectorBehaviourNode : public BehaviourTreeNode
 {
 public:
-	SequenceSelectorBehaviourNode(BehaviourComponent* behaviourComponent);
+	SequenceSelectorBehaviourNode(BehaviourComponent* behaviourComponent, string name);
 	bool Update(void);
 };

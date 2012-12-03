@@ -1,6 +1,8 @@
 #include "BehaviourComponent.h"
 #include <vector>
 #include "AIEntitiesInteractionContainer.h"
+#include "FireboltSkillComponent.h"
+#include "JadeMonkeyGame.h"
 
 
 using namespace std;
@@ -14,6 +16,11 @@ BehaviourComponent::BehaviourComponent(Game* game, GameEntity* entity, enum Beha
 	{
 	case BasicEnemy:
 		this->_rootNode = BehaviourBuilder::BuildBasicEnemy(this, entitiesContainer.Player, pathfinding);
+		break;
+	case RangedEnemy:
+		FireboltSkillComponent* firebolt = new FireboltSkillComponent(this->_game, this->getEntity(), 10, entitiesContainer.Group);
+		this->_entity->AddComponent(firebolt);
+		this->_rootNode = BehaviourBuilder::BuildRangedEnemy(this, entitiesContainer.Player, pathfinding, firebolt);
 		break;
 	}
 }

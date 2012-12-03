@@ -11,7 +11,7 @@ SkillComponent::SkillComponent(Game* game, GameEntity* entity, int cooldown)
 
 void SkillComponent::Update(GameEntity* entity, long time)
 {
-	vector<GameEntity*>::iterator it;
+	list<GameEntity*>::iterator it;
 	this->_timeCounter++;
 
 	if(this->_activated)

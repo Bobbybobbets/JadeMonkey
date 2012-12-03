@@ -23,7 +23,8 @@ enum BehaviourState
 
 enum Behaviour
 {
-	BasicEnemy
+	BasicEnemy,
+	RangedEnemy
 };
 
 enum BehaviourTreeNodeState
@@ -39,4 +40,18 @@ enum BehaviourTreeNodeType
 	SequenceSelector,
 	Condition,
 	Action
+};
+
+enum CollisionGroup
+{
+	Player,
+	Enemies
+};
+
+enum CollisionConsequence
+{
+	MinusSize,
+	MinusLife,
+	Kill,
+	Nothing
 };

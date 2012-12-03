@@ -9,4 +9,5 @@ struct GameEntitiesContainer
 	vector<GameEntity*> Walls;
 	vector<GameEntity*> Floors;
 	vector<GameEntity*> EntitiesToAdd;
+	vector<GameEntity*> EntitiesToRemove;
 };

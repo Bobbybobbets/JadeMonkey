@@ -1,8 +1,8 @@
 #include "SequenceSelectorBehaviourNode.h"
 #include "Enums.h"
 
-SequenceSelectorBehaviourNode::SequenceSelectorBehaviourNode(BehaviourComponent* behaviourComponent)
-	:BehaviourTreeNode(behaviourComponent, SequenceSelector)
+SequenceSelectorBehaviourNode::SequenceSelectorBehaviourNode(BehaviourComponent* behaviourComponent, string name)
+	:BehaviourTreeNode(behaviourComponent, name, SequenceSelector)
 {
 }
 

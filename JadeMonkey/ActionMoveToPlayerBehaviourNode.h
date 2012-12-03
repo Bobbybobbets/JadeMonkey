@@ -10,7 +10,7 @@ class BehaviourComponent;
 class ActionMoveToPlayerBehaviourNode : public BehaviourTreeNode
 {
 public:
-	ActionMoveToPlayerBehaviourNode(BehaviourComponent* behaviourComponent, GameEntity* player, AStarPathfindingComponent* pathfinding);
+	ActionMoveToPlayerBehaviourNode(BehaviourComponent* behaviourComponent, GameEntity* player, AStarPathfindingComponent* pathfinding, string name);
 	bool Update(void);
 protected:
 	GameEntity* _player;

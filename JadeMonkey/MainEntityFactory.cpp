@@ -10,7 +10,7 @@
 #include "FloorPointCollisionComponent.h"
 #include "PlayerComponent.h"
 #include "FireboltSkillComponent.h"
-
+#include "GridBasedCollisionComponent.h"
 
 using namespace std;
 
@@ -30,20 +30,22 @@ GameEntitiesContainer MainEntityFactory::GetContainer(Game* game)
 	CameraComponent* camera = new CameraComponent(game, cameraEntity);
 	PlayerComponent* player = new PlayerComponent(game, cameraEntity);
 	PhysicsComponent* physics = new PhysicsComponent(game, cameraEntity);
-	FireboltSkillComponent* firebolt = new FireboltSkillComponent(game, cameraEntity, 10);
+	FireboltSkillComponent* firebolt = new FireboltSkillComponent(game, cameraEntity, 10, Player);
 	DoorUseComponent* doorUse = AddDoor(25, 5, D3DXVECTOR3( 21 , 0, 0), container, player, true, camera);
 	PlayerFPInputComponent* input = new PlayerFPInputComponent(game, cameraEntity, camera, physics, firebolt, doorUse, player);
-
+	GridBasedCollisionComponent* collisionGrid = new GridBasedCollisionComponent(game, cameraEntity, 15, Player, Nothing);
 	
 	camera->SetCamera(D3DXVECTOR3(30,70,30), D3DXVECTOR3(100,70,100), D3DXVECTOR3(0,1,0));
 
+	cameraEntity->AddComponent(collisionGrid);
 	cameraEntity->AddComponent(firebolt);
 	cameraEntity->AddComponent(physics);
 	cameraEntity->AddComponent(camera);
 	cameraEntity->AddComponent(input);
 	cameraEntity->AddComponent(player);
 
-	container = CreateLevel1(container, player);
+	AIEntitiesInteractionContainer aiEntitiesContainer(cameraEntity, nullptr, vector<GameEntity*>(), Enemies);
+	container = CreateLevel1(container, player, aiEntitiesContainer);
 
 	container.Cameras.push_back(camera);
 	container.Entities.push_back(cameraEntity);

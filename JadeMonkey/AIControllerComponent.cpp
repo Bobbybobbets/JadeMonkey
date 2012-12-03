@@ -25,6 +25,8 @@ void AIControllerComponent::Update(GameEntity* entity, long time)
 			step = vToPosition;
 		}
 		
+
+
 		this->_entity->setPosition(
 			this->_entity->getPosition() + step
 		);

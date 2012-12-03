@@ -15,6 +15,7 @@
 #include "WallPointXCollisionComponent.h"
 #include "WallPointCollisionComponent.h"
 #include "GameMap2GraphicsComponent.h"
+#include "GridBasedCollisionComponent.h"
 
 
 PatTestFactory::PatTestFactory()
@@ -33,25 +34,27 @@ GameEntitiesContainer PatTestFactory::GetContainer(Game* game)
 	PlayerComponent* player = new PlayerComponent(game, cameraEntity);
 	DoorUseComponent* doorUse = AddDoor(25, 5, D3DXVECTOR3( 21 , 0, 0), container, player, true, camera);
 	PhysicsComponent* physics = new PhysicsComponent(game, cameraEntity);
-	FireboltSkillComponent* firebolt = new FireboltSkillComponent(game, cameraEntity, 10);
+	FireboltSkillComponent* firebolt = new FireboltSkillComponent(game, cameraEntity, 10, Player);
 	PlayerFPInputComponent* input = new PlayerFPInputComponent(game, cameraEntity, camera, physics, firebolt, doorUse, player);
+	GridBasedCollisionComponent* collisionGrid = new GridBasedCollisionComponent(game, cameraEntity, 15, Player, Nothing);
 	
 	camera->SetCamera(D3DXVECTOR3(-500, 100, -500), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0,1,0));
 
+	cameraEntity->AddComponent(collisionGrid);
 	cameraEntity->AddComponent(firebolt);
 	cameraEntity->AddComponent(physics);
 	cameraEntity->AddComponent(camera);
 	cameraEntity->AddComponent(input);
 	cameraEntity->AddComponent(player);
 
-	AIEntitiesInteractionContainer aiEntitiesContainer(cameraEntity, nullptr, vector<GameEntity*>());
+	AIEntitiesInteractionContainer aiEntitiesContainer(cameraEntity, nullptr, vector<GameEntity*>(), Enemies);
 
 	AStarPathfindingGraph* graph = PathfindingUtil::CreateAStarGraphFromFloors(50, 50, 20, 20, D3DXVECTOR3(-35, 0, -35));
 	//create AI controller character
 	GameEntity* aiEntity1 = this->CreateAIEntity(&container, D3DXVECTOR3(10, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 0, BasicEnemy, aiEntitiesContainer, graph);
-	GameEntity* aiEntity2 = this->CreateAIEntity(&container, D3DXVECTOR3(50, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 1, BasicEnemy, aiEntitiesContainer, graph);
+	GameEntity* aiEntity2 = this->CreateAIEntity(&container, D3DXVECTOR3(50, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 1, RangedEnemy, aiEntitiesContainer, graph);
 	GameEntity* aiEntity3 = this->CreateAIEntity(&container, D3DXVECTOR3(90, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 2, BasicEnemy, aiEntitiesContainer, graph);
-	GameEntity* aiEntity4 = this->CreateAIEntity(&container, D3DXVECTOR3(130, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 3, BasicEnemy, aiEntitiesContainer, graph);
+	GameEntity* aiEntity4 = this->CreateAIEntity(&container, D3DXVECTOR3(130, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 3, RangedEnemy, aiEntitiesContainer, graph);
 	GameEntity* aiEntity5 = this->CreateAIEntity(&container, D3DXVECTOR3(170, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 4, BasicEnemy, aiEntitiesContainer, graph);
 
 	//create floor

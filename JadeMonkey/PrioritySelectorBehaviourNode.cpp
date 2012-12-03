@@ -1,8 +1,8 @@
 #include "PrioritySelectorBehaviourNode.h"
 #include "Enums.h"
 
-PrioritySelectorBehaviourNode::PrioritySelectorBehaviourNode(BehaviourComponent* behaviourComponent)
-	: BehaviourTreeNode(behaviourComponent, PrioritySelector)
+PrioritySelectorBehaviourNode::PrioritySelectorBehaviourNode(BehaviourComponent* behaviourComponent, string name)
+	: BehaviourTreeNode(behaviourComponent, name, PrioritySelector)
 {
 }
 

@@ -4,8 +4,8 @@
 #include "GameEntity.h"
 #include "Enums.h"
 
-ActionShootFireboltBehaviourNode::ActionShootFireboltBehaviourNode(BehaviourComponent* behaviourComponent, GameEntity* player, FireboltSkillComponent* fireboltComponent)
-	: BehaviourTreeNode(behaviourComponent, Action)
+ActionShootFireboltBehaviourNode::ActionShootFireboltBehaviourNode(BehaviourComponent* behaviourComponent, GameEntity* player, FireboltSkillComponent* fireboltComponent, string name)
+	: BehaviourTreeNode(behaviourComponent, name, Action)
 {
 	this->_player = player;
 	this->_fireboltComponent = fireboltComponent;
