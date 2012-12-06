@@ -234,13 +234,16 @@ GameEntitiesContainer EntityFactory::CreateLevel1(GameEntitiesContainer containe
 
 	AStarPathfindingGraph* graph = PathfindingUtil::CreateAStarGraphFromFloors(50, 50, 20, 20, D3DXVECTOR3(0, 0, 0));
 	//create AI controller character
+	
 	GameEntity* aiEntity1 = this->CreateAIEntity(&container, D3DXVECTOR3(400, 60, 700), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 0, BasicEnemy, aiEntitiesContainer, graph, player);
 	GameEntity* aiEntity2 = this->CreateAIEntity(&container, D3DXVECTOR3(700, 60, 700), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 1, RangedEnemy, aiEntitiesContainer, graph, player);
 	GameEntity* aiEntity3 = this->CreateAIEntity(&container, D3DXVECTOR3(350, 60, 700), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 2, BasicEnemy, aiEntitiesContainer, graph, player);
 	GameEntity* aiEntity4 = this->CreateAIEntity(&container, D3DXVECTOR3(650, 60, 650), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 3, RangedEnemy, aiEntitiesContainer, graph, player);
 	GameEntity* aiEntity5 = this->CreateAIEntity(&container, D3DXVECTOR3(550, 60, 550), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 4, BasicEnemy, aiEntitiesContainer, graph, player);
 	//GameEntity* aiEntity6 = this->CreateAIEntity(&container, D3DXVECTOR3(650, 60, 700), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 5, RangedEnemy, aiEntitiesContainer, graph);
+	
 	return container;
+
 }
 
 GameEntity* EntityFactory::CreateAIEntity(

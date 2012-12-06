@@ -211,23 +211,23 @@ int JadeMonkeyGame::Draw(long time)
 			break;
 	// Died
 	case 1:
-		RenderDeadScreen();
+		//RenderDeadScreen();
 		break;
 	// Won
 	case 2:
-		RenderWonScreen();
+		//RenderWonScreen();
 		break;
 	// Lost
 	case 3:
-		RenderLostScreen();
+		//RenderLostScreen();
 		break;
 	// start
 	case 0:
-		RenderStartScreen();
+		//RenderStartScreen();
 		break;
 	}
 
-	RenderUI();
+	// RenderUI();
 
     md3dDev->EndScene();    // ends the 3D scene
 
