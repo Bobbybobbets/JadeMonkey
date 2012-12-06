@@ -44,8 +44,8 @@
 
 // DEFINE
 
-#define WND_WIDTH 800
-#define WND_HEIGHT 600
+#define WND_WIDTH 1200
+#define WND_HEIGHT 800
 #define FRAMES_PER_SECOND 30
 
 
