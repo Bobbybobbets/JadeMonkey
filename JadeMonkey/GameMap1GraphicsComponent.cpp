@@ -1,5 +1,6 @@
 #include "GameMap1GraphicsComponent.h"
 #include "jade_util.h"
+#include "RessourceManager.h"
 
 GameMap1GraphicsComponent::GameMap1GraphicsComponent(int numRows, int numCols, Game* game, GameEntity* entity)
 	: TexturedGraphicsComponent(game, entity)
@@ -106,11 +107,7 @@ err:
 
 void GameMap1GraphicsComponent::loadTexture(void)
 {
-	D3DXCreateTextureFromFile(
-		this->_game->getGraphicsDevice(),
-		"Textures/floor.jpg",
-		&this->_texture
-	);
+	this->_texture = RessourceManager::GetTexture(this->_game->getGraphicsDevice(), "Textures/floor.jpg");
 }
 
 void GameMap1GraphicsComponent::setupRender(void)

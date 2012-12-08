@@ -291,6 +291,9 @@
     <ClInclude Include="TexturedGraphicsComponent.h">
       <Filter>Header Files\Renderers</Filter>
     </ClInclude>
+    <ClInclude Include="RessourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameIO.cpp">
@@ -481,6 +484,9 @@
     </ClCompile>
     <ClCompile Include="TexturedGraphicsComponent.cpp">
       <Filter>Source Files\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="RessourceManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
