@@ -46,6 +46,7 @@
 #include <vector>
 #include "GameEntitiesContainer.h"
 #include "EntityFactory.h"
+#include "Heart.h"
 
 using namespace std;
 
@@ -91,6 +92,7 @@ private:
 	void RenderLostScreen();
 	void RenderStartScreen();
 
+	Heart *hearts[3];
 	RECT textbox;
 
 };

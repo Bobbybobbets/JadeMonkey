@@ -61,6 +61,14 @@ JadeMonkeyGame::JadeMonkeyGame(HINSTANCE hInstance, char* gameName, EntityFactor
 	this->_entityFactory = fact;
 	displayMessage = false;
 	this->Restart = false;
+
+
+	int x=0;
+	int horizStep = 30;
+	for( x = 0 ; x < 3 ; x++) 
+	{
+		hearts[x] = new Heart(this, D3DXVECTOR3(75 + horizStep * x, getWndHeight() - 100, 0));
+	}
 }
 
 JadeMonkeyGame::~JadeMonkeyGame(void)
@@ -230,6 +238,11 @@ int JadeMonkeyGame::Draw(long time)
 
 	RenderUI();
 
+	for( int x = 0 ; x < GetPlayer()->getLives() ; x++)
+	{
+		hearts[x]->Draw(time);
+	}
+
     md3dDev->EndScene();    // ends the 3D scene
 
     rc = md3dDev->Present(NULL, NULL, NULL, NULL);   // displays the created frame on the screen
@@ -307,10 +320,7 @@ void JadeMonkeyGame::RenderUI()
 	textbox2.top = getWndHeight() - 100;
 
 
-	stringstream ss2;//create a stringstream
-	ss2 << "Lives: " << numLives;
-	string numberLives;
-	numberLives = ss2.str();//return a string with the contents of the stream
+	string numberLives = "Lives:";	
 	LPCTSTR str2 = numberLives.c_str();
 	uiFont->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
 

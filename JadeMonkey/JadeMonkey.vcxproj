@@ -98,6 +98,7 @@
     <ClInclude Include="GameMap2GraphicsComponent.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="GridBasedCollisionComponent.h" />
+    <ClInclude Include="Heart.h" />
     <ClInclude Include="ICollideable.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IUpdateable.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="GameMap2GraphicsComponent.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="GridBasedCollisionComponent.cpp" />
+    <ClCompile Include="Heart.cpp" />
     <ClCompile Include="JadeMonkey.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="gameIO.cpp" />
