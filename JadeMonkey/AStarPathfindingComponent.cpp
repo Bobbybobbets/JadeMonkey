@@ -8,7 +8,7 @@
 using namespace std;
 
 AStarPathfindingComponent::AStarPathfindingComponent(Game* game, GameEntity* entity, AIControllerComponent* aiController, long framesToWait, AStarPathfindingGraph* graph)
-	: BEntityComponent(game, entity)
+	: BDrawableEntityComponent(game, entity)
 {
 	this->_graph = graph;
 	this->_aiController = aiController;
@@ -18,6 +18,16 @@ AStarPathfindingComponent::AStarPathfindingComponent(Game* game, GameEntity* ent
 	this->_frameThreshold = 30;
 	this->_frameCount = 0;
 	this->_frameWait = framesToWait;
+
+	this->_graphicEntity = new GameEntity(this->_game, D3DXVECTOR3(1, 1, 1));
+	ScaledBoxGraphicsComponent* nodeGraphic = new ScaledBoxGraphicsComponent(this->_game, this->_graphicEntity, D3DCOLOR_RGBA(255,0,0,255));
+	this->_graphicEntity->AddGraphicsComponent(nodeGraphic);
+}
+
+AStarPathfindingComponent::~AStarPathfindingComponent(void)
+{
+	delete this->_aiController;
+	delete this->_graphicEntity;
 }
 
 void AStarPathfindingComponent::Initialize(void)
@@ -25,6 +35,8 @@ void AStarPathfindingComponent::Initialize(void)
 	//this->_graph = PathfindingUtil::CreateAStarGraphFromFloors(70, 70, 20, 20, D3DXVECTOR3(-35, 0, -35));
 	this->_path = stack<AStarNode*>();
 	this->_doSearch = false;
+	this->_debug = true;
+	this->_graphicEntity->Initialize();
 }
 
 void AStarPathfindingComponent::Update(GameEntity* entity, long time)
@@ -65,6 +77,15 @@ void AStarPathfindingComponent::Update(GameEntity* entity, long time)
 		
 			this->_aiController->MoveTo(moveToPosition);
 		}
+	}
+}
+
+void AStarPathfindingComponent::Draw(long time)
+{
+	for(int i = 0; i < this->_graph->Size; i++)
+	{
+		this->_graphicEntity->setPosition(this->_graph->Nodes[i]->Position());
+		this->_graphicEntity->Draw(time);
 	}
 }
 
@@ -110,7 +131,7 @@ void AStarPathfindingComponent::findPosition(AStarPathfindingGraph* graph_in, AS
 	//initialize all nodes
 	for(int i = 0; i < graph->Size; i++)
 	{
-		graph->Nodes[i].Initialize();
+		graph->Nodes[i]->Initialize();
 	}
 
 	openset.push(currentNode);

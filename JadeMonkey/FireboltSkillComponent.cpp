@@ -31,7 +31,6 @@ void FireboltSkillComponent::fireSkill(void)
 		firebolt->AddGraphicsComponent(graphics);
 		firebolt->Initialize();
 		this->_children.push_back(firebolt);
-		((JadeMonkeyGame*)this->_game)->GetEntitiesContainer()->EntitiesToAdd.push_back(firebolt);
 	}
 	else
 	{
@@ -39,7 +38,5 @@ void FireboltSkillComponent::fireSkill(void)
 		this->_children[this->_indexBuffer%this->_children.size()]->setDirection(D3DXVECTOR3(this->_entity->getDirection().x, 0, this->_entity->getDirection().z));
 		this->_indexBuffer++;
 	}
-	
-	
 	
 }

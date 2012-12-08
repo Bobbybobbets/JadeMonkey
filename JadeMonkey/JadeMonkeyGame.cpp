@@ -73,8 +73,10 @@ JadeMonkeyGame::~JadeMonkeyGame(void)
 	Game::~Game();
 }
 
-
-
+PlayerComponent* JadeMonkeyGame::GetPlayer(void)
+{
+	return this->_entitiesContainer.MainCharacter;
+}
 
 int JadeMonkeyGame::Update(long time)
 {
@@ -270,7 +272,7 @@ int JadeMonkeyGame::Draw(long time)
 
  }
 
- void JadeMonkeyGame::RenderDeadScreen()
+void JadeMonkeyGame::RenderDeadScreen()
  {
 	 	RECT textbox1;
 
@@ -299,7 +301,7 @@ int JadeMonkeyGame::Draw(long time)
 	LPCTSTR str2 = screenMessage.c_str();
 	uiFont->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
  }
- void JadeMonkeyGame::RenderWonScreen()
+void JadeMonkeyGame::RenderWonScreen()
  {
 	 	 	RECT textbox1;
 
@@ -328,7 +330,7 @@ int JadeMonkeyGame::Draw(long time)
 	LPCTSTR str2 = screenMessage.c_str();
 	uiFont->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
  }
- void JadeMonkeyGame::RenderLostScreen()
+void JadeMonkeyGame::RenderLostScreen()
  {
 	 	 	RECT textbox1;
 
@@ -357,8 +359,6 @@ int JadeMonkeyGame::Draw(long time)
 	LPCTSTR str2 = screenMessage.c_str();
 	uiFont->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
  }
-
-
 void JadeMonkeyGame::RenderUI()
 {
 	RECT textbox1;

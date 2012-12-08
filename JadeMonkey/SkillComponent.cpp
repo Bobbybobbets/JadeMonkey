@@ -2,7 +2,7 @@
 #include "GameEntity.h"
 
 SkillComponent::SkillComponent(Game* game, GameEntity* entity, int cooldown)
-	: BEntityComponent(game, entity)
+	: BDrawableEntityComponent(game, entity)
 {
 	this->_activated = false;
 	this->_cooldown = cooldown;
@@ -11,7 +11,6 @@ SkillComponent::SkillComponent(Game* game, GameEntity* entity, int cooldown)
 
 void SkillComponent::Update(GameEntity* entity, long time)
 {
-	list<GameEntity*>::iterator it;
 	this->_timeCounter++;
 
 	if(this->_activated)
@@ -20,12 +19,20 @@ void SkillComponent::Update(GameEntity* entity, long time)
 		this->_activated = false;
 	}
 
-	/*
+	vector<GameEntity*>::iterator it;
 	for(it = this->_children.begin(); it < this->_children.end(); it++)
 	{
 		(*it)->Update(time);
+	}
+}
+
+void SkillComponent::Draw(long time)
+{
+	vector<GameEntity*>::iterator it;
+	for(it = this->_children.begin(); it < this->_children.end(); it++)
+	{
 		(*it)->Draw(time);
-	}*/
+	}
 }
 
 void SkillComponent::Activate()

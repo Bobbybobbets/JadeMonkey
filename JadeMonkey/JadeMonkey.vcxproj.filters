@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -70,9 +70,6 @@
     <Filter Include="Header Files\Components\AI">
       <UniqueIdentifier>{28e4d6d2-5b42-42c3-95d8-4c5a80f6dda8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Components\AI\BehaviourNodes">
-      <UniqueIdentifier>{8d96c922-5419-4018-aafb-8e7ca62cbd83}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Components\AI\BehaviourNodes">
       <UniqueIdentifier>{d64f3a97-65f3-4820-a0d2-4d5a5265a20b}</UniqueIdentifier>
     </Filter>
@@ -81,6 +78,12 @@
     </Filter>
     <Filter Include="Source Files\Components\Skills">
       <UniqueIdentifier>{96cbf2df-7696-4a98-9627-e53749c34ea1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components\AI\Behaviours">
+      <UniqueIdentifier>{8f79e20c-cd01-43b8-bade-ed41b8e15114}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components\AI\Behaviours\BehaviourNodes">
+      <UniqueIdentifier>{8d96c922-5419-4018-aafb-8e7ca62cbd83}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -186,15 +189,6 @@
     <ClInclude Include="GameComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="GameMap1GraphicsComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMap2GraphicsComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="KeyGraphicsComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
@@ -234,35 +228,23 @@
     <ClInclude Include="AStarPathfindingGraph.h">
       <Filter>Header Files\Components\AI</Filter>
     </ClInclude>
-    <ClInclude Include="BehaviourComponent.h">
-      <Filter>Header Files\Components\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="BehaviourTreeNode.h">
-      <Filter>Header Files\Components\AI</Filter>
-    </ClInclude>
     <ClInclude Include="CondPlayerProximityBehaviourNode.h">
-      <Filter>Header Files\Components\AI\BehaviourNodes</Filter>
+      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
     </ClInclude>
     <ClInclude Include="ActionMoveToPlayerBehaviourNode.h">
-      <Filter>Header Files\Components\AI\BehaviourNodes</Filter>
-    </ClInclude>
-    <ClInclude Include="BehaviourBuilder.h">
-      <Filter>Header Files\Components\AI</Filter>
+      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
     </ClInclude>
     <ClInclude Include="PrioritySelectorBehaviourNode.h">
-      <Filter>Header Files\Components\AI\BehaviourNodes</Filter>
+      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
     </ClInclude>
     <ClInclude Include="AIEntitiesInteractionContainer.h">
       <Filter>Header Files\Components\AI</Filter>
     </ClInclude>
-    <ClInclude Include="BehavioursEnum.h">
-      <Filter>Header Files\Components\AI</Filter>
-    </ClInclude>
     <ClInclude Include="SequenceSelectorBehaviourNode.h">
-      <Filter>Header Files\Components\AI\BehaviourNodes</Filter>
+      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
     </ClInclude>
     <ClInclude Include="AIControllerComponent.h">
-      <Filter>Header Files\Components\AI\BehaviourNodes</Filter>
+      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
     </ClInclude>
     <ClInclude Include="SkillComponent.h">
       <Filter>Header Files\Components\Skills</Filter>
@@ -271,7 +253,7 @@
       <Filter>Header Files\Components\Skills</Filter>
     </ClInclude>
     <ClInclude Include="ActionShootFireboltBehaviourNode.h">
-      <Filter>Header Files\Components\AI\BehaviourNodes</Filter>
+      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
     </ClInclude>
     <ClInclude Include="DoorComponent.h">
       <Filter>Header Files\Components</Filter>
@@ -281,6 +263,33 @@
     </ClInclude>
     <ClInclude Include="GridBasedCollisionComponent.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourBuilder.h">
+      <Filter>Header Files\Components\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourTreeNode.h">
+      <Filter>Header Files\Components\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourComponent.h">
+      <Filter>Header Files\Components\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="BehavioursEnum.h">
+      <Filter>Header Files\Components\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="BDrawableEntityComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap1GraphicsComponent.h">
+      <Filter>Header Files\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap2GraphicsComponent.h">
+      <Filter>Header Files\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsComponent.h">
+      <Filter>Header Files\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="TexturedGraphicsComponent.h">
+      <Filter>Header Files\Renderers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -470,6 +479,8 @@
     <ClCompile Include="GridBasedCollisionComponent.cpp">
       <Filter>Source Files\Components\Collision</Filter>
     </ClCompile>
-
+    <ClCompile Include="TexturedGraphicsComponent.cpp">
+      <Filter>Source Files\Renderers</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -21,6 +21,83 @@ KeyGraphicsComponent::KeyGraphicsComponent(int dx, int dy, PlayerComponent *play
 
 void KeyGraphicsComponent::Initialize(void)
 {
+	this->loadMesh();
+
+	
+
+}
+
+void KeyGraphicsComponent::Update(GameEntity* entity, long time)
+{
+}
+
+void KeyGraphicsComponent::Draw(long time)
+{
+	 D3DXVECTOR3 _position = this->_entity->getPosition();
+	 D3DXVECTOR3 _scale = this->_entity->getScale();
+	 D3DXVECTOR3 yaxis = D3DXVECTOR3(0.0, 1.0, 0.0);
+	 float rad = 0;
+
+	 D3DXMATRIX worldMat, viewMat, matTransform, matProjection, matScale, matTranslate,  matRotation, billboardMat;
+
+
+	//  If they key has already been retrieved 
+	if( _keyPart->getRetrieved())
+		return;
+
+	 D3DXVECTOR3 toLookAt = _player->getEntity()->getPosition() - this->_entity->getPosition(); 
+	 D3DXMatrixScaling(&matScale,_scale.x, _scale.y, _scale.z);
+	 worldMat = matScale;
+
+	 D3DXMatrixIdentity(&viewMat);
+	 D3DXMatrixIdentity(&billboardMat);
+
+	 this->_game->getGraphicsDevice()->GetTransform(D3DTS_VIEW, &viewMat);
+
+	 D3DXMatrixInverse(&billboardMat, NULL, &viewMat);
+	 billboardMat._41 = 0.0f;
+	 billboardMat._42 = 0.0f;
+	 billboardMat._43 = 0.0f;
+
+	 worldMat *= billboardMat;
+
+	 D3DXMatrixTranslation(&matTranslate, _position.x, _position.y, _position.z);
+	 worldMat *= matTranslate;
+
+	 _game->getGraphicsDevice()->SetTransform(D3DTS_WORLD, &worldMat);
+
+	 // set the source
+	// set the source
+	_game->getGraphicsDevice()->SetStreamSource( 0, mVtxBuf, 0, sizeof(MeshVertex) );
+
+	/*#ifdef NUSS_SHADERS
+	 _game->getGraphicsDevice()->SetVertexDeclaration(mDecl);
+	#else*/
+	_game->getGraphicsDevice()->SetFVF(MESH_VERTEX_FVF);
+	//#endif
+
+
+	 // set the index buffer
+	 _game->getGraphicsDevice()->SetIndices(mIndBuf);
+
+	 // do  not use texture
+	 _game->getGraphicsDevice()->SetTexture(0,NULL);
+	 _game->getGraphicsDevice()->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+	 _game->getGraphicsDevice()->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, this->numVtx, 0, this->numTriangles);
+}
+
+int KeyGraphicsComponent::getHeight()
+{
+	return numRows * dy;
+}
+
+string KeyGraphicsComponent::GetName(void)
+{
+	return "KeyGraphicsComponent";
+}
+
+void KeyGraphicsComponent::loadMesh(void)
+{
 	int i,j,k;
 	D3DXVECTOR3 rowPos(0.0,0.0,0.0);
 	D3DXVECTOR3 colPos(0.0,0.0,0.0);
@@ -61,73 +138,9 @@ void KeyGraphicsComponent::Initialize(void)
 
 	// allocate memory in the graphics card memory for the vertices and the index buffer*/
 	this->createGraphicsBuffers();
+
 err:
 	// clean up
 	FREE_MEMORY_MALLOC(vtx);
 	FREE_MEMORY_MALLOC(ind);
-}
-
-void KeyGraphicsComponent::Update(GameEntity* entity, long time)
-{
-	 D3DXVECTOR3 _position = this->_entity->getPosition();
-	 D3DXVECTOR3 _scale = this->_entity->getScale();
-	 D3DXVECTOR3 yaxis = D3DXVECTOR3(0.0, 1.0, 0.0);
-	 float rad = 0;
-
-	 D3DXMATRIX worldMat, viewMat, matTransform, matProjection, matScale, matTranslate,  matRotation, billboardMat;
-
-
-	//  If they key has already been retrieved 
-	if( _keyPart->getRetrieved())
-		return;
-
-	 D3DXVECTOR3 toLookAt = _player->getEntity()->getPosition() - this->_entity->getPosition(); 
-	 D3DXMatrixScaling(&matScale,_scale.x, _scale.y, _scale.z);
-	 worldMat = matScale;
-
-	 D3DXMatrixIdentity(&viewMat);
-	 D3DXMatrixIdentity(&billboardMat);
-
-	 this->_game->getGraphicsDevice()->GetTransform(D3DTS_VIEW, &viewMat);
-
-	 D3DXMatrixInverse(&billboardMat, NULL, &viewMat);
-	 billboardMat._41 = 0.0f;
-	 billboardMat._42 = 0.0f;
-	 billboardMat._43 = 0.0f;
-
-	 worldMat *= billboardMat;
-
-	 D3DXMatrixTranslation(&matTranslate, _position.x, _position.y, _position.z);
-	 worldMat *= matTranslate;
-
-	 _game->getGraphicsDevice()->SetTransform(D3DTS_WORLD, &worldMat);
-
-	 // set the source
-	// set the source
-	_game->getGraphicsDevice()->SetStreamSource( 0, mVtxBuf, 0, sizeof(MeshVertex) );
-
-	#ifdef NUSS_SHADERS
-	 _game->getGraphicsDevice()->SetVertexDeclaration(mDecl);
-	#else
-	 rc = _game->getGraphicsDevice()->SetFVF(MESH_VERTEX_FVF);
-	#endif
-
-
-	 // set the index buffer
-	 _game->getGraphicsDevice()->SetIndices(mIndBuf);
-
-	 // do  not use texture
-	 _game->getGraphicsDevice()->SetTexture(0,NULL);
-	 _game->getGraphicsDevice()->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
-	 _game->getGraphicsDevice()->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, this->numVtx, 0, this->numTriangles);
-}
-
-int KeyGraphicsComponent::getHeight()
-{
-	return numRows * dy;
-}
-
-string KeyGraphicsComponent::GetName(void)
-{
-	return "KeyGraphicsComponent";
 }

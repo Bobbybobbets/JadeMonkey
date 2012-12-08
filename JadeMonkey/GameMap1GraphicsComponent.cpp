@@ -2,7 +2,7 @@
 #include "jade_util.h"
 
 GameMap1GraphicsComponent::GameMap1GraphicsComponent(int numRows, int numCols, Game* game, GameEntity* entity)
-	: GraphicsComponent(game, entity)
+	: TexturedGraphicsComponent(game, entity)
 {
 	this->ind=0; 
 	this->numVtx=0; 
@@ -18,7 +18,7 @@ GameMap1GraphicsComponent::GameMap1GraphicsComponent(int numRows, int numCols, G
 	fill = 3;
 }
 
-void GameMap1GraphicsComponent::Initialize(void)
+void GameMap1GraphicsComponent::loadMesh(void)
 {
 	int i,j,k;
 	D3DXVECTOR3 rowPos(0.0,0.0,0.0);
@@ -26,13 +26,16 @@ void GameMap1GraphicsComponent::Initialize(void)
 	D3DCOLOR initialColor = D3DCOLOR_XRGB(127, 130, 127);
 	float rangeMax = 10;
 	float rangeMin = 0;
+	
 
 	numVtx = numRows*numCols;
 	this->numRows = numRows;
 	this->numCols = numCols;
 	this->dx = dx;
 	this->dz = dz;
-
+	
+	float texCoordStepX = 10.0f/numCols;
+	float texCoordStepY = 10.0f/numRows;
 	numQuads = (numRows-1) * (numCols-1);
 	numTriangles = numQuads * 2;
 	numIndices = numTriangles * 3;
@@ -50,9 +53,9 @@ void GameMap1GraphicsComponent::Initialize(void)
 		goto err;
 	}
 
-	// Fill the vertex buffer with positions
 
 
+	// Fill the vertex buffer with positions	
 	k = 0;
 	for(i = 0; i < numRows; i++) {
 		// assign the pos vector for all comumns in a row
@@ -65,6 +68,10 @@ void GameMap1GraphicsComponent::Initialize(void)
 			//	+ rangeMin);
 			vtx[k].pos.y = 0;
 			vtx[k].color = initialColor;
+
+			vtx[k].tex1 = D3DXVECTOR2(j*texCoordStepX, i*texCoordStepY);
+
+
 			colPos.x += dx;
 			k++;
 		}
@@ -89,20 +96,28 @@ void GameMap1GraphicsComponent::Initialize(void)
 		}
 	}
 
-	// allocate memory in the graphics card memory for the vertices and the index buffer
 	this->createGraphicsBuffers();
+
 err:
 	// clean up
 	FREE_MEMORY_MALLOC(vtx);
 	FREE_MEMORY_MALLOC(ind);
 }
 
-void GameMap1GraphicsComponent::Update(GameEntity* entity, long time)
+void GameMap1GraphicsComponent::loadTexture(void)
 {
-	GraphicsComponent::Update(this->_entity, time);
+	D3DXCreateTextureFromFile(
+		this->_game->getGraphicsDevice(),
+		"Textures/floor.jpg",
+		&this->_texture
+	);
 }
 
-string GameMap1GraphicsComponent::GetName(void)
+void GameMap1GraphicsComponent::setupRender(void)
 {
-	return "GameMap1GraphicsComponent";
+	IDirect3DDevice9* d3ddev = this->_game->getGraphicsDevice();
+	TexturedGraphicsComponent::setupRender();
+	
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_MIRROR);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_MIRROR);
 }

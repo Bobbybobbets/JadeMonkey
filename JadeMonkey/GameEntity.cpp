@@ -18,7 +18,7 @@ GameEntity::GameEntity(Game* game) :
 	_active(true),
 	_type(Enemy)
 {
-	this->_visible = false;
+	this->_visible = true;
 	this->_life = 100;
 }
 
@@ -37,7 +37,7 @@ GameEntity::GameEntity(Game* game, D3DXVECTOR3 size) :
 	_type(Enemy)
 {
 	this->setSize(size);
-	this->_visible = false;
+	this->_visible = true;
 	this->_life = 100;
 }
 
@@ -83,23 +83,31 @@ void GameEntity::AddGraphicsComponent(GraphicsComponent* component)
 {
 	this->_visible = true;
 	this->_graphicsComponents.push_back(component);
+	this->_components.push_back(component);
 }
 
 void GameEntity::AddCollisionComponent(CollisionComponent* component)
 {
 	this->_collisionComponents.push_back(component);
+	this->_components.push_back(component);
 }
+
+void GameEntity::AddSkillComponent(SkillComponent* component)
+{
+	this->_skillComponents.push_back(component);
+	this->_components.push_back(component);
+}
+
+void GameEntity::AddDrawableComponent(BDrawableEntityComponent* drawableComponent)
+{
+	this->_components.push_back(drawableComponent);
+	this->_graphicsComponents.push_back(drawableComponent);
+}
+
 int GameEntity::Initialize()
 {
 	for(vector<BEntityComponent*>::iterator it = this->_components.begin();
 		it < this->_components.end();
-		it++)
-	{
-		(*it)->Initialize();
-	}
-
-	for(vector<GraphicsComponent*>::iterator it = this->_graphicsComponents.begin();
-		it < this->_graphicsComponents.end();
 		it++)
 	{
 		(*it)->Initialize();
@@ -110,6 +118,8 @@ int GameEntity::Initialize()
 
 int GameEntity::Update(long time)
 {
+
+	//Update all components in this entity
 	for(vector<BEntityComponent*>::iterator it = this->_components.begin();
 		it < this->_components.end();
 		it++)
@@ -125,12 +135,19 @@ int GameEntity::Draw(long time)
 {
 	if(this->_visible)
 	{
-		for(vector<GraphicsComponent*>::iterator it = this->_graphicsComponents.begin();
+		for(vector<BDrawableEntityComponent*>::iterator it = this->_graphicsComponents.begin();
 			it < this->_graphicsComponents.end();
 			it++)
 		{
-			(*it)->Update(this, time);
+			(*it)->Draw(time);
 		}
+	}
+
+	for(vector<SkillComponent*>::iterator it = this->_skillComponents.begin();
+		it < this->_skillComponents.end();
+		it++)
+	{
+		(*it)->Draw(time);
 	}
 
 	return 0;
@@ -271,7 +288,7 @@ void GameEntity::SetType(EntityType type)
 	this->_type = type;
 }
 
-GraphicsComponent* GameEntity::getGraphicsComponent()
+BDrawableEntityComponent* GameEntity::getGraphicsComponent()
 {
 	return _graphicsComponents.at(0);
 }

@@ -1,13 +1,12 @@
 #pragma once
 
-#include "BEntityComponent.h"
+#include "BDrawableEntityComponent.h"
 #include "GameEntity.h"
-
-#define NUSS_SHADERS 1
 
 struct MeshVertex {
 	D3DXVECTOR3 pos;
     DWORD color;        // The vertex color
+	D3DXVECTOR2 tex1;
 };
 
 struct MeshDefinition
@@ -16,16 +15,17 @@ struct MeshDefinition
 	unsigned int Size;
 };
 
-#ifndef NUSS_SHADERS
-#define MESH_VERTEX_FVF (D3DFVF_XYZ | D3DFVF_DIFFUSE)
-#endif
+#define MESH_VERTEX_FVF (D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1)
 
-class GraphicsComponent : public BEntityComponent
+
+class GraphicsComponent : public BDrawableEntityComponent
 {
 public:
 	GraphicsComponent(Game* game, GameEntity* entity);
-	virtual void Initialize(void) = 0;
+	~GraphicsComponent();
+	virtual void Initialize(void);
 	virtual void Update(GameEntity* entity, long time);
+	virtual void Draw(long time);
 	virtual string GetName(void);
 	struct MeshDefinition GetMesh(void);
 
@@ -38,6 +38,8 @@ public:
 protected:
 	virtual void createGraphicsBuffers(void);
 	virtual void createVtxDescription(void);
+	virtual void loadMesh(void) = 0;
+	virtual void setupRender(void);
 
 	struct MeshVertex *vtx;
 	long *ind;

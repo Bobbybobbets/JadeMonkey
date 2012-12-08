@@ -1,15 +1,16 @@
 #pragma once
-#include "BEntityComponent.h"
+#include "BDrawableEntityComponent.h"
 #include <vector>
 #include <list>
 
 using namespace std;
 
-class SkillComponent : public BEntityComponent
+class SkillComponent : public BDrawableEntityComponent
 {
 public:
 	SkillComponent(Game* game, GameEntity* entity, int cooldown);
 	void Update(GameEntity* entity, long time);
+	void Draw(long time) override;
 	void Activate(void);
 protected:
 	bool _activated;

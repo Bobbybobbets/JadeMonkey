@@ -1,7 +1,7 @@
 #include "AStarPathfindingGraph.h"
 
 
-AStarPathfindingGraph::AStarPathfindingGraph(D3DXVECTOR3 position, AStarNode* nodes, int size, int rows, int cols, int dx, int dz)
+AStarPathfindingGraph::AStarPathfindingGraph(D3DXVECTOR3 position, AStarNode** nodes, int size, int rows, int cols, int dx, int dz)
 {
 	this->_position = position;
 	this->Nodes = nodes;
@@ -38,7 +38,7 @@ POINT AStarPathfindingGraph::getArrayPosition(D3DXVECTOR3 position)
 }
 
 vector<vector<AStarNode*>> AStarPathfindingGraph::buildArray(
-	AStarNode* nodes_in, 
+	AStarNode** nodes_in, 
 	int size)
 {
 	vector<vector<AStarNode*>> array2D;
@@ -46,7 +46,7 @@ vector<vector<AStarNode*>> AStarPathfindingGraph::buildArray(
 	int cols = this->_cols;
 	int dx = this->_dx;
 	int dz = this->_dz;
-	AStarNode* nodes = nodes_in;
+	AStarNode** nodes = nodes_in;
 
 
 	//height
@@ -59,8 +59,9 @@ vector<vector<AStarNode*>> AStarPathfindingGraph::buildArray(
 
 	for(int i = 0; i < size; i++)
 	{
-		POINT p = this->getArrayPosition(nodes[i].Position());
-		array2D[p.x][p.y] =  &nodes[i];
+
+		POINT p = this->getArrayPosition(nodes[i]->Position());
+		array2D[p.x][p.y] =  nodes[i];
 	}
 
 	return array2D;

@@ -5,6 +5,7 @@
 #include "DrawableGameComponent.h"
 #include "BEntityComponent.h"
 #include <vector>
+#include "SkillComponent.h"
 
 //#include "CollisionComponent.h"
 
@@ -20,6 +21,8 @@ public:
 	void AddComponent(BEntityComponent* component);
 	void AddComponent(BEntityComponent* component, vector<BEntityComponent*> dependencies);
 	void AddGraphicsComponent(GraphicsComponent* component);
+	void AddSkillComponent(SkillComponent* component);
+	void AddDrawableComponent(BDrawableEntityComponent* drawableComponent);
 	virtual int Initialize() override;
 	virtual int Update(long time) override;
 	virtual int Draw(long time) override;
@@ -50,10 +53,10 @@ public:
 	void SetStatus(bool active);
 	EntityType GetType(void);
 	void SetType(EntityType type);
-	GraphicsComponent* getGraphicsComponent();
+	BDrawableEntityComponent* getGraphicsComponent();
 	vector<CollisionComponent*> getCollisionComponents();
 	void AddCollisionComponent(CollisionComponent* component);
-	vector<GraphicsComponent*> _graphicsComponents;
+	
 
 protected:
 	D3DXVECTOR3 _position;	// position of object
@@ -73,7 +76,8 @@ protected:
 	bool _active;
 	EntityType _type;
 	vector<BEntityComponent*> _components;
-
+	vector<BDrawableEntityComponent*> _graphicsComponents;
+	vector<SkillComponent*> _skillComponents;
 	vector<CollisionComponent*> _collisionComponents;
 
 	bool _visible;

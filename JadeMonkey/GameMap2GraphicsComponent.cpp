@@ -2,7 +2,7 @@
 #include "jade_util.h"
 
 GameMap2GraphicsComponent::GameMap2GraphicsComponent(int numRows, int numCols, Game* game, GameEntity* entity, int color)
-	: GraphicsComponent(game, entity)
+	: TexturedGraphicsComponent(game, entity)
 {
 	this->ind=0; 
 	this->numVtx=0; 
@@ -19,7 +19,12 @@ GameMap2GraphicsComponent::GameMap2GraphicsComponent(int numRows, int numCols, G
 	fill = 3;
 }
 
-void GameMap2GraphicsComponent::Initialize(void)
+int GameMap2GraphicsComponent::getHeight()
+{
+	return numRows * dy;
+}
+
+void GameMap2GraphicsComponent::loadMesh(void)
 {
 	int i,j,k;
 	D3DXVECTOR3 rowPos(0.0,0.0,0.0);
@@ -35,6 +40,8 @@ void GameMap2GraphicsComponent::Initialize(void)
 
 	float rangeMax = 10;
 	float rangeMin = 0;
+	float texCoordStepX = 10.0f/numCols;
+	float texCoordStepY = 10.0f/numRows;
 
 	numVtx = numRows*numCols;
 	numQuads = (numRows-1) * (numCols-1);
@@ -69,6 +76,7 @@ void GameMap2GraphicsComponent::Initialize(void)
 			//	+ rangeMin);
 			vtx[k].pos.z = 0;
 			vtx[k].color = initialColor;
+			vtx[k].tex1 = D3DXVECTOR2(j*texCoordStepX, i*texCoordStepY);
 			colPos.x += dx;
 			k++;
 		}
@@ -100,18 +108,20 @@ err:
 	FREE_MEMORY_MALLOC(vtx);
 	FREE_MEMORY_MALLOC(ind);
 }
-
-void GameMap2GraphicsComponent::Update(GameEntity* entity, long time)
+void GameMap2GraphicsComponent::loadTexture(void)
 {
-	GraphicsComponent::Update(this->_entity, time);
+	D3DXCreateTextureFromFile(
+		this->_game->getGraphicsDevice(),
+		"Textures/wall.jpg",
+		&this->_texture
+	);
 }
 
-int GameMap2GraphicsComponent::getHeight()
+void GameMap2GraphicsComponent::setupRender(void)
 {
-	return numRows * dy;
-}
-
-string GameMap2GraphicsComponent::GetName(void)
-{
-	return "GameMap1GraphicsComponent";
+	IDirect3DDevice9* d3ddev = this->_game->getGraphicsDevice();
+	TexturedGraphicsComponent::setupRender();
+	
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_MIRROR);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_MIRROR);
 }

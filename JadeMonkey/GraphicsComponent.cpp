@@ -2,8 +2,17 @@
 
 IDirect3DVertexDeclaration9* GraphicsComponent::mDecl = NULL;
 
-GraphicsComponent::GraphicsComponent(Game* game, GameEntity* entity): BEntityComponent(game, entity)
+GraphicsComponent::GraphicsComponent(Game* game, GameEntity* entity): BDrawableEntityComponent(game, entity)
 {
+}
+
+GraphicsComponent::~GraphicsComponent()
+{
+}
+
+void GraphicsComponent::Initialize(void)
+{
+	this->loadMesh();
 }
 
 MeshDefinition GraphicsComponent::GetMesh(void)
@@ -16,6 +25,10 @@ MeshDefinition GraphicsComponent::GetMesh(void)
 }
 
 void GraphicsComponent::Update(GameEntity* entity, long time)
+{
+}
+
+void GraphicsComponent::setupRender(void)
 {
 	D3DXVECTOR3 _position = this->_entity->getPosition();
 	D3DXVECTOR3 _scale = this->_entity->getScale();
@@ -57,12 +70,12 @@ void GraphicsComponent::Update(GameEntity* entity, long time)
 
 	// set the source
 	_game->getGraphicsDevice()->SetStreamSource( 0, mVtxBuf, 0, sizeof(MeshVertex) );
-
+/*
 #ifdef NUSS_SHADERS
 	_game->getGraphicsDevice()->SetVertexDeclaration(mDecl);
-#else
-	rc = _game->getGraphicsDevice()->SetFVF(MESH_VERTEX_FVF);
-#endif
+#else*/
+	_game->getGraphicsDevice()->SetFVF(MESH_VERTEX_FVF);
+//#endif
 
 
 	// set the index buffer
@@ -70,7 +83,13 @@ void GraphicsComponent::Update(GameEntity* entity, long time)
 
 	// do  not use texture
 	_game->getGraphicsDevice()->SetTexture(0,NULL);
-	_game->getGraphicsDevice()->SetRenderState(D3DRS_FILLMODE,  D3DFILLMODE(fill));// D3DFILL_WIREFRAME); SOLID = 3
+	_game->getGraphicsDevice()->SetRenderState(D3DRS_FILLMODE,  D3DFILL_WIREFRAME);//D3DFILLMODE(fill));// ); SOLID = 3
+}
+
+void GraphicsComponent::Draw(long time)
+{
+	
+	this->setupRender();
 	_game->getGraphicsDevice()->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, this->numVtx, 0, this->numTriangles);
 }
 
@@ -79,14 +98,13 @@ void GraphicsComponent::createGraphicsBuffers(void)
 	struct MeshVertex *v = NULL;
 	long *ind = NULL;
 
-
-#ifdef NUSS_SHADERS
-	_game->getGraphicsDevice()->CreateVertexBuffer(this->numVtx*sizeof(struct MeshVertex),D3DUSAGE_WRITEONLY,
-										NULL,D3DPOOL_MANAGED,&this->mVtxBuf, NULL);
-#else 
-	_game->getGraphicsDevice()->CreateVertexBuffer(this->numVtx*sizeof(struct meshVertex),D3DUSAGE_WRITEONLY,
-										MESH_VERTEX_FVF,D3DPOOL_MANAGED,&this->mVtxBuf, NULL);
-#endif
+	_game->getGraphicsDevice()->CreateVertexBuffer(
+		this->numVtx*sizeof(struct MeshVertex),
+		D3DUSAGE_WRITEONLY,
+		MESH_VERTEX_FVF,
+		D3DPOOL_MANAGED,
+		&this->mVtxBuf, 
+		NULL);
 
 
 	// lock the buffer and copy the vertices (locking the entire array

@@ -39,11 +39,11 @@ GameEntitiesContainer MainEntityFactory::GetContainer(Game* game)
 	camera->SetCamera(D3DXVECTOR3(30,70,30), D3DXVECTOR3(100,70,100), D3DXVECTOR3(0,1,0));
 
 	cameraEntity->AddComponent(collisionGrid);
-	cameraEntity->AddComponent(firebolt);
 	cameraEntity->AddComponent(physics);
 	cameraEntity->AddComponent(camera);
 	cameraEntity->AddComponent(input);
 	cameraEntity->AddComponent(player);
+	cameraEntity->AddSkillComponent(firebolt);
 
 	AIEntitiesInteractionContainer aiEntitiesContainer(cameraEntity, nullptr, vector<GameEntity*>(), Enemies);
 	container = CreateLevel1(container, player, aiEntitiesContainer);
@@ -56,6 +56,7 @@ GameEntitiesContainer MainEntityFactory::GetContainer(Game* game)
 	container = AddKey(D3DXVECTOR3(2,0,45), 1, container, player);
 	container = AddKey(D3DXVECTOR3(16,12,38), 2, container, player);
 
+	container.MainCharacter = player;
 	return container;
 }
 

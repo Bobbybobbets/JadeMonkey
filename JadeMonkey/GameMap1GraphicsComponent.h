@@ -1,12 +1,14 @@
 #pragma once
 
-#include "GraphicsComponent.h"
+#include "TexturedGraphicsComponent.h"
 
-class GameMap1GraphicsComponent : public GraphicsComponent
+class GameMap1GraphicsComponent : public TexturedGraphicsComponent
 {
 public:
 	GameMap1GraphicsComponent(int numRows, int numCols, Game* game, GameEntity* entity);
-	virtual void Initialize(void) override;
-	virtual void Update(GameEntity* entity, long time) override;
-	virtual string GetName(void) override;
+	
+protected:
+	virtual void loadMesh(void) override;
+	virtual void loadTexture(void) override;
+	virtual void setupRender(void) override;
 };

@@ -230,9 +230,15 @@ GameEntitiesContainer EntityFactory::CreateLevel1(GameEntitiesContainer containe
 	container = AddWall( height, 47, D3DXVECTOR3( 0, 0, 41 ), container, false);
 
 
-	
+	vector<D3DRECT> collisions;
+	D3DRECT c1;
+	c1.x1 = 3*20;
+	c1.y1 = 0;
+	c1.x2 = 16*20;
+	c1.y2 = 26*20;
+	//collisions.push_back(c1);
 
-	AStarPathfindingGraph* graph = PathfindingUtil::CreateAStarGraphFromFloors(50, 50, 20, 20, D3DXVECTOR3(0, 0, 0));
+	AStarPathfindingGraph* graph = PathfindingUtil::CreateAStarGraphFromFloors(50, 50, 20, 20, D3DXVECTOR3(0, 0, 0), collisions);
 	//create AI controller character
 	
 	GameEntity* aiEntity1 = this->CreateAIEntity(&container, D3DXVECTOR3(400, 60, 700), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 0, BasicEnemy, aiEntitiesContainer, graph, player);
@@ -282,10 +288,12 @@ GameEntity* EntityFactory::CreateAIEntity(
 	BehaviourComponent* behaviourComponent = new BehaviourComponent(this->_game, entity, behaviour, entitiesContainer, pathfinding, player);
 
 
-	entity->AddComponent(collision);
 	entity->AddComponent(physics);
 	entity->AddComponent(aiController);
-	entity->AddComponent(pathfinding);
+	entity->AddComponent(physics);
+	entity->AddComponent(aiController);
+	entity->AddComponent(collision);
+	entity->AddDrawableComponent(pathfinding);
 	entity->AddComponent(behaviourComponent);
 	entity->AddGraphicsComponent(graphics);
 

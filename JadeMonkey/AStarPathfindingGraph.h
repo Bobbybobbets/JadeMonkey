@@ -11,8 +11,8 @@ using namespace std;
 class AStarPathfindingGraph
 {
 public:
-	AStarPathfindingGraph(D3DXVECTOR3 position, AStarNode* nodes, int size, int rows, int cols, int dx, int dz);
-	AStarNode* Nodes;
+	AStarPathfindingGraph(D3DXVECTOR3 position, AStarNode** nodes, int size, int rows, int cols, int dx, int dz);
+	AStarNode** Nodes;
 	unsigned int Size;
 
 	AStarNode* GetClosestNode(D3DXVECTOR3 position);
@@ -26,5 +26,5 @@ protected:
 	int _dz;
 
 	POINT getArrayPosition(D3DXVECTOR3 position);
-	vector<vector<AStarNode*>> buildArray(AStarNode* nodes_in, int size);
+	vector<vector<AStarNode*>> buildArray(AStarNode** nodes_in, int size);
 };

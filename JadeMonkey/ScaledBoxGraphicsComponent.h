@@ -15,7 +15,11 @@ public:
 	ScaledBoxGraphicsComponent(Game* game, GameEntity* entity, D3DCOLOR color);
 	virtual void Initialize(void) override;
 	virtual void Update(GameEntity* entity, long time) override;
+	virtual void Draw(long time) override;
 	virtual string GetName(void) override;
+
+protected:
+	virtual void loadMesh(void) override;
 
 private:
 	D3DCOLOR _color;

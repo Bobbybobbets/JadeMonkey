@@ -5,13 +5,16 @@
 #include "AStarPathfindingGraph.h"
 #include <stack>
 #include "AIControllerComponent.h"
+#include "ScaledBoxGraphicsComponent.h"
 
-class AStarPathfindingComponent : public BEntityComponent
+class AStarPathfindingComponent : public BDrawableEntityComponent
 {
 public:
 	AStarPathfindingComponent(Game* game, GameEntity* entity, AIControllerComponent* aiController, long framesToWait, AStarPathfindingGraph* graph);
+	~AStarPathfindingComponent(void);
 	virtual void Initialize(void) override;
 	virtual void Update(GameEntity* entity, long time) override;
+	virtual void Draw(long time) override;
 	void FollowEntity(GameEntity* entity);
 	void SetGoalPosition(D3DXVECTOR3 goal);
 
@@ -28,6 +31,8 @@ protected:
 	long _frameThreshold;
 	long _frameCount;
 	long _frameWait;
+	bool _debug;
+	GameEntity* _graphicEntity;
 
 	float getFScore(AStarNode* node, AStarNode* goal);
 	void findPosition(
