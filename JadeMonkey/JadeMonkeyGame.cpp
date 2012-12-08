@@ -183,7 +183,6 @@ int JadeMonkeyGame::Draw(long time)
 	md3dDev->Clear(0, NULL, D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 	
 	md3dDev->BeginScene();    // begins the 3D scene	
-	//ground->Draw(time);
 
 	switch (state ) 
 	{
@@ -213,23 +212,23 @@ int JadeMonkeyGame::Draw(long time)
 			break;
 	// Died
 	case 1:
-		//RenderDeadScreen();
+		RenderDeadScreen();
 		break;
 	// Won
 	case 2:
-		//RenderWonScreen();
+		RenderWonScreen();
 		break;
 	// Lost
 	case 3:
-		//RenderLostScreen();
+		RenderLostScreen();
 		break;
 	// start
 	case 0:
-		//RenderStartScreen();
+		RenderStartScreen();
 		break;
 	}
 
-	// RenderUI();
+	RenderUI();
 
     md3dDev->EndScene();    // ends the 3D scene
 
@@ -245,22 +244,6 @@ int JadeMonkeyGame::Draw(long time)
  {
 	RECT textbox1;
 
-	LPD3DXFONT uiFont;
-
-		D3DXCreateFont(md3dDev,
-						20, // height of font
-						0,	// use the default width
-						FW_MEDIUM+50,
-						//FW_NORMAL,	// normal font weight
-						1, // no Mipmap
-						TRUE, // italic
-						DEFAULT_CHARSET, // default character set
-						OUT_DEFAULT_PRECIS, // default precision
-						DEFAULT_QUALITY, // default quality
-						DEFAULT_PITCH ||FF_DONTCARE, // more defaults...
-						"Courier",	// typeface “Courier"
-						&uiFont); 
-
 	textbox1.left = 0;
 	textbox1.bottom = getWndHeight()/2;
 	textbox1.top = getWndHeight()/2 - 150;
@@ -274,24 +257,7 @@ int JadeMonkeyGame::Draw(long time)
 
 void JadeMonkeyGame::RenderDeadScreen()
  {
-	 	RECT textbox1;
-
-	LPD3DXFONT uiFont;
-
-		D3DXCreateFont(md3dDev,
-						20, // height of font2
-						0,	// use the default width
-						FW_MEDIUM+50,
-						//FW_NORMAL,	// normal font weight
-						1, // no Mipmap
-						TRUE, // italic
-						DEFAULT_CHARSET, // default character set
-						OUT_DEFAULT_PRECIS, // default precision
-						DEFAULT_QUALITY, // default quality
-						DEFAULT_PITCH ||FF_DONTCARE, // more defaults...
-						"Courier",	// typeface “Courier"
-						&uiFont); 
-
+	RECT textbox1;
 	textbox1.left = getWndWidth()/2 - 250;
 	textbox1.bottom = getWndHeight()/2;
 	textbox1.top = getWndHeight()/2 - 150;
@@ -303,24 +269,7 @@ void JadeMonkeyGame::RenderDeadScreen()
  }
 void JadeMonkeyGame::RenderWonScreen()
  {
-	 	 	RECT textbox1;
-
-	LPD3DXFONT uiFont;
-
-		D3DXCreateFont(md3dDev,
-						20, // height of font
-						0,	// use the default width
-						FW_MEDIUM+50,
-						//FW_NORMAL,	// normal font weight
-						1, // no Mipmap
-						TRUE, // italic
-						DEFAULT_CHARSET, // default character set
-						OUT_DEFAULT_PRECIS, // default precision
-						DEFAULT_QUALITY, // default quality
-						DEFAULT_PITCH ||FF_DONTCARE, // more defaults...
-						"Courier",	// typeface “Courier"
-						&uiFont); 
-
+	RECT textbox1;
 	textbox1.left =0;
 	textbox1.bottom = getWndHeight()/2;
 	textbox1.top = getWndHeight()/2 - 150;
@@ -332,24 +281,7 @@ void JadeMonkeyGame::RenderWonScreen()
  }
 void JadeMonkeyGame::RenderLostScreen()
  {
-	 	 	RECT textbox1;
-
-	LPD3DXFONT uiFont;
-
-		D3DXCreateFont(md3dDev,
-						20, // height of font
-						0,	// use the default width
-						FW_MEDIUM+50,
-						//FW_NORMAL,	// normal font weight
-						1, // no Mipmap
-						TRUE, // italic
-						DEFAULT_CHARSET, // default character set
-						OUT_DEFAULT_PRECIS, // default precision
-						DEFAULT_QUALITY, // default quality
-						DEFAULT_PITCH ||FF_DONTCARE, // more defaults...
-						"Courier",	// typeface “Courier"
-						&uiFont); 
-
+	RECT textbox1;
 	textbox1.left = getWndWidth()/2 - 300;
 	textbox1.bottom = getWndHeight()/2;
 	textbox1.top = getWndHeight()/2 - 150;
@@ -363,22 +295,6 @@ void JadeMonkeyGame::RenderUI()
 {
 	RECT textbox1;
 	RECT textbox2;
-
-	LPD3DXFONT uiFont;
-
-		D3DXCreateFont(md3dDev,
-						20, // height of font
-						0,	// use the default width
-						FW_MEDIUM+50,
-						//FW_NORMAL,	// normal font weight
-						1, // no Mipmap
-						FALSE, // italic
-						DEFAULT_CHARSET, // default character set
-						OUT_DEFAULT_PRECIS, // default precision
-						DEFAULT_QUALITY, // default quality
-						DEFAULT_PITCH ||FF_DONTCARE, // more defaults...
-						"Courier",	// typeface “Courier"
-						&uiFont); 
 
 	textbox1.left = 0;
 	textbox1.bottom = getWndHeight() - 50;

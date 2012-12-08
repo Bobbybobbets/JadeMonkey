@@ -199,6 +199,8 @@ int Game::init()
 		MessageBox(0, "Failed to initalize the input devices", 0, 0);
 		PostQuitMessage(0);
 	}
+
+	initFonts();
 	return 0;
 }
 
@@ -536,6 +538,39 @@ void Game::setProj(float nearPlane, float farPlane, float fieldOfView, float asp
 	this->farPlane = farPlane;
 	this->fieldOfView = fieldOfView;
 	this->aspectRatio = aspectRatio;
+}
+
+void Game::initFonts()
+{
+		D3DXCreateFont(md3dDev,
+						20, // height of font2
+						0,	// use the default width
+						FW_MEDIUM+50,
+						//FW_NORMAL,	// normal font weight
+						1, // no Mipmap
+						TRUE, // italic
+						DEFAULT_CHARSET, // default character set
+						OUT_DEFAULT_PRECIS, // default precision
+						DEFAULT_QUALITY, // default quality
+						DEFAULT_PITCH ||FF_DONTCARE, // more defaults...
+						"Courier",	// typeface “Courier"
+						&uiFont); 
+
+		D3DXCreateFont(md3dDev,
+						20, // height of font2
+						0,	// use the default width
+						FW_MEDIUM+50,
+						//FW_NORMAL,	// normal font weight
+						1, // no Mipmap
+						TRUE, // italic
+						DEFAULT_CHARSET, // default character set
+						OUT_DEFAULT_PRECIS, // default precision
+						DEFAULT_QUALITY, // default quality
+						DEFAULT_PITCH ||FF_DONTCARE, // more defaults...
+						"Courier",	// typeface “Courier"
+						&screenFont); 
+
+
 }
 
 void Game::setNumLives(int lives)

@@ -92,4 +92,5 @@ private:
 	void RenderStartScreen();
 
 	RECT textbox;
+
 };

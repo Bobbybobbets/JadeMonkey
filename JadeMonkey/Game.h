@@ -95,7 +95,7 @@ private:
 	int initWindow(void); // initialize the game window (assuming only one window)
 	int initD3D(void);
 	int init(void);
-
+	void initFonts();
 
 //MEMBERS
 protected:
@@ -130,6 +130,9 @@ protected:
 	int initGameInput(void);
 	int state;
 	string screenMessage;
+
+	LPD3DXFONT uiFont;
+	LPD3DXFONT screenFont;
 
 public:
 	int getWndWidth(void);

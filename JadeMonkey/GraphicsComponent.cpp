@@ -83,7 +83,7 @@ void GraphicsComponent::setupRender(void)
 
 	// do  not use texture
 	_game->getGraphicsDevice()->SetTexture(0,NULL);
-	_game->getGraphicsDevice()->SetRenderState(D3DRS_FILLMODE,  D3DFILL_WIREFRAME);//D3DFILLMODE(fill));// ); SOLID = 3
+	_game->getGraphicsDevice()->SetRenderState(D3DRS_FILLMODE,  D3DFILL_SOLID);//D3DFILLMODE(fill));// ); SOLID = 3
 }
 
 void GraphicsComponent::Draw(long time)
