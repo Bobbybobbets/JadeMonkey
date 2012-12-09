@@ -91,8 +91,13 @@ private:
 	void RenderWonScreen();
 	void RenderLostScreen();
 	void RenderStartScreen();
+	string convertTimerToString();
 
 	Heart *hearts[3];
 	RECT textbox;
+	long timerStart;	// Start of the ticks
+	long timerCurrent;	// Number of ticks at current
+	int minutes;
+	int seconds;
 
 };

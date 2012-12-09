@@ -50,6 +50,8 @@
 #include "CollisionComponent.h"
 #include "WallPointCollisionComponent.h"
 #include <sstream>
+#include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -69,6 +71,9 @@ JadeMonkeyGame::JadeMonkeyGame(HINSTANCE hInstance, char* gameName, EntityFactor
 	{
 		hearts[x] = new Heart(this, D3DXVECTOR3(75 + horizStep * x, getWndHeight() - 100, 0));
 	}
+
+	timerStart = GetTickCount();
+	timerCurrent = GetTickCount();
 }
 
 JadeMonkeyGame::~JadeMonkeyGame(void)
@@ -99,7 +104,7 @@ int JadeMonkeyGame::Update(long time)
 
 	// poll the input
 	mInput->poll();
-	
+
 
 	// check if escape key was pressed
 	if (mInput->keyboardPressed(DIK_ESCAPE)) {
@@ -195,6 +200,8 @@ int JadeMonkeyGame::Draw(long time)
 	switch (state ) 
 	{
 	case 4:
+			
+		timerCurrent = GetTickCount();
 			for(vector<GameEntity*>::iterator it = this->_entitiesContainer.Entities.begin(); 
 				it < this->_entitiesContainer.Entities.end(); 
 				it++)
@@ -308,6 +315,12 @@ void JadeMonkeyGame::RenderUI()
 {
 	RECT textbox1;
 	RECT textbox2;
+	RECT textbox3;
+
+	textbox3.left = getWndWidth()/2 - 100;
+	textbox3.top = 50;
+	textbox3.right = textbox3.left + 300;
+	textbox3.bottom = 100;
 
 	textbox1.left = 0;
 	textbox1.bottom = getWndHeight() - 50;
@@ -319,6 +332,11 @@ void JadeMonkeyGame::RenderUI()
 	textbox2.right = getWndWidth() - 10;
 	textbox2.top = getWndHeight() - 100;
 
+	
+	string timerString;
+	timerString = convertTimerToString();
+	LPCSTR str1 = timerString.c_str();
+	uiFont->DrawText(NULL, str1, -1, &textbox3, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
 
 	string numberLives = "Lives:";	
 	LPCTSTR str2 = numberLives.c_str();
@@ -331,6 +349,19 @@ void JadeMonkeyGame::RenderUI()
 	LPCTSTR str3 = numberKeys.c_str();
 	uiFont->DrawText(NULL, str3, -1, &textbox2, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
 
+}
+
+string JadeMonkeyGame::convertTimerToString()
+{
+	long toConvert = timerCurrent - timerStart;
+	int seconds = toConvert / 2000;
+	int minutes = seconds / 60;
+	seconds = seconds % 60;
+
+	stringstream stream;
+
+	stream << setw(2) << setfill('0') << minutes << ":" << setw(2) << setfill('0')<< seconds;
+	return stream.str();
 }
 
 GameEntitiesContainer* JadeMonkeyGame::GetEntitiesContainer(void)
