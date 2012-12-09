@@ -1,8 +1,9 @@
 #include "KeyGraphicsComponent.h"
 #include "jade_util.h"
+#include "RessourceManager.h"
 
 
-KeyGraphicsComponent::KeyGraphicsComponent(int dx, int dy, PlayerComponent *player, KeyPartComponent *keyPart, Game* game, GameEntity* entity): GraphicsComponent(game, entity)
+KeyGraphicsComponent::KeyGraphicsComponent(int dx, int dy, PlayerComponent *player, KeyPartComponent *keyPart, Game* game, GameEntity* entity): TexturedGraphicsComponent(game, entity)
 {
 	this->_player = player;
 	this->_keyPart = keyPart;
@@ -17,6 +18,7 @@ KeyGraphicsComponent::KeyGraphicsComponent(int dx, int dy, PlayerComponent *play
 	this->numCols=1;
 	createVtxDescription();
 	this->_entity->setScale(D3DXVECTOR3(1.0, 1.0, 1.0));
+	this->loadTexture();
 }
 
 void KeyGraphicsComponent::Initialize(void)
@@ -31,7 +33,7 @@ void KeyGraphicsComponent::Update(GameEntity* entity, long time)
 {
 }
 
-void KeyGraphicsComponent::Draw(long time)
+void KeyGraphicsComponent::setupRender()
 {
 	 D3DXVECTOR3 _position = this->_entity->getPosition();
 	 D3DXVECTOR3 _scale = this->_entity->getScale();
@@ -80,10 +82,18 @@ void KeyGraphicsComponent::Draw(long time)
 	 // set the index buffer
 	 _game->getGraphicsDevice()->SetIndices(mIndBuf);
 
+	 _game->getGraphicsDevice()->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
+	_game->getGraphicsDevice()->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, this->numVtx, 0, this->numTriangles);
+
+	_game->getGraphicsDevice()->SetTexture(0, this->_texture);
+	_game->getGraphicsDevice()->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
+	_game->getGraphicsDevice()->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+	_game->getGraphicsDevice()->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
+	_game->getGraphicsDevice()->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_MIRROR);
+	_game->getGraphicsDevice()->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_MIRROR);
+
 	 // do  not use texture
-	 _game->getGraphicsDevice()->SetTexture(0,NULL);
-	 _game->getGraphicsDevice()->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
-	 _game->getGraphicsDevice()->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, this->numVtx, 0, this->numTriangles);
+//	_game->getGraphicsDevice()->SetTexture(0,NULL);
 }
 
 int KeyGraphicsComponent::getHeight()
@@ -125,9 +135,13 @@ void KeyGraphicsComponent::loadMesh(void)
 	// Fill the vertex buffer with positions
 
 	vtx[0].pos = D3DXVECTOR3(0,0,0);
+	vtx[0].tex1= D3DXVECTOR2(0,1);
 	vtx[1].pos = D3DXVECTOR3(0,20,0);
+	vtx[1].tex1 = D3DXVECTOR2(0,0);
 	vtx[2].pos = D3DXVECTOR3(20,20,0);
+	vtx[2].tex1 = D3DXVECTOR2(1,0);
 	vtx[3].pos = D3DXVECTOR3(20,0,0);
+	vtx[3].tex1 = D3DXVECTOR2(1,1);
 
 	ind[0] = 0;
 	ind[1] = 1;
@@ -143,4 +157,9 @@ err:
 	// clean up
 	FREE_MEMORY_MALLOC(vtx);
 	FREE_MEMORY_MALLOC(ind);
+}
+
+void KeyGraphicsComponent::loadTexture()
+{
+	this->_texture = RessourceManager::GetTexture(this->_game->getGraphicsDevice(), "Textures/Bananastub2.jpg");
 }
