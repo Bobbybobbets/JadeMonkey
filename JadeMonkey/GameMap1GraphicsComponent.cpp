@@ -14,7 +14,7 @@ GameMap1GraphicsComponent::GameMap1GraphicsComponent(int numRows, int numCols, G
 	this->vtx=NULL;
 	this->numRows=numRows;
 	this->numCols=numCols;
-	createVtxDescription();
+	//createVtxDescription();
 	this->_entity->setScale(D3DXVECTOR3(1.0, 4.0, 1.0));
 	fill = 3;
 }
@@ -68,7 +68,8 @@ void GameMap1GraphicsComponent::loadMesh(void)
 			//vtx[k].pos.y = (long)((double)rand()/(RAND_MAX+1) * (rangeMax - rangeMin)
 			//	+ rangeMin);
 			vtx[k].pos.y = 0;
-			vtx[k].color = initialColor;
+			//vtx[k].color = initialColor;
+			vtx[k].normal = D3DXVECTOR3(0, 1, 0);
 
 			vtx[k].tex1 = D3DXVECTOR2(j*texCoordStepX, i*texCoordStepY);
 
@@ -114,7 +115,7 @@ void GameMap1GraphicsComponent::setupRender(void)
 {
 	IDirect3DDevice9* d3ddev = this->_game->getGraphicsDevice();
 	TexturedGraphicsComponent::setupRender();
-	
+
 	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_MIRROR);
 	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_MIRROR);
 }

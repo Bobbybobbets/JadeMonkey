@@ -79,7 +79,7 @@ DoorUseComponent* PatTestFactory::AddDoor(int numCols, int numRows, D3DXVECTOR3 
 		color = 1;
 	else
 		color = 2;
-	GameMap2GraphicsComponent* graphics = new GameMap2GraphicsComponent(numCols, numRows, this->_game, door, color);
+	GameMap2GraphicsComponent* graphics;
 	DoorComponent *doorComponent = new DoorComponent( this->_game, door, 2);
 	door->AddGraphicsComponent(graphics);
 	door->setPosition( D3DXVECTOR3(position.x * 20, position.y * 20, position.z * 20));
@@ -87,12 +87,14 @@ DoorUseComponent* PatTestFactory::AddDoor(int numCols, int numRows, D3DXVECTOR3 
 	DoorUseComponent *doorUse = new DoorUseComponent(this->_game, door, camera, player, doorComponent, xDoor);
 	if( xDoor )
 	{
+		graphics = new GameMap2GraphicsComponent(numCols, numRows, this->_game, door, color, D3DXVECTOR3(1, 0, 0));
 		WallPointXCollisionComponent* wallCollision = new WallPointXCollisionComponent(this->_game, door);
 		door->AddCollisionComponent(wallCollision);
 		door->setRotation(D3DXVECTOR3(0, 90, 0));
 	}
 	else
 	{
+		graphics = new GameMap2GraphicsComponent(numCols, numRows, this->_game, door, color, D3DXVECTOR3(0, 0, 1));
 		WallPointCollisionComponent* wallCollision = new WallPointCollisionComponent(this->_game, door);
 		door->AddCollisionComponent(wallCollision);
 	}

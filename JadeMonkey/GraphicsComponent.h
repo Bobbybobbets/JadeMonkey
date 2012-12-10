@@ -5,7 +5,7 @@
 
 struct MeshVertex {
 	D3DXVECTOR3 pos;
-    DWORD color;        // The vertex color
+	D3DXVECTOR3 normal;
 	D3DXVECTOR2 tex1;
 };
 
@@ -15,7 +15,7 @@ struct MeshDefinition
 	unsigned int Size;
 };
 
-#define MESH_VERTEX_FVF (D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1)
+#define MESH_VERTEX_FVF (D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_TEX1)
 
 
 class GraphicsComponent : public BDrawableEntityComponent

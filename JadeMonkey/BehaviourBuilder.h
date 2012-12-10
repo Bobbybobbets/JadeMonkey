@@ -32,6 +32,14 @@ public:
 		SequenceSelectorBehaviourNode* runAway = new SequenceSelectorBehaviourNode(
 			behaviourComponent,
 			"runAway");
+		SequenceSelectorBehaviourNode* idle = new SequenceSelectorBehaviourNode(
+			behaviourComponent,
+			"idle");
+		CondEntityProximityBehaviourNode* runAwayProximity = new CondEntityProximityBehaviourNode(
+			behaviourComponent,
+			player,
+			150,
+			"runAwayProximity");
 		CondEntityProximityBehaviourNode* proximityBehaviour  = new CondEntityProximityBehaviourNode(
 			behaviourComponent, 
 			player, 
@@ -42,6 +50,10 @@ public:
 			player, 
 			pathfinding, 
 			"move to player");
+		ActionStopMovingBehaviourNode* actionStopMoving = new ActionStopMovingBehaviourNode(
+			behaviourComponent,
+			pathfinding);
+
 		ActionMoveAwayBehaviourNode* moveAway = new ActionMoveAwayBehaviourNode(
 			behaviourComponent, 
 			player, 
@@ -52,7 +64,13 @@ public:
 
 		root->AddChild(runAway);
 		runAway->AddChild(healthMonitor);
+		runAway->AddChild(runAwayProximity);
 		runAway->AddChild(moveAway);
+
+		root->AddChild(idle);
+		idle->AddChild(healthMonitor);
+		idle->AddChild(actionStopMoving);
+
 		root->AddChild(aggro);
 		aggro->AddChild(proximityBehaviour);
 		aggro->AddChild(actionMoveToPlayer);

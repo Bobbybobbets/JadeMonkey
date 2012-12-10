@@ -58,7 +58,7 @@ void GridBasedCollisionComponent::Update(GameEntity* entity, long time)
 					collision = true;
 					this->_lastCollision = this->_colliders[i];
 
-					if(!this->_collision)
+					if(!this->_collision && otherEntity->GetType() != Projectile)
 					{
 						this->_collision = true;
 						switch(this->_consequence)

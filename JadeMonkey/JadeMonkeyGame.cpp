@@ -197,6 +197,15 @@ int JadeMonkeyGame::Draw(long time)
 	//clear z buffer
 	md3dDev->Clear(0, NULL, D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 	
+    D3DMATERIAL9 material;    // create the material struct
+
+    ZeroMemory(&material, sizeof(D3DMATERIAL9));    // clear out the struct for use
+    material.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);    // set diffuse color to white
+    material.Ambient = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);    // set ambient color to white
+	md3dDev->SetRenderState(D3DRS_AMBIENT, D3DCOLOR_XRGB(120, 120, 120));
+
+    md3dDev->SetMaterial(&material);    // set the globably-used material to &material
+
 	md3dDev->BeginScene();    // begins the 3D scene	
 
 	switch (state ) 

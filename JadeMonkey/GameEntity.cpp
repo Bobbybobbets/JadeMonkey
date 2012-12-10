@@ -311,6 +311,11 @@ int GameEntity::GetLifetime(void)
 	return this->_lifetime;
 }
 
+void GameEntity::Enable(void)
+{
+	this->_active = true;
+}
+
 void GameEntity::Disable(void)
 {
 	this->_active = false;

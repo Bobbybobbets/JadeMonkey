@@ -133,6 +133,7 @@
     <ClInclude Include="PlayerFPInputComponent.h" />
     <ClInclude Include="CuboidCollisionComponent.h" />
     <ClInclude Include="PointCollisionComponent.h" />
+    <ClInclude Include="PointLightComponent.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RessourceManager.h" />
     <ClInclude Include="ScaledBoxGraphicsComponent.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="PlayerFPInputComponent.cpp" />
     <ClCompile Include="PointCollisionComponent.cpp" />
+    <ClCompile Include="PointLightComponent.cpp" />
     <ClCompile Include="RessourceManager.cpp" />
     <ClCompile Include="ScaledBoxGraphicsComponent.cpp" />
     <ClCompile Include="PrioritySelectorBehaviourNode.cpp" />

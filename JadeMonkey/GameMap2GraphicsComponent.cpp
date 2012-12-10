@@ -2,7 +2,7 @@
 #include "jade_util.h"
 #include "RessourceManager.h"
 
-GameMap2GraphicsComponent::GameMap2GraphicsComponent(int numRows, int numCols, Game* game, GameEntity* entity, int color)
+GameMap2GraphicsComponent::GameMap2GraphicsComponent(int numRows, int numCols, Game* game, GameEntity* entity, int color, D3DXVECTOR3 normal)
 	: TexturedGraphicsComponent(game, entity)
 {
 	this->ind=0; 
@@ -18,6 +18,28 @@ GameMap2GraphicsComponent::GameMap2GraphicsComponent(int numRows, int numCols, G
 	this->_entity->setScale(D3DXVECTOR3(1.0, 1.0, 1.0));
 	this->color = color;
 	fill = 3;
+	this->_normal = normal;
+	this->_texturePath = "Textures/wall.jpg";
+}
+
+GameMap2GraphicsComponent::GameMap2GraphicsComponent(int numRows, int numCols, Game* game, GameEntity* entity, int color, D3DXVECTOR3 normal, string texturePath)
+	: TexturedGraphicsComponent(game, entity)
+{
+	this->ind=0; 
+	this->numVtx=0; 
+	this->numQuads=0;
+	this->numTriangles=0;
+	this->dy = 20;
+	this->dx = 20;
+	this->vtx=NULL;
+	this->numRows=numRows;
+	this->numCols=numCols;
+	createVtxDescription();
+	this->_entity->setScale(D3DXVECTOR3(1.0, 1.0, 1.0));
+	this->color = color;
+	fill = 3;
+	this->_normal = normal;
+	this->_texturePath = texturePath;
 }
 
 int GameMap2GraphicsComponent::getHeight()
@@ -76,7 +98,8 @@ void GameMap2GraphicsComponent::loadMesh(void)
 			//vtx[k].pos.y = (long)((double)rand()/(RAND_MAX+1) * (rangeMax - rangeMin)
 			//	+ rangeMin);
 			vtx[k].pos.z = 0;
-			vtx[k].color = initialColor;
+			//vtx[k].color = initialColor;
+			vtx[k].normal = this->_normal;
 			vtx[k].tex1 = D3DXVECTOR2(j*texCoordStepX, i*texCoordStepY);
 			colPos.x += dx;
 			k++;
@@ -111,7 +134,7 @@ err:
 }
 void GameMap2GraphicsComponent::loadTexture(void)
 {
-	this->_texture = RessourceManager::GetTexture(this->_game->getGraphicsDevice(), "Textures/wall.jpg");
+	this->_texture = RessourceManager::GetTexture(this->_game->getGraphicsDevice(), this->_texturePath);
 }
 
 void GameMap2GraphicsComponent::setupRender(void)

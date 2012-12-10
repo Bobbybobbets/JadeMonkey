@@ -51,6 +51,7 @@ public:
 	void augmentLife(int amount);
 	bool IsVisible(void);
 	bool IsActive();
+	void Enable();
 	void Disable();
 	void SetLifetime(int time);
 	int GetLifetime(void);

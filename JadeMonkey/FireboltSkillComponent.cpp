@@ -6,6 +6,7 @@
 #include "JadeMonkeyGame.h"
 #include "Enums.h"
 #include "GridBasedCollisionComponent.h"
+#include "PointLightComponent.h"
 
 FireboltSkillComponent::FireboltSkillComponent(Game* game, GameEntity* entity, int cooldown, CollisionGroup group, PlayerComponent *player)
 	: SkillComponent(game, entity, cooldown)
@@ -26,8 +27,10 @@ void FireboltSkillComponent::fireSkill(void)
 		firebolt->setVelocity(5);
 		ScaledBoxGraphicsComponent* graphics = new ScaledBoxGraphicsComponent(this->_game, firebolt, D3DCOLOR_RGBA(255,100,0,150));
 		GridBasedCollisionComponent* collision = new GridBasedCollisionComponent(this->_game, firebolt, 10, this->_group, MinusLife);
+		PointLightComponent* light = new PointLightComponent(this->_game, firebolt, D3DXCOLOR(1.0f, 0.1f, 0.0f, 1.0f), 50);
 
 		firebolt->AddComponent(collision);
+		firebolt->AddComponent(light);
 		firebolt->AddGraphicsComponent(graphics);
 		firebolt->Initialize();
 		this->_children.push_back(firebolt);
@@ -36,6 +39,7 @@ void FireboltSkillComponent::fireSkill(void)
 	{
 		this->_children[this->_indexBuffer%this->_children.size()]->setPosition(this->_entity->getPosition());
 		this->_children[this->_indexBuffer%this->_children.size()]->setDirection(D3DXVECTOR3(this->_entity->getDirection().x, 0, this->_entity->getDirection().z));
+		this->_children[this->_indexBuffer%this->_children.size()]->Enable();
 		this->_indexBuffer++;
 	}
 	

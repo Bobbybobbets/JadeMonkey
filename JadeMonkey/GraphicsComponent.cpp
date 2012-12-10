@@ -134,7 +134,7 @@ void GraphicsComponent::createGraphicsBuffers(void)
 void GraphicsComponent::createVtxDescription(void)
 {
 	// create the vertex decalation
-	if (this->mDecl == NULL) {
+	/*if (this->mDecl == NULL) {
 		struct MeshVertex v;
 		D3DVERTEXELEMENT9 decl[] = 
 		{{0,0,D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_POSITION, 0},
@@ -143,7 +143,7 @@ void GraphicsComponent::createVtxDescription(void)
 		decl[0].Offset = (char *) &v.pos - (char *) &v;
 		decl[1].Offset = (char *) &v.color - (char *) &v;
 		_game->getGraphicsDevice()->CreateVertexDeclaration(decl, &mDecl);
-	}
+	}*/
 }
 
 int GraphicsComponent::getNumRows()

@@ -127,7 +127,7 @@ float AStarPathfindingComponent::getFScore(AStarNode* node, AStarNode* goal)
 {
 	//distance heuristic
 	float distance = VectorUtil::Distance3f(node->Position(), goal->Position());
-	return distance*1.1;
+	return distance;
 }
 
 void AStarPathfindingComponent::findPosition(AStarPathfindingGraph* graph_in, AStarNode* currentNode_in, AStarNode* goalNode_in, stack<AStarNode*>* path_out)

@@ -313,7 +313,9 @@ int Game::initD3D(void)
     // Turn off culling, so we see the front and back of the triangle
     md3dDev->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
     // Turn off D3D lighting, since we are providing our own vertex colors
-    md3dDev->SetRenderState( D3DRS_LIGHTING, FALSE );
+    md3dDev->SetRenderState(D3DRS_LIGHTING, TRUE );
+	md3dDev->SetRenderState(D3DRS_ZENABLE, TRUE);
+	
 
 	if (rc != S_OK) {
 		// release d3d (the com object

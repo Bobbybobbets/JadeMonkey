@@ -54,23 +54,28 @@ GameEntitiesContainer EntityFactory::AddWall(int numCols, int numRows, D3DXVECTO
 	else
 		color = 2;
 	GameEntity* wall = new GameEntity(this->_game);
-	GameMap2GraphicsComponent* graphics = new GameMap2GraphicsComponent(numCols, numRows, this->_game, wall, color);
-	wall->AddGraphicsComponent(graphics);
+	GameMap2GraphicsComponent* graphics; 
+	
 	wall->setPosition( D3DXVECTOR3(position.x*20, position.y*20, position.z*20));
 
 	if( xWall )
 	{
+		graphics = new GameMap2GraphicsComponent(numCols, numRows, this->_game, wall, color, D3DXVECTOR3(1, 0, 0));
+		wall->AddGraphicsComponent(graphics);
 		WallPointXCollisionComponent* wallCollision = new WallPointXCollisionComponent(this->_game, wall);
 		wall->AddCollisionComponent(wallCollision);
 		wall->setRotation(D3DXVECTOR3(0, 90, 0));
 	}
 	else
 	{
+		graphics = new GameMap2GraphicsComponent(numCols, numRows, this->_game, wall, color, D3DXVECTOR3(0, 0, 1));
+		wall->AddGraphicsComponent(graphics);
 		WallPointCollisionComponent* wallCollision = new WallPointCollisionComponent(this->_game, wall);
 		wall->AddCollisionComponent(wallCollision);
 	}
 	gc.Entities.push_back(wall);
 	gc.Walls.push_back(wall);
+	
 
 	return gc;
 }
@@ -294,6 +299,17 @@ GameEntitiesContainer EntityFactory::CreateLevel1(GameEntitiesContainer containe
 		D3DCOLOR_RGBA(255, 0, 0, 255), 
 		4, 
 		BasicEnemy, 
+		aiEntitiesContainer, 
+		graph,
+		player);
+	GameEntity* aiEntity6 = this->CreateAIEntity(
+		&container, 
+		D3DXVECTOR3(600, 60, 650), 
+		D3DXVECTOR3(10, 40, 10),
+		5,
+		D3DCOLOR_RGBA(0, 0, 255, 255), 
+		4, 
+		HealerEnemy, 
 		aiEntitiesContainer, 
 		graph,
 		player);

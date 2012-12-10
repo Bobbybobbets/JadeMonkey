@@ -62,6 +62,8 @@ void ScaledBoxGraphicsComponent::Draw(long time)
 
 	_game->getGraphicsDevice()->SetTransform(D3DTS_WORLD, &worldMat);
 
+	this->_game->getGraphicsDevice()->SetFVF(CUSTOMFVF);
+	this->_game->getGraphicsDevice()->SetRenderState(D3DRS_LIGHTING, FALSE);
 	// select the vertex and index buffers to use
 	IDirect3DDevice9* d3ddev = this->_game->getGraphicsDevice();
 	d3ddev->SetStreamSource(0, v_buffer, 0, sizeof(CUSTOMVERTEX));
@@ -70,6 +72,8 @@ void ScaledBoxGraphicsComponent::Draw(long time)
 	d3ddev->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 	// draw the cube
 	d3ddev->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 8, 0, 12);
+
+	this->_game->getGraphicsDevice()->SetRenderState(D3DRS_LIGHTING, true);
 }
 
 string ScaledBoxGraphicsComponent::GetName()
