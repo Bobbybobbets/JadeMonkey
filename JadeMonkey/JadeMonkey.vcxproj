@@ -76,6 +76,7 @@
     <ClInclude Include="AIControllerComponent.h" />
     <ClInclude Include="AIEntitiesInteractionContainer.h" />
     <ClInclude Include="AStarPathfindingComponent.h" />
+    <ClInclude Include="BackgroundScreen.h" />
     <ClInclude Include="BDrawableEntityComponent.h" />
     <ClInclude Include="BehaviourBuilder.h" />
     <ClInclude Include="BehaviourComponent.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="AIControllerComponent.cpp" />
     <ClCompile Include="AStarPathfindingComponent.cpp" />
     <ClCompile Include="AStarPathfindingGraph.cpp" />
+    <ClCompile Include="BackgroundScreen.cpp" />
     <ClCompile Include="BehaviourComponent.cpp" />
     <ClCompile Include="BehaviourTreeNode.cpp" />
     <ClCompile Include="BillboardDisplayComponent.cpp" />

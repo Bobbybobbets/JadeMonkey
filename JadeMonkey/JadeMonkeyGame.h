@@ -87,13 +87,11 @@ private:
 	bool displayMessage;
 	
 	void RenderUI();
-	void RenderDeadScreen();
-	void RenderWonScreen();
-	void RenderLostScreen();
-	void RenderStartScreen();
+	void RenderBackgroundScreen(long time);
 	string convertTimerToString();
 
 	Heart *hearts[3];
+
 	RECT textbox;
 	long timerStart;	// Start of the ticks
 	long timerCurrent;	// Number of ticks at current
