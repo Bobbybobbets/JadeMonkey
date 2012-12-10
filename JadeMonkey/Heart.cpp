@@ -32,7 +32,6 @@ int Heart::Draw(long time)
 
 	D3DXMatrixTransformation2D(&mat,NULL,0.0,&scaling,&spriteCentre,rotation,&translation);
 
-
 	_heart->SetTransform(&mat);
 	_heart->Draw(_heartTexture, NULL, NULL, NULL, 0xFFFFFFFF);	
 

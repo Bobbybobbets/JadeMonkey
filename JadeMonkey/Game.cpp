@@ -39,6 +39,7 @@
 
 #include "StdAfx.h"
 #include "Game.h"
+#include "BackgroundScreen.h"
 
 
 
@@ -157,6 +158,7 @@ Game::Game(HINSTANCE hInstance, char * gameName) :
 	else strncpy(this->mGameName, gameName,GAME_TITLE_SISE);
 	init();
 
+	background = new BackgroundScreen(this);
 	// Initial screen
 	StartScreen();
 
@@ -586,18 +588,18 @@ void Game::setNumKeys(int keys)
 void Game::StartScreen()
 {
 	state = 0;
-	screenMessage="Welcome to The Legend of the Jade Monkey! Press enter to start";
+		background->LoadSprite("Textures/forest-temple-oot2.png");
 }
 void Game::LossScreen()
 {
 	state = 3;
-	screenMessage="You are completely out of lives... Please try again";
+	background->LoadSprite("Textures/lost.png");
 }
 
 void Game::DeadScreen()
 {
 	state = 1;
-	screenMessage="You have died! Press enter to spawn again";
+	background->LoadSprite("Textures/dead.png");
 }
 
 void Game::WonScreen()

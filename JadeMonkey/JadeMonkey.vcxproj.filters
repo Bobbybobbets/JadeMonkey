@@ -297,6 +297,9 @@
     <ClInclude Include="Heart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BackgroundScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameIO.cpp">
@@ -492,6 +495,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Heart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

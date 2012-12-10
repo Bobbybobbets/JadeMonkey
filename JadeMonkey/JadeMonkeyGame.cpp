@@ -52,6 +52,7 @@
 #include <sstream>
 #include <iostream>
 #include <iomanip>
+#include "BackgroundScreen.h"
 
 using namespace std;
 
@@ -72,6 +73,7 @@ JadeMonkeyGame::JadeMonkeyGame(HINSTANCE hInstance, char* gameName, EntityFactor
 		hearts[x] = new Heart(this, D3DXVECTOR3(75 + horizStep * x, getWndHeight() - 100, 0));
 	}
 
+	background = new BackgroundScreen(this);
 	timerStart = GetTickCount();
 	timerCurrent = GetTickCount();
 }
@@ -212,6 +214,13 @@ int JadeMonkeyGame::Draw(long time)
 				}
 			}
 	
+			RenderUI();
+
+			for( int x = 0 ; x < GetPlayer()->getLives() ; x++)
+			{
+				hearts[x]->Draw(time);
+			}
+
 			if(displayMessage && GetTickCount() - lastMessage < 5000)
 			{
 				textbox1.left = getWndWidth()/3;
@@ -225,29 +234,16 @@ int JadeMonkeyGame::Draw(long time)
 			else
 				displayMessage = false;
 			break;
+
+
+
 	// Died
-	case 1:
-		RenderDeadScreen();
-		break;
-	// Won
-	case 2:
-		RenderWonScreen();
-		break;
-	// Lost
-	case 3:
-		RenderLostScreen();
-		break;
-	// start
 	case 0:
-		RenderStartScreen();
+	case 1:
+	case 2:
+	case 3:
+		RenderBackgroundScreen(time);
 		break;
-	}
-
-	RenderUI();
-
-	for( int x = 0 ; x < GetPlayer()->getLives() ; x++)
-	{
-		hearts[x]->Draw(time);
 	}
 
     md3dDev->EndScene();    // ends the 3D scene
@@ -260,57 +256,11 @@ int JadeMonkeyGame::Draw(long time)
 	 return 0;
  }
 
- void JadeMonkeyGame::RenderStartScreen()
+ void JadeMonkeyGame::RenderBackgroundScreen(long time)
  {
-	RECT textbox1;
-
-	textbox1.left = 0;
-	textbox1.bottom = getWndHeight()/2;
-	textbox1.top = getWndHeight()/2 - 150;
-	textbox1.right = getWndWidth();
-
-	stringstream ss2;//create a stringstream
-	LPCTSTR str2 = screenMessage.c_str();
-	uiFont->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
-
+	 background->Draw(time);
  }
 
-void JadeMonkeyGame::RenderDeadScreen()
- {
-	RECT textbox1;
-	textbox1.left = getWndWidth()/2 - 250;
-	textbox1.bottom = getWndHeight()/2;
-	textbox1.top = getWndHeight()/2 - 150;
-	textbox1.right = textbox1.left + 500;
-
-	stringstream ss2;//create a stringstream
-	LPCTSTR str2 = screenMessage.c_str();
-	uiFont->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
- }
-void JadeMonkeyGame::RenderWonScreen()
- {
-	RECT textbox1;
-	textbox1.left =0;
-	textbox1.bottom = getWndHeight()/2;
-	textbox1.top = getWndHeight()/2 - 150;
-	textbox1.right = getWndWidth();
-
-	stringstream ss2;//create a stringstream
-	LPCTSTR str2 = screenMessage.c_str();
-	uiFont->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
- }
-void JadeMonkeyGame::RenderLostScreen()
- {
-	RECT textbox1;
-	textbox1.left = getWndWidth()/2 - 300;
-	textbox1.bottom = getWndHeight()/2;
-	textbox1.top = getWndHeight()/2 - 150;
-	textbox1.right = textbox1.left + 650;
-
-	stringstream ss2;//create a stringstream
-	LPCTSTR str2 = screenMessage.c_str();
-	uiFont->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
- }
 void JadeMonkeyGame::RenderUI()
 {
 	RECT textbox1;

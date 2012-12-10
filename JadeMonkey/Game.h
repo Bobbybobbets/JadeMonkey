@@ -61,7 +61,7 @@
 using namespace std;
 
 class GameEntity;
-
+class BackgroundScreen;
 
 class Game : public IUpdateable, public IDrawable
 {
@@ -102,6 +102,7 @@ protected:
 	HINSTANCE mhinstance; // application instance
 	HWND mhwnd;			 //window handle
 
+	BackgroundScreen *background;
 
 	long mFramesPerSecond;	// maximum numbef of frames per second
 	int mFullScreen;  // determines whether the game is played in full screen
