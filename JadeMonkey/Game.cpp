@@ -593,7 +593,7 @@ void Game::StartScreen()
 void Game::LossScreen()
 {
 	state = 3;
-	background->LoadSprite("Textures/lost.png");
+	background->LoadSprite("Textures/lost.jpg");
 }
 
 void Game::DeadScreen()
@@ -605,7 +605,7 @@ void Game::DeadScreen()
 void Game::WonScreen()
 {
 	state = 2;
-	screenMessage="Congratulations you've won! If we had more levels you'd be there";
+	background->LoadSprite("Textures/won.png");
 }
 
 void Game::PlayScreen()
