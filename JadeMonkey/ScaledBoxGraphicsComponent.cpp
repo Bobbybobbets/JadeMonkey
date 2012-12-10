@@ -13,6 +13,12 @@ ScaledBoxGraphicsComponent::ScaledBoxGraphicsComponent(Game* game, GameEntity* e
 	createVtxDescription();
 }
 
+ScaledBoxGraphicsComponent::~ScaledBoxGraphicsComponent(void)
+{
+	this->v_buffer->Release();
+	this->i_buffer->Release();
+}
+
 void ScaledBoxGraphicsComponent::Initialize(void)
 {
 	IDirect3DDevice9* d3ddev = this->_game->getGraphicsDevice();

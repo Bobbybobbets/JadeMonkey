@@ -27,42 +27,47 @@ GameEntitiesContainer PatTestFactory::GetContainer(Game* game)
 {
 	this->_game = game;
 	GameEntitiesContainer container;
-	/*
+
 	//create main character
 	GameEntity* cameraEntity = new GameEntity(game);
+	cameraEntity->SetInvincibility(true);
 	CameraComponent* camera = new CameraComponent(game, cameraEntity);
 	PlayerComponent* player = new PlayerComponent(game, cameraEntity);
 	DoorUseComponent* doorUse = AddDoor(25, 5, D3DXVECTOR3( 21 , 0, 0), container, player, true, camera);
 	PhysicsComponent* physics = new PhysicsComponent(game, cameraEntity);
-	//FireboltSkillComponent* firebolt = new FireboltSkillComponent(game, cameraEntity, 10, Player);
-//	PlayerFPInputComponent* input = new PlayerFPInputComponent(game, cameraEntity, camera, physics, firebolt, doorUse, player);
-	GridBasedCollisionComponent* collisionGrid = new GridBasedCollisionComponent(game, cameraEntity, 15, Player, Nothing, player);
+	FireboltSkillComponent* firebolt = new FireboltSkillComponent(game, cameraEntity, 10, Player, player);
+	PlayerFPInputComponent* input = new PlayerFPInputComponent(game, cameraEntity, camera, physics, firebolt, doorUse, player);
+	GridBasedCollisionComponent* collisionGrid = new GridBasedCollisionComponent(game, cameraEntity, 15, Player, Nothing);
 	
 	camera->SetCamera(D3DXVECTOR3(-500, 100, -500), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0,1,0));
 
 	cameraEntity->AddComponent(input);
 	cameraEntity->AddComponent(collisionGrid);
-	cameraEntity->AddComponent(firebolt);
+	cameraEntity->AddSkillComponent(firebolt);
 	cameraEntity->AddComponent(physics);
 	cameraEntity->AddComponent(camera);
 	cameraEntity->AddComponent(player);
 
 	AIEntitiesInteractionContainer aiEntitiesContainer(cameraEntity, nullptr, vector<GameEntity*>(), Enemies);
 
-	AStarPathfindingGraph* graph = PathfindingUtil::CreateAStarGraphFromFloors(50, 50, 20, 20, D3DXVECTOR3(-35, 0, -35));
+	vector<D3DRECT> collisions;
+	AStarPathfindingGraph* graph = PathfindingUtil::CreateAStarGraphFromFloors(50, 50, 20, 20, D3DXVECTOR3(-35, 0, -35), collisions);
 	//create AI controller character
-	GameEntity* aiEntity1 = this->CreateAIEntity(&container, D3DXVECTOR3(10, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 0, BasicEnemy, aiEntitiesContainer, graph, player);
-	GameEntity* aiEntity2 = this->CreateAIEntity(&container, D3DXVECTOR3(50, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 1, RangedEnemy, aiEntitiesContainer, graph, player);
-	GameEntity* aiEntity3 = this->CreateAIEntity(&container, D3DXVECTOR3(90, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 2, BasicEnemy, aiEntitiesContainer, graph, player);
-	GameEntity* aiEntity4 = this->CreateAIEntity(&container, D3DXVECTOR3(130, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(0, 255, 0, 255), 3, RangedEnemy, aiEntitiesContainer, graph, player);
-	GameEntity* aiEntity5 = this->CreateAIEntity(&container, D3DXVECTOR3(170, 100, 0), D3DXVECTOR3(10, 40, 10), D3DCOLOR_RGBA(255, 0, 0, 255), 4, BasicEnemy, aiEntitiesContainer, graph, player);
+	GameEntity* aiEntity1 = this->CreateAIEntity(&container, D3DXVECTOR3(-10, 100, -100), D3DXVECTOR3(10, 40, 10), 5, D3DCOLOR_RGBA(255, 0, 0, 255), 0, BasicEnemy, aiEntitiesContainer, graph, player);
+	GameEntity* aiEntity2 = this->CreateAIEntity(&container, D3DXVECTOR3(-50, 120, -100), D3DXVECTOR3(10, 40, 10), 7, D3DCOLOR_RGBA(0, 255, 0, 255), 1, RangedEnemy, aiEntitiesContainer, graph, player);
+	GameEntity* aiEntity3 = this->CreateAIEntity(&container, D3DXVECTOR3(-90, 140, -100), D3DXVECTOR3(10, 40, 10), 5, D3DCOLOR_RGBA(255, 0, 0, 255), 2, BasicEnemy, aiEntitiesContainer, graph, player);
+	GameEntity* aiEntity4 = this->CreateAIEntity(&container, D3DXVECTOR3(-130, 160, -100), D3DXVECTOR3(10, 40, 10), 7, D3DCOLOR_RGBA(0, 255, 0, 255), 3, RangedEnemy, aiEntitiesContainer, graph, player);
+	GameEntity* aiEntity5 = this->CreateAIEntity(&container, D3DXVECTOR3(-170, 180, -100), D3DXVECTOR3(10, 40, 10), 5, D3DCOLOR_RGBA(255, 0, 0, 255), 4, BasicEnemy, aiEntitiesContainer, graph, player);
+	GameEntity* aiEntity6 = this->CreateAIEntity(&container, D3DXVECTOR3(-210, 220, -100), D3DXVECTOR3(10, 40, 10), 10, D3DCOLOR_RGBA(0, 0, 255, 255), 5, HealerEnemy, aiEntitiesContainer, graph, player);
+	//GameEntity* aiEntity7 = this->CreateAIEntity(&container, D3DXVECTOR3(-250, 220, -100), D3DXVECTOR3(10, 40, 10), 8, D3DCOLOR_RGBA(0, 0, 255, 255), 5, HealerEnemy, aiEntitiesContainer, graph, player);
 
 	//create floor
 	container = this->AddFloor(50, 50, D3DXVECTOR3(-35, 0, -35), container);
 
 
 	container.Cameras.push_back(camera);
-	container.Entities.push_back(cameraEntity);*/
+	container.Entities.push_back(cameraEntity);
+	container.MainCharacter = player;
 	return container;
 }
 

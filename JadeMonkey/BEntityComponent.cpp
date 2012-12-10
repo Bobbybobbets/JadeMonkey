@@ -6,6 +6,10 @@ BEntityComponent::BEntityComponent(Game* game, GameEntity* entity)
 	this->_entity = entity;
 }
 
+BEntityComponent::~BEntityComponent(void)
+{
+}
+
 void BEntityComponent::Initialize(void)
 {
 }

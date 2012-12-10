@@ -9,6 +9,7 @@ class AIControllerComponent : public BEntityComponent
 {
 public:
 	AIControllerComponent(Game* game, GameEntity* entity);
+	~AIControllerComponent(void);
 	void Update(GameEntity* entity, long time) override;
 	void MoveTo(D3DXVECTOR3 position);
 

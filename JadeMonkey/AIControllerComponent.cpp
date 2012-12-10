@@ -9,6 +9,10 @@ AIControllerComponent::AIControllerComponent(Game* game, GameEntity* entity)
 	this->_moving = false;
 }
 
+AIControllerComponent::~AIControllerComponent(void)
+{
+}
+
 void AIControllerComponent::Update(GameEntity* entity, long time)
 {
 	if(this->_moving)

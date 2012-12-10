@@ -16,7 +16,9 @@ GameEntity::GameEntity(Game* game) :
 	_stepHeight(20),
 	_velocity(0),
 	_active(true),
-	_type(Enemy)
+	_type(Enemy),
+	_lifetime(-1),
+	_invincible(false)
 {
 	this->_visible = true;
 	this->_life = 100;
@@ -34,7 +36,9 @@ GameEntity::GameEntity(Game* game, D3DXVECTOR3 size) :
 	_stepHeight(20),
 	_velocity(0),
 	_active(true),
-	_type(Enemy)
+	_type(Enemy),
+	_lifetime(-1),
+	_invincible(false)
 {
 	this->setSize(size);
 	this->_visible = true;
@@ -118,6 +122,8 @@ int GameEntity::Initialize()
 
 int GameEntity::Update(long time)
 {
+	if(this->_lifetime > 0)
+		this->_lifetime -= time;
 
 	//Update all components in this entity
 	for(vector<BEntityComponent*>::iterator it = this->_components.begin();
@@ -133,7 +139,7 @@ int GameEntity::Update(long time)
 
 int GameEntity::Draw(long time)
 {
-	if(this->_visible)
+	if(this->_visible && this->_active)
 	{
 		for(vector<BDrawableEntityComponent*>::iterator it = this->_graphicsComponents.begin();
 			it < this->_graphicsComponents.end();
@@ -266,6 +272,13 @@ void GameEntity::setLife(int life)
 void GameEntity::reduceLife(int amount)
 {
 	this->_life -= amount;
+	if(this->_life <= 0)
+		this->_active = false;
+}
+
+void GameEntity::augmentLife(int amount)
+{
+	this->_life += amount;
 }
 
 bool GameEntity::IsActive(void)
@@ -286,6 +299,31 @@ EntityType GameEntity::GetType(void)
 void GameEntity::SetType(EntityType type)
 {
 	this->_type = type;
+}
+
+void GameEntity::SetLifetime(int time)
+{
+	this->_lifetime = time;
+}
+
+int GameEntity::GetLifetime(void)
+{
+	return this->_lifetime;
+}
+
+void GameEntity::Disable(void)
+{
+	this->_active = false;
+}
+
+void GameEntity::SetInvincibility(bool invincible)
+{
+	this->_invincible = invincible;
+}
+
+bool GameEntity::IsInvincible(void)
+{
+	return this->_invincible;
 }
 
 BDrawableEntityComponent* GameEntity::getGraphicsComponent()

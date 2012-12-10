@@ -7,11 +7,10 @@ class BehaviourComponent;
 
 using namespace std;
 
-
-
 class BehaviourTreeNode
 {
 public:
+	BehaviourTreeNode(BehaviourComponent* behaviourComponent, BehaviourTreeNodeType type);
 	BehaviourTreeNode(BehaviourComponent* behaviourComponent, string name, BehaviourTreeNodeType type);
 	virtual bool Update(void) = 0;
 	void AddChild(BehaviourTreeNode* node);

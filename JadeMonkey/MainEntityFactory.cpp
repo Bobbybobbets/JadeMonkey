@@ -34,7 +34,7 @@ GameEntitiesContainer MainEntityFactory::GetContainer(Game* game)
 	FireboltSkillComponent* firebolt = new FireboltSkillComponent(game, cameraEntity, 10, Player, player);
 	DoorUseComponent* doorUse = AddDoor(25, 5, D3DXVECTOR3( 21 , 0, 0), container, player, true, camera);
 	PlayerFPInputComponent* input = new PlayerFPInputComponent(game, cameraEntity, camera, physics, firebolt, doorUse, player);
-	GridBasedCollisionComponent* collisionGrid = new GridBasedCollisionComponent(game, cameraEntity, 10, Player, Nothing, player);
+	GridBasedCollisionComponent* collisionGrid = new GridBasedCollisionComponent(game, cameraEntity, 10, Player, Nothing);
 	
 	camera->SetCamera(D3DXVECTOR3(30,70,30), D3DXVECTOR3(100,70,100), D3DXVECTOR3(0,1,0));
 

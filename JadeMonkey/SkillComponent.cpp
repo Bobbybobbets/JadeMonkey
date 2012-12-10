@@ -1,5 +1,6 @@
 #include "SkillComponent.h"
 #include "GameEntity.h"
+#include <algorithm>
 
 SkillComponent::SkillComponent(Game* game, GameEntity* entity, int cooldown)
 	: BDrawableEntityComponent(game, entity)
@@ -12,6 +13,7 @@ SkillComponent::SkillComponent(Game* game, GameEntity* entity, int cooldown)
 void SkillComponent::Update(GameEntity* entity, long time)
 {
 	this->_timeCounter++;
+	GameEntity* todelete = nullptr;
 
 	if(this->_activated)
 	{
@@ -22,7 +24,10 @@ void SkillComponent::Update(GameEntity* entity, long time)
 	vector<GameEntity*>::iterator it;
 	for(it = this->_children.begin(); it < this->_children.end(); it++)
 	{
-		(*it)->Update(time);
+		if((*it)->IsActive() )
+		{
+			(*it)->Update(time);
+		}
 	}
 }
 

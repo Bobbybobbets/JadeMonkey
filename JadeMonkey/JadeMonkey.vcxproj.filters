@@ -225,12 +225,6 @@
     <ClInclude Include="AStarPathfindingComponent.h">
       <Filter>Header Files\Components\AI</Filter>
     </ClInclude>
-    <ClInclude Include="AStarPathfindingGraph.h">
-      <Filter>Header Files\Components\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="CondPlayerProximityBehaviourNode.h">
-      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
-    </ClInclude>
     <ClInclude Include="ActionMoveToPlayerBehaviourNode.h">
       <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
     </ClInclude>
@@ -239,12 +233,6 @@
     </ClInclude>
     <ClInclude Include="AIEntitiesInteractionContainer.h">
       <Filter>Header Files\Components\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="SequenceSelectorBehaviourNode.h">
-      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
-    </ClInclude>
-    <ClInclude Include="AIControllerComponent.h">
-      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
     </ClInclude>
     <ClInclude Include="SkillComponent.h">
       <Filter>Header Files\Components\Skills</Filter>
@@ -296,6 +284,51 @@
     </ClInclude>
     <ClInclude Include="Heart.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AStarPathfindingGraph.h">
+      <Filter>Header Files\Components\AI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="HealSkillComponent.h">
+      <Filter>Header Files\Components\Skills</Filter>
+    </ClInclude>
+    <ClInclude Include="TargetedSkillComponent.h">
+      <Filter>Header Files\Components\Skills</Filter>
+    </ClInclude>
+    <ClInclude Include="LinearPathfindingComponent.h">
+      <Filter>Header Files\Components\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="SequenceSelectorBehaviourNode.h">
+      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="BillboardDisplayComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityHealthDisplayComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CondAllyHealthLowBehaviourNode.h">
+      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="CondEntityProximityBehaviourNode.h">
+      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="CondTargetProximityBehaviourNode.h">
+      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AIControllerComponent.h">
+      <Filter>Header Files\Components\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionMoveAwayBehaviourNode.h">
+      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionStopMovingBehaviourNode.h">
+      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionMoveToTargetBehaviourNode.h">
+      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="CondHealthMonitorBehaviourNode.h">
+      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -455,9 +488,6 @@
     <ClCompile Include="BehaviourTreeNode.cpp">
       <Filter>Source Files\Components\AI</Filter>
     </ClCompile>
-    <ClCompile Include="CondPlayerProximityBehaviourNode.cpp">
-      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
-    </ClCompile>
     <ClCompile Include="ActionMoveToPlayerBehaviourNode.cpp">
       <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
     </ClCompile>
@@ -493,6 +523,48 @@
     </ClCompile>
     <ClCompile Include="Heart.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="healSkillComponent.cpp">
+      <Filter>Source Files\Components\Skills</Filter>
+    </ClCompile>
+    <ClCompile Include="TargetedSkillComponent.cpp">
+      <Filter>Source Files\Components\Skills</Filter>
+    </ClCompile>
+    <ClCompile Include="LinearPathfindingComponent.cpp">
+      <Filter>Source Files\Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionHealAllyBehaviourNode.h">
+      <Filter>Header Files\Components\AI\Behaviours\BehaviourNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionhealAllyBehaviourNode.cpp">
+      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="BillboardDisplayComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityHealthDisplayComponent.cpp">
+      <Filter>Source Files\Components\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CondAllyHealthLowBehaviourNode.cpp">
+      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="CondEntityProximityBehaviourNode.cpp">
+      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="CondTargetProximityBehaviourNode.cpp">
+      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionMoveAwayBehaviourNode.cpp">
+      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionStopMovingBehaviourNode.cpp">
+      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionMoveToTargetBehaviourNode.cpp">
+      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="CondHealthMonitorBehaviourNode.cpp">
+      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

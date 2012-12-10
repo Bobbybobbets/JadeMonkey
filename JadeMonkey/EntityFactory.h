@@ -29,8 +29,8 @@ protected:
 	GameEntitiesContainer AddStairs(int number, int direction, D3DXVECTOR3 position, GameEntitiesContainer gc, int width, bool xStair);
 	GameEntitiesContainer AddKey(D3DXVECTOR3 position, int keyNumber, GameEntitiesContainer gc, PlayerComponent *player);
 	GameEntitiesContainer CreateLevel1(GameEntitiesContainer container, PlayerComponent *player, AIEntitiesInteractionContainer aiEntitiesContainer);
-	GameEntity* CreateAIEntity(GameEntitiesContainer* container, D3DXVECTOR3 position, D3DXVECTOR3 size, D3DCOLOR color, long framesToWait, Behaviour behaviour, AIEntitiesInteractionContainer entitiesContainer, AStarPathfindingGraph* graph, PlayerComponent *player);
-	GameEntity* CreateAIEntity(GameEntitiesContainer* container, D3DXVECTOR3 position, D3DXVECTOR3 size, D3DCOLOR color, long framesToWait, Behaviour behaviour, AIEntitiesInteractionContainer entitiesContainer, AStarPathfindingGraph* graph, GameEntity* entityToFollow, PlayerComponent *player);
+	GameEntity* CreateAIEntity(GameEntitiesContainer* container, D3DXVECTOR3 position, D3DXVECTOR3 size, float speed, D3DCOLOR color, long framesToWait, Behaviour behaviour, AIEntitiesInteractionContainer entitiesContainer, AStarPathfindingGraph* graph, PlayerComponent *player);
+	GameEntity* CreateAIEntity(GameEntitiesContainer* container, D3DXVECTOR3 position, D3DXVECTOR3 size, float speed, D3DCOLOR color, long framesToWait, Behaviour behaviour, AIEntitiesInteractionContainer entitiesContainer, AStarPathfindingGraph* graph, GameEntity* entityToFollow, PlayerComponent *player);
 	GameEntitiesContainer AddTrapDoor( int numRows, int numCols,GameEntitiesContainer container, D3DXVECTOR3 position, PlayerComponent* player);
 
 };

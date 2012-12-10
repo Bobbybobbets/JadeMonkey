@@ -17,6 +17,8 @@ public:
 	virtual void Draw(long time) override;
 	void FollowEntity(GameEntity* entity);
 	void SetGoalPosition(D3DXVECTOR3 goal);
+	bool AtGoal(void);
+	void Stop(void);
 
 protected:
 	D3DXVECTOR3 _goalPosition;
@@ -32,10 +34,12 @@ protected:
 	long _frameCount;
 	long _frameWait;
 	bool _debug;
+	bool _atGoal;
 	GameEntity* _graphicEntity;
 
 	float getFScore(AStarNode* node, AStarNode* goal);
 	void findPosition(
 		AStarPathfindingGraph* graph, AStarNode* currentNode, AStarNode* goalNode, stack<AStarNode*>* path_out);
 	bool ensureGoalIntegrity(long time);
+	void clearPath(void);
 };

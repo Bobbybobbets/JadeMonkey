@@ -48,11 +48,17 @@ public:
 	int getLife(void);
 	void setLife(int life);
 	void reduceLife(int amount);
+	void augmentLife(int amount);
 	bool IsVisible(void);
 	bool IsActive();
+	void Disable();
+	void SetLifetime(int time);
+	int GetLifetime(void);
 	void SetStatus(bool active);
 	EntityType GetType(void);
 	void SetType(EntityType type);
+	void SetInvincibility(bool invincible);
+	bool IsInvincible(void);
 	BDrawableEntityComponent* getGraphicsComponent();
 	vector<CollisionComponent*> getCollisionComponents();
 	void AddCollisionComponent(CollisionComponent* component);
@@ -74,11 +80,13 @@ protected:
 	int numQuads;
 	int numTriangles;
 	bool _active;
+	bool _invincible;
 	EntityType _type;
 	vector<BEntityComponent*> _components;
 	vector<BDrawableEntityComponent*> _graphicsComponents;
 	vector<SkillComponent*> _skillComponents;
 	vector<CollisionComponent*> _collisionComponents;
+	int _lifetime;
 
 	bool _visible;
 };

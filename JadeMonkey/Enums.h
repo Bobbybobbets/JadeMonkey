@@ -18,13 +18,16 @@ enum BehaviourState
 	Patrol,
 	Move,
 	ChasePlayer,
+	ChaseTarget,
+	RunningAway,
 	Idle
 };
 
 enum Behaviour
 {
 	BasicEnemy,
-	RangedEnemy
+	RangedEnemy,
+	HealerEnemy
 };
 
 enum BehaviourTreeNodeState
@@ -53,6 +56,7 @@ enum CollisionConsequence
 	MinusSize,
 	MinusLife,
 	Kill,
+	Heal,
 	Nothing
 };
 

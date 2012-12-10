@@ -10,6 +10,7 @@ class BEntityComponent
 {
 public:
 	BEntityComponent(Game* game, GameEntity* entity);
+	~BEntityComponent(void);
 	virtual void Initialize(void);
 	virtual void Update(GameEntity* entity, long time);
 	virtual string GetName(void);

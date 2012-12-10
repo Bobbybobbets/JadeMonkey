@@ -25,7 +25,7 @@ void FireboltSkillComponent::fireSkill(void)
 		firebolt->setDirection(D3DXVECTOR3(this->_entity->getDirection().x, 0, this->_entity->getDirection().z));
 		firebolt->setVelocity(5);
 		ScaledBoxGraphicsComponent* graphics = new ScaledBoxGraphicsComponent(this->_game, firebolt, D3DCOLOR_RGBA(255,100,0,150));
-		GridBasedCollisionComponent* collision = new GridBasedCollisionComponent(this->_game, firebolt, 10, this->_group, Kill, _player);
+		GridBasedCollisionComponent* collision = new GridBasedCollisionComponent(this->_game, firebolt, 10, this->_group, MinusLife);
 
 		firebolt->AddComponent(collision);
 		firebolt->AddGraphicsComponent(graphics);

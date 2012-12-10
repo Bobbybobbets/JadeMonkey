@@ -16,6 +16,7 @@ bool ActionShootFireboltBehaviourNode::Update(void)
 	GameEntity* thisEntity = this->_behaviourComponent->getEntity();
 	thisEntity->setDirection(this->_player->getPosition() - thisEntity->getPosition());
 	this->_fireboltComponent->Activate();
+	this->_behaviourComponent->SetState(Attack);
 
 	return true;
 }

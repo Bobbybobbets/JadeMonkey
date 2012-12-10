@@ -53,7 +53,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
                    int		 nCmdShow)
 {
 	// create the game
-	JadeMonkeyGame* jadeMonkeyGame = new JadeMonkeyGame(hInstance, "The Jade Monkey", new MainEntityFactory());
+	JadeMonkeyGame* jadeMonkeyGame = new JadeMonkeyGame(hInstance, "The Jade Monkey", new PatTestFactory());
 
 	// initialize the game
 	// note that this is done via a virtual function.  Thus there is no need to update this function

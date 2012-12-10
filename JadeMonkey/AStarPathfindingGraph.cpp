@@ -17,6 +17,7 @@ AStarPathfindingGraph::AStarPathfindingGraph(D3DXVECTOR3 position, AStarNode** n
 AStarNode* AStarPathfindingGraph::GetClosestNode(D3DXVECTOR3 position)
 {
 	POINT p = this->getArrayPosition(position);
+
 	return this->_nodeArray2D[p.x][p.y];
 }
 
@@ -33,6 +34,23 @@ POINT AStarPathfindingGraph::getArrayPosition(D3DXVECTOR3 position)
 
 	p.x = (int)((position.x - graphPosition.x) / dx);
 	p.y = (int)((position.z - graphPosition.z) / dz);
+
+	if(p.x >= rows)
+	{
+		p.x = rows-1;
+	}
+	if(p.x < 0)
+	{
+		p.x = 0;
+	}
+	if(p.y >= cols)
+	{
+		p.y = cols-1;
+	}
+	if(p.y < 0)
+	{
+		p.y = 0;
+	}
 
 	return p;
 }

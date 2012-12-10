@@ -3,14 +3,16 @@
 #include "VectorUtil.h"
 
 AStarPathfindingGraph* PathfindingUtil::CreateAStarGraphFromFloors(
-	unsigned int rows,
-	unsigned int cols,
+	unsigned int rows_in,
+	unsigned int cols_in,
 	float dx,
 	float dz,
 	D3DXVECTOR3 position,
 	vector<D3DRECT> collisionRects)
 {
-	D3DXVECTOR3 pos = position*20;
+	int rows = rows_in-1;
+	int cols = cols_in-1;
+	D3DXVECTOR3 pos = ((position+D3DXVECTOR3(0.5, 0, 0.5))*20);
 	unsigned int size = rows * cols;
 	AStarNode** nodes = new AStarNode*[size]();
 	vector<AStarNode*>* retNodes = new vector<AStarNode*>();

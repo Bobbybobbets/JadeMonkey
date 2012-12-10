@@ -18,10 +18,11 @@ AStarPathfindingComponent::AStarPathfindingComponent(Game* game, GameEntity* ent
 	this->_frameThreshold = 30;
 	this->_frameCount = 0;
 	this->_frameWait = framesToWait;
+	this->_atGoal = false;
 
 	this->_graphicEntity = new GameEntity(this->_game, D3DXVECTOR3(1, 1, 1));
-	ScaledBoxGraphicsComponent* nodeGraphic = new ScaledBoxGraphicsComponent(this->_game, this->_graphicEntity, D3DCOLOR_RGBA(255,0,0,255));
-	this->_graphicEntity->AddGraphicsComponent(nodeGraphic);
+	//ScaledBoxGraphicsComponent* nodeGraphic = new ScaledBoxGraphicsComponent(this->_game, this->_graphicEntity, D3DCOLOR_RGBA(255,0,0,255));
+	//this->_graphicEntity->AddGraphicsComponent(nodeGraphic);
 }
 
 AStarPathfindingComponent::~AStarPathfindingComponent(void)
@@ -76,6 +77,9 @@ void AStarPathfindingComponent::Update(GameEntity* entity, long time)
 
 		
 			this->_aiController->MoveTo(moveToPosition);
+
+			if(this->_path.size() == 0)
+				this->_atGoal = true;
 		}
 	}
 }
@@ -89,12 +93,26 @@ void AStarPathfindingComponent::Draw(long time)
 	}
 }
 
+bool AStarPathfindingComponent::AtGoal(void)
+{
+	return this->_atGoal;
+}
+
+void AStarPathfindingComponent::Stop(void)
+{
+	this->clearPath();
+	this->_doSearch = false;
+	this->_followEntity = false;
+}
+
 void AStarPathfindingComponent::FollowEntity(GameEntity* entity)
 {
+	this->clearPath();
 	this->_entityToFollow = entity;
 	this->_followEntity = true;
 	this->_switchedEntity = true;
 	this->_doSearch = true;
+	this->_atGoal = false;
 }
 
 void AStarPathfindingComponent::SetGoalPosition(D3DXVECTOR3 goal)
@@ -102,28 +120,27 @@ void AStarPathfindingComponent::SetGoalPosition(D3DXVECTOR3 goal)
 	this->_goalPosition = goal;
 	this->_doSearch = true;
 	this->_followEntity = false;
+	this->_atGoal = false;
 }
 
 float AStarPathfindingComponent::getFScore(AStarNode* node, AStarNode* goal)
 {
 	//distance heuristic
 	float distance = VectorUtil::Distance3f(node->Position(), goal->Position());
-	return distance;
+	return distance*1.1;
 }
 
 void AStarPathfindingComponent::findPosition(AStarPathfindingGraph* graph_in, AStarNode* currentNode_in, AStarNode* goalNode_in, stack<AStarNode*>* path_out)
 {
 	priority_queue<AStarNode*, vector<AStarNode*>, AStarNodeComparison> openset;
-	vector<AStarNode*> closedset;
+	queue<AStarNode*> bestCandidates;
+	list<AStarNode*> toSort;
 	AStarNode* currentNode = currentNode_in;
 	AStarNode* goalNode = goalNode_in;
 	AStarPathfindingGraph* graph = graph_in;
 	int path_out_size = path_out->size();
 	
-	for(int i = 0; i < path_out_size; i++)
-	{
-		path_out->pop();
-	}
+	this->clearPath();
 	
 	long startTick = GetTickCount();
 	long endTick;
@@ -135,10 +152,29 @@ void AStarPathfindingComponent::findPosition(AStarPathfindingGraph* graph_in, AS
 	}
 
 	openset.push(currentNode);
+	currentNode->FScore = this->getFScore(currentNode, goalNode);
 
-	while(openset.size() > 0)
+	while(openset.size() > 0 || bestCandidates.size() > 0 || toSort.size() > 0)
 	{
-		AStarNode* current = openset.top();
+		AStarNode* current;
+
+		if(bestCandidates.size() > 0)
+		{
+			current = bestCandidates.front();
+			bestCandidates.pop();
+		}
+		else
+		{
+			for(int i = 0; i < toSort.size(); i++)
+			{
+				openset.push(toSort.front());
+				toSort.pop_front();
+			}
+
+			current = openset.top();
+			openset.pop();
+		}
+		
 		vector<AStarNode*> neighbours = current->Neighbours();
 
 		if(current->Position() == goalNode->Position())
@@ -150,15 +186,16 @@ void AStarPathfindingComponent::findPosition(AStarPathfindingGraph* graph_in, AS
 				path_out->push(node);
 				node = node->OptimalPathParent();
 			}
+
+			break;
 		}
 
-		openset.pop();
 		current->Processed = true;
 
 		vector<AStarNode*>::iterator it;
-		for(it = neighbours.begin(); it < neighbours.end(); it++)
+		for(int i = 0; i < neighbours.size(); i++)
 		{
-			AStarNode* neighbour = (*it);
+			AStarNode* neighbour = neighbours[i];
 
 			if(!neighbour->Processed)
 			{
@@ -172,6 +209,17 @@ void AStarPathfindingComponent::findPosition(AStarPathfindingGraph* graph_in, AS
 
 					if(!neighbour->Visited)
 					{
+						/*
+						neighbour->Visited = true;
+						if(neighbour->FScore < current->FScore)
+						{
+							bestCandidates.push(neighbour);
+						}
+						else
+						{
+							toSort.push_back(neighbour);
+						}*/
+
 						neighbour->Visited = true;
 						openset.push(neighbour);
 					}
@@ -218,4 +266,12 @@ bool AStarPathfindingComponent::ensureGoalIntegrity(long time)
 	}
 	this->_frameWait--;
 	return true;
+}
+
+void AStarPathfindingComponent::clearPath(void)
+{
+	for(int i = 0; i < this->_path.size(); i++)
+	{
+		this->_path.pop();
+	}
 }

@@ -68,8 +68,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ActionMoveAwayBehaviourNode.h" />
     <ClInclude Include="ActionMoveToPlayerBehaviourNode.h" />
+    <ClInclude Include="ActionMoveToTargetBehaviourNode.h" />
     <ClInclude Include="ActionShootFireboltBehaviourNode.h" />
+    <ClInclude Include="ActionStopMovingBehaviourNode.h" />
     <ClInclude Include="AIControllerComponent.h" />
     <ClInclude Include="AIEntitiesInteractionContainer.h" />
     <ClInclude Include="AStarPathfindingComponent.h" />
@@ -78,16 +81,21 @@
     <ClInclude Include="BehaviourComponent.h" />
     <ClInclude Include="BehavioursEnum.h" />
     <ClInclude Include="BehaviourTreeNode.h" />
+    <ClInclude Include="BillboardDisplayComponent.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CollisionComponent.h" />
-    <ClInclude Include="CondPlayerProximityBehaviourNode.h" />
+    <ClInclude Include="CondAllyHealthLowBehaviourNode.h" />
+    <ClInclude Include="CondEntityProximityBehaviourNode.h" />
+    <ClInclude Include="CondHealthMonitorBehaviourNode.h" />
+    <ClInclude Include="CondTargetProximityBehaviourNode.h" />
     <ClInclude Include="DoorUseComponent.h" />
     <ClInclude Include="DoorComponent.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DrawableGameComponent.h" />
     <ClInclude Include="BEntityComponent.h" />
     <ClInclude Include="EntityFactory.h" />
+    <ClInclude Include="EntityHealthDisplayComponent.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="FireboltSkillComponent.h" />
     <ClInclude Include="FloorPointCollisionComponent.h" />
@@ -98,6 +106,7 @@
     <ClInclude Include="GameMap2GraphicsComponent.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="GridBasedCollisionComponent.h" />
+    <ClInclude Include="HealSkillComponent.h" />
     <ClInclude Include="Heart.h" />
     <ClInclude Include="ICollideable.h" />
     <ClInclude Include="IDrawable.h" />
@@ -110,6 +119,7 @@
     <ClInclude Include="jade_util.h" />
     <ClInclude Include="KeyGraphicsComponent.h" />
     <ClInclude Include="KeyPartComponent.h" />
+    <ClInclude Include="LinearPathfindingComponent.h" />
     <ClInclude Include="MainEntityFactory.h" />
     <ClInclude Include="AStarPathfindingGraph.h" />
     <ClInclude Include="PathfindingGraphComponent.h" />
@@ -129,6 +139,7 @@
     <ClInclude Include="SequenceSelectorBehaviourNode.h" />
     <ClInclude Include="SkillComponent.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TargetedSkillComponent.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TexturedGraphicsComponent.h" />
     <ClInclude Include="TrapDoorCollisionComponent.h" />
@@ -139,22 +150,32 @@
     <ClInclude Include="WallPointXCollisionComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ActionhealAllyBehaviourNode.cpp" />
+    <ClCompile Include="ActionHealAllyBehaviourNode.h" />
+    <ClCompile Include="ActionMoveAwayBehaviourNode.cpp" />
     <ClCompile Include="ActionMoveToPlayerBehaviourNode.cpp" />
+    <ClCompile Include="ActionMoveToTargetBehaviourNode.cpp" />
     <ClCompile Include="ActionShootFireboltBehaviourNode.cpp" />
+    <ClCompile Include="ActionStopMovingBehaviourNode.cpp" />
     <ClCompile Include="AIControllerComponent.cpp" />
     <ClCompile Include="AStarPathfindingComponent.cpp" />
     <ClCompile Include="AStarPathfindingGraph.cpp" />
     <ClCompile Include="BehaviourComponent.cpp" />
     <ClCompile Include="BehaviourTreeNode.cpp" />
+    <ClCompile Include="BillboardDisplayComponent.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
-    <ClCompile Include="CondPlayerProximityBehaviourNode.cpp" />
+    <ClCompile Include="CondAllyHealthLowBehaviourNode.cpp" />
+    <ClCompile Include="CondEntityProximityBehaviourNode.cpp" />
+    <ClCompile Include="CondHealthMonitorBehaviourNode.cpp" />
+    <ClCompile Include="CondTargetProximityBehaviourNode.cpp" />
     <ClCompile Include="CuboidCollisionComponent.cpp" />
     <ClCompile Include="DoorComponent.cpp" />
     <ClCompile Include="DoorUseComponent.cpp" />
     <ClCompile Include="DrawableGameComponent.cpp" />
     <ClCompile Include="BEntityComponent.cpp" />
     <ClCompile Include="EntityFactory.cpp" />
+    <ClCompile Include="EntityHealthDisplayComponent.cpp" />
     <ClCompile Include="FireboltSkillComponent.cpp" />
     <ClCompile Include="FloorPointCollisionComponent.cpp" />
     <ClCompile Include="GameComponent.cpp" />
@@ -163,6 +184,7 @@
     <ClCompile Include="GameMap2GraphicsComponent.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="GridBasedCollisionComponent.cpp" />
+    <ClCompile Include="healSkillComponent.cpp" />
     <ClCompile Include="Heart.cpp" />
     <ClCompile Include="JadeMonkey.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -170,6 +192,7 @@
     <ClCompile Include="JadeMonkeyGame.cpp" />
     <ClCompile Include="KeyGraphicsComponent.cpp" />
     <ClCompile Include="KeyPartComponent.cpp" />
+    <ClCompile Include="LinearPathfindingComponent.cpp" />
     <ClCompile Include="MainEntityFactory.cpp" />
     <ClCompile Include="PathfindingGraphComponent.cpp" />
     <ClCompile Include="PathfindingGraphNode.cpp" />
@@ -186,6 +209,7 @@
     <ClCompile Include="SequenceSelectorBehaviourNode.cpp" />
     <ClCompile Include="SkillComponent.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="TargetedSkillComponent.cpp" />
     <ClCompile Include="TexturedGraphicsComponent.cpp" />
     <ClCompile Include="TrapDoorCollisionComponent.cpp" />
     <ClCompile Include="TrapDoorComponent.cpp" />

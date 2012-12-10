@@ -1,6 +1,15 @@
 #include "BehaviourTreeNode.h"
 
 
+BehaviourTreeNode::BehaviourTreeNode(BehaviourComponent* behaviourComponent, BehaviourTreeNodeType type)
+{
+	this->_type = type;
+	this->_runningNode = nullptr;
+	this->_behaviourComponent = behaviourComponent;
+	this->_state = Ready;
+	this->_name = "";
+}
+
 BehaviourTreeNode::BehaviourTreeNode(BehaviourComponent* behaviourComponent, string name, BehaviourTreeNodeType type)
 {
 	this->_type = type;
