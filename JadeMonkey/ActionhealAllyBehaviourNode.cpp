@@ -1,5 +1,4 @@
 #include "ActionHealAllyBehaviourNode.h"
-#include "GameEntity.h"
 #include "HealSkillComponent.h"
 #include "BehaviourComponent.h"
 
