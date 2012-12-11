@@ -20,6 +20,7 @@ GameMap2GraphicsComponent::GameMap2GraphicsComponent(int numRows, int numCols, G
 	fill = 3;
 	this->_normal = normal;
 	this->_texturePath = "Textures/wall.jpg";
+	hopefully = "Textures/wall.jpg";
 }
 
 GameMap2GraphicsComponent::GameMap2GraphicsComponent(int numRows, int numCols, Game* game, GameEntity* entity, int color, D3DXVECTOR3 normal, string texturePath)
@@ -40,6 +41,7 @@ GameMap2GraphicsComponent::GameMap2GraphicsComponent(int numRows, int numCols, G
 	fill = 3;
 	this->_normal = normal;
 	this->_texturePath = texturePath;
+	hopefully = "Textures/door.png";
 }
 
 int GameMap2GraphicsComponent::getHeight()

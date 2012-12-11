@@ -1,4 +1,5 @@
 #include "TexturedGraphicsComponent.h"
+#include "RessourceManager.h"
 
 TexturedGraphicsComponent::TexturedGraphicsComponent(Game* game, GameEntity* entity)
 	: GraphicsComponent(game, entity)
@@ -24,4 +25,9 @@ void TexturedGraphicsComponent::setupRender()
 	//d3ddev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 	//d3ddev->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
 	//d3ddev->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
+}
+
+void TexturedGraphicsComponent::setTexture(char *file)
+{
+	this->_texture = RessourceManager::GetTexture(this->_game->getGraphicsDevice(), file);
 }

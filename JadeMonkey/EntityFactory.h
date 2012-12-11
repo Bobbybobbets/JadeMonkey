@@ -32,5 +32,5 @@ protected:
 	GameEntity* CreateAIEntity(GameEntitiesContainer* container, D3DXVECTOR3 position, D3DXVECTOR3 size, float speed, D3DCOLOR color, long framesToWait, Behaviour behaviour, AIEntitiesInteractionContainer entitiesContainer, AStarPathfindingGraph* graph, PlayerComponent *player);
 	GameEntity* CreateAIEntity(GameEntitiesContainer* container, D3DXVECTOR3 position, D3DXVECTOR3 size, float speed, D3DCOLOR color, long framesToWait, Behaviour behaviour, AIEntitiesInteractionContainer entitiesContainer, AStarPathfindingGraph* graph, GameEntity* entityToFollow, PlayerComponent *player);
 	GameEntitiesContainer AddTrapDoor( int numRows, int numCols,GameEntitiesContainer container, D3DXVECTOR3 position, PlayerComponent* player);
-
+	GameEntitiesContainer AddWall(int numCols, int numRows, D3DXVECTOR3 position, GameEntitiesContainer gc, bool xWall, string texturepath);
 };

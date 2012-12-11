@@ -68,6 +68,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ActionHealAllyBehaviourNode.h" />
     <ClInclude Include="ActionMoveAwayBehaviourNode.h" />
     <ClInclude Include="ActionMoveToPlayerBehaviourNode.h" />
     <ClInclude Include="ActionMoveToTargetBehaviourNode.h" />
@@ -152,8 +153,7 @@
     <ClInclude Include="WallPointXCollisionComponent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ActionhealAllyBehaviourNode.cpp" />
-    <ClCompile Include="ActionHealAllyBehaviourNode.h" />
+    <ClCompile Include="ActionHealAllyBehaviourNode.cpp" />
     <ClCompile Include="ActionMoveAwayBehaviourNode.cpp" />
     <ClCompile Include="ActionMoveToPlayerBehaviourNode.cpp" />
     <ClCompile Include="ActionMoveToTargetBehaviourNode.cpp" />

@@ -17,4 +17,5 @@ protected:
 	virtual void setupRender(void) override;
 	D3DXVECTOR3 _normal;
 	string _texturePath;
+	string hopefully;
 };

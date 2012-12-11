@@ -6,6 +6,7 @@ class GameEntity;
 class HealSkillComponent;
 class BehaviourComponent;
 
+
 class ActionHealAllyBehaviourNode : public BehaviourTreeNode
 {
 public:

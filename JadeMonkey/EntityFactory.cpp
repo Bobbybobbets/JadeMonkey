@@ -46,6 +46,7 @@ GameEntitiesContainer EntityFactory::AddFloor(int numRows, int numCols, D3DXVECT
 	return gc;
 }
 
+
 GameEntitiesContainer EntityFactory::AddWall(int numCols, int numRows, D3DXVECTOR3 position, GameEntitiesContainer gc, bool xWall)
 {
 	int color;
@@ -69,6 +70,41 @@ GameEntitiesContainer EntityFactory::AddWall(int numCols, int numRows, D3DXVECTO
 	else
 	{
 		graphics = new GameMap2GraphicsComponent(numCols, numRows, this->_game, wall, color, D3DXVECTOR3(0, 0, 1));
+		wall->AddGraphicsComponent(graphics);
+		WallPointCollisionComponent* wallCollision = new WallPointCollisionComponent(this->_game, wall);
+		wall->AddCollisionComponent(wallCollision);
+	}
+	gc.Entities.push_back(wall);
+	gc.Walls.push_back(wall);
+	
+
+	return gc;
+}
+
+
+GameEntitiesContainer EntityFactory::AddWall(int numCols, int numRows, D3DXVECTOR3 position, GameEntitiesContainer gc, bool xWall, string texturepath)
+{
+	int color;
+	if( xWall )
+		color = 1;
+	else
+		color = 2;
+	GameEntity* wall = new GameEntity(this->_game);
+	GameMap2GraphicsComponent* graphics; 
+	
+	wall->setPosition( D3DXVECTOR3(position.x*20, position.y*20, position.z*20));
+
+	if( xWall )
+	{
+		graphics = new GameMap2GraphicsComponent(numCols, numRows, this->_game, wall, color, D3DXVECTOR3(1, 0, 0), texturepath);
+		wall->AddGraphicsComponent(graphics);
+		WallPointXCollisionComponent* wallCollision = new WallPointXCollisionComponent(this->_game, wall);
+		wall->AddCollisionComponent(wallCollision);
+		wall->setRotation(D3DXVECTOR3(0, 90, 0));
+	}
+	else
+	{
+		graphics = new GameMap2GraphicsComponent(numCols, numRows, this->_game, wall, color, D3DXVECTOR3(0, 0, 1), texturepath);
 		wall->AddGraphicsComponent(graphics);
 		WallPointCollisionComponent* wallCollision = new WallPointCollisionComponent(this->_game, wall);
 		wall->AddCollisionComponent(wallCollision);
@@ -138,6 +174,7 @@ GameEntitiesContainer EntityFactory::AddTrapDoor( int numRows, int numCols,GameE
 	trapEntity->setPosition(newPos);
 	TrapDoorComponent* trapDoor = new TrapDoorComponent(this->_game, trapEntity);
 	GameMap1GraphicsComponent* graphics6 = new GameMap1GraphicsComponent(numRows, numCols, this->_game, trapEntity);
+
 	trapEntity->AddGraphicsComponent(graphics6);
 
 	TrapDoorGraphicsComponent *trapDoorGraphics = new TrapDoorGraphicsComponent(numRows, numCols, trapDoor, this->_game, trapEntity);
@@ -189,7 +226,7 @@ GameEntitiesContainer EntityFactory::CreateLevel1(GameEntitiesContainer containe
 	// W11
 	container = AddWall( height, 26, D3DXVECTOR3( 21 , 0, 4 ),  container, false);
 	// W12
-	container = AddWall( height, 5, D3DXVECTOR3( 21 , 0, 0), container, true);
+	container = AddWall( height, 5, D3DXVECTOR3( 21 , 0, 0), container, true, "Textures/door.png");
 	// S1
 	container = AddStairs( 6, 4, D3DXVECTOR3( 20 , 0 , 25 ), container, 4, false);
 	// Plateau for staircase

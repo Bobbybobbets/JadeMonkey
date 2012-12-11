@@ -63,7 +63,7 @@ GameEntitiesContainer MainEntityFactory::GetContainer(Game* game)
 DoorUseComponent* MainEntityFactory::AddDoor(int numCols, int numRows, D3DXVECTOR3 position, GameEntitiesContainer gc, PlayerComponent *player, bool xDoor, CameraComponent *camera)
 {
 	GameEntity* door = new GameEntity(this->_game);
-	GameMap2GraphicsComponent* graphics = new GameMap2GraphicsComponent(numCols, numRows, this->_game, door, 3, D3DXVECTOR3(1, 0, 0), "Textures/door.jpg");
+	GameMap2GraphicsComponent* graphics = new GameMap2GraphicsComponent(numCols, numRows, this->_game, door, 3, D3DXVECTOR3(1, 0, 0), "Textures/door.png");
 	DoorComponent *doorComponent = new DoorComponent( this->_game, door, 2);
 	door->AddGraphicsComponent(graphics);
 	door->setPosition( D3DXVECTOR3(position.x * 20, position.y * 20, position.z * 20));

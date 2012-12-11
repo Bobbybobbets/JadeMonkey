@@ -336,6 +336,9 @@
     <ClInclude Include="RadiusBasedCollisionComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="ActionHealAllyBehaviourNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameIO.cpp">
@@ -524,9 +527,6 @@
     <ClCompile Include="RessourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ActionHealAllyBehaviourNode.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="BackgroundScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -551,9 +551,6 @@
     <ClCompile Include="PointLightComponent.cpp">
       <Filter>Source Files\Components\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="ActionhealAllyBehaviourNode.cpp">
-      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
-    </ClCompile>
     <ClCompile Include="ActionStopMovingBehaviourNode.cpp">
       <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
     </ClCompile>
@@ -577,6 +574,9 @@
     </ClCompile>
     <ClCompile Include="RadiusBasedCollisionComponent.cpp">
       <Filter>Source Files\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionHealAllyBehaviourNode.cpp">
+      <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

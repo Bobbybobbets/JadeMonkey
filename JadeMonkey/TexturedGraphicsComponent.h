@@ -6,6 +6,7 @@ class TexturedGraphicsComponent : public GraphicsComponent
 public:
 	TexturedGraphicsComponent(Game* game, GameEntity* entity);
 	virtual void Initialize(void) override;
+	void setTexture(char *file);
 
 protected:
 	LPDIRECT3DTEXTURE9 _texture;
