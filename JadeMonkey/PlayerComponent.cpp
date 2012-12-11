@@ -3,7 +3,7 @@
 
 PlayerComponent::PlayerComponent(Game* game, GameEntity *entity): BEntityComponent(game, entity)
 {
-
+	score = 500;
 }
 
 PlayerComponent::~PlayerComponent()
@@ -87,4 +87,14 @@ void PlayerComponent::LoseLife()
 	{
 		_game->DeadScreen();
 	}
+}
+
+void PlayerComponent::loseScore(int score)
+{
+	this->score -= score;
+}
+
+int PlayerComponent::getScore()
+{
+	return this->score;
 }

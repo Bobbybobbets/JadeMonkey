@@ -161,5 +161,5 @@ err:
 
 void KeyGraphicsComponent::loadTexture()
 {
-	this->_texture = RessourceManager::GetTexture(this->_game->getGraphicsDevice(), "Textures/Bananastub2.jpg");
+	this->_texture = RessourceManager::GetTexture(this->_game->getGraphicsDevice(), "Textures/Bananastub2.png");
 }

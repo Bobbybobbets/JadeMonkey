@@ -267,7 +267,24 @@ int JadeMonkeyGame::Draw(long time)
 
  void JadeMonkeyGame::RenderBackgroundScreen(long time)
  {
+	 RECT textbox1;
 	 background->Draw(time);
+	 
+	textbox1.left = 0;
+	textbox1.bottom = getWndHeight() - 50;
+	textbox1.top = getWndHeight() - 100;
+	textbox1.right = 250;
+
+	stringstream ss1;
+	ss1 << "Score: ";
+	if( this->GetPlayer()->getLives() == 0)
+		ss1 << "0";
+	else
+		ss1 <<  this->GetPlayer()->getScore();
+
+	string numberLives = ss1.str();	
+	LPCTSTR str2 = numberLives.c_str();
+	uiFont->DrawText(NULL, str2, -1, &textbox1, DT_LEFT | DT_VCENTER, D3DCOLOR_ARGB(255, 255, 255, 0));
  }
 
 void JadeMonkeyGame::RenderUI()

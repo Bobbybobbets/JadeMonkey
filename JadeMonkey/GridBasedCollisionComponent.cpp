@@ -76,6 +76,8 @@ void GridBasedCollisionComponent::Update(GameEntity* entity, long time)
 							}
 							else{
 								otherEntity->reduceLife(50);
+								if( otherEntity->getLife() <= 0)
+									((JadeMonkeyGame*)this->_game)->GetPlayer()->loseScore(50);
 							}
 							break;
 						case Kill:

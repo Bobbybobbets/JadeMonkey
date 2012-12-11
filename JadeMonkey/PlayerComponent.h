@@ -13,6 +13,7 @@ private:
 	int currentLevel;
 	int height; 
 	int numKeyParts;
+	int score;
 
 public:
 	PlayerComponent(Game* game, GameEntity* entity);
@@ -31,5 +32,7 @@ public:
 	void setNumKeyParts(int numKeys);
 	void FoundKey();
 	void LoseLife();
+	int getScore();
+	void loseScore(int score);
 
 };
