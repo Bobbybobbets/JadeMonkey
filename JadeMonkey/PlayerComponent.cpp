@@ -75,7 +75,10 @@ void PlayerComponent::FoundKey()
 void PlayerComponent::LoseLife()
 {
 	if( lives > 0)
+	{
 		lives --;
+		this->_entity->setPosition(D3DXVECTOR3(30, 70, 30));
+	}
 	if(lives <= 0)
 	{
 		_game->LossScreen();
