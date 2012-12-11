@@ -1,7 +1,7 @@
 #include "HealSkillComponent.h"
 #include "GameEntity.h";
 #include "ScaledBoxGraphicsComponent.h"
-#include "GridBasedCollisionComponent.h"
+#include "RadiusBasedCollisionComponent.h"
 #include "LinearPathfindingComponent.h"
 #include "AIControllerComponent.h"
 
@@ -21,7 +21,7 @@ void HealSkillComponent::fireSkill(void)
 		healingbolt->setDirection(D3DXVECTOR3(this->_entity->getDirection().x, 0, this->_entity->getDirection().z));
 		healingbolt->setVelocity(5);
 		ScaledBoxGraphicsComponent* graphics = new ScaledBoxGraphicsComponent(this->_game, healingbolt, D3DCOLOR_RGBA(0,255,0,150));
-		GridBasedCollisionComponent* collision = new GridBasedCollisionComponent(this->_game, healingbolt, 10, this->_group, Heal);
+		RadiusBasedCollisionComponent* collision = new RadiusBasedCollisionComponent(this->_game, healingbolt, 10, this->_group, Heal);
 		AIControllerComponent* aiController = new AIControllerComponent(this->_game, healingbolt);
 		LinearPathfindingComponent* pathfinding = new LinearPathfindingComponent(this->_game, healingbolt, aiController);
 

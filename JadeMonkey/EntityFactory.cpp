@@ -17,7 +17,7 @@
 #include "TrapDoorGraphicsComponent.h"
 #include "TrapDoorCollisionComponent.h"
 #include "DoorUseComponent.h"
-#include "GridBasedCollisionComponent.h"
+#include "RadiusBasedCollisionComponent.h"
 #include "PathFindingUtil.h"
 #include "EntityHealthDisplayComponent.h"
 
@@ -354,7 +354,7 @@ GameEntity* EntityFactory::CreateAIEntity(
 	AIControllerComponent* aiController = new AIControllerComponent(this->_game, entity);
 	AStarPathfindingComponent* pathfinding = new AStarPathfindingComponent(this->_game, entity, aiController, framesToWait, graph);
 	ScaledBoxGraphicsComponent* graphics = new ScaledBoxGraphicsComponent(this->_game, entity, color);
-	GridBasedCollisionComponent* collision = new GridBasedCollisionComponent(this->_game, entity, 20, Enemies, MinusLife);
+	RadiusBasedCollisionComponent* collision = new RadiusBasedCollisionComponent(this->_game, entity, 20, Enemies, MinusLife);
 	EntityHealthDisplayComponent* healthDisplay = new EntityHealthDisplayComponent(this->_game, entity, player->getEntity());
 
 	BehaviourComponent* behaviourComponent = new BehaviourComponent(this->_game, entity, behaviour, entitiesContainer, pathfinding, player);

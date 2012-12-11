@@ -15,7 +15,7 @@
 #include "WallPointXCollisionComponent.h"
 #include "WallPointCollisionComponent.h"
 #include "GameMap2GraphicsComponent.h"
-#include "GridBasedCollisionComponent.h"
+#include "RadiusBasedCollisionComponent.h"
 
 
 PatTestFactory::PatTestFactory()
@@ -37,7 +37,7 @@ GameEntitiesContainer PatTestFactory::GetContainer(Game* game)
 	PhysicsComponent* physics = new PhysicsComponent(game, cameraEntity);
 	FireboltSkillComponent* firebolt = new FireboltSkillComponent(game, cameraEntity, 10, Player, player);
 	PlayerFPInputComponent* input = new PlayerFPInputComponent(game, cameraEntity, camera, physics, firebolt, doorUse, player);
-	GridBasedCollisionComponent* collisionGrid = new GridBasedCollisionComponent(game, cameraEntity, 15, Player, Nothing);
+	RadiusBasedCollisionComponent* collisionGrid = new RadiusBasedCollisionComponent(game, cameraEntity, 15, Player, Nothing);
 	
 	camera->SetCamera(D3DXVECTOR3(-500, 100, -500), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0,1,0));
 

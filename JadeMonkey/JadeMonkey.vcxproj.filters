@@ -258,9 +258,6 @@
     <ClInclude Include="DoorUseComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="GridBasedCollisionComponent.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="BehaviourTreeNode.h">
       <Filter>Header Files\Components\AI\Behaviours</Filter>
     </ClInclude>
@@ -335,6 +332,9 @@
     </ClInclude>
     <ClInclude Include="PointLightComponent.h">
       <Filter>Header Files\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="RadiusBasedCollisionComponent.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -518,9 +518,6 @@
     <ClCompile Include="DoorUseComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="GridBasedCollisionComponent.cpp">
-      <Filter>Source Files\Components\Collision</Filter>
-    </ClCompile>
     <ClCompile Include="TexturedGraphicsComponent.cpp">
       <Filter>Source Files\Renderers</Filter>
     </ClCompile>
@@ -577,6 +574,9 @@
     </ClCompile>
     <ClCompile Include="CondHealthMonitorBehaviourNode.cpp">
       <Filter>Source Files\Components\AI\BehaviourNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="RadiusBasedCollisionComponent.cpp">
+      <Filter>Source Files\Components\Collision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

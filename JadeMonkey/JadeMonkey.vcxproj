@@ -106,7 +106,7 @@
     <ClInclude Include="GameMap1GraphicsComponent.h" />
     <ClInclude Include="GameMap2GraphicsComponent.h" />
     <ClInclude Include="GraphicsComponent.h" />
-    <ClInclude Include="GridBasedCollisionComponent.h" />
+    <ClInclude Include="RadiusBasedCollisionComponent.h" />
     <ClInclude Include="HealSkillComponent.h" />
     <ClInclude Include="Heart.h" />
     <ClInclude Include="ICollideable.h" />
@@ -186,7 +186,7 @@
     <ClCompile Include="GameMap1GraphicsComponent.cpp" />
     <ClCompile Include="GameMap2GraphicsComponent.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
-    <ClCompile Include="GridBasedCollisionComponent.cpp" />
+    <ClCompile Include="RadiusBasedCollisionComponent.cpp" />
     <ClCompile Include="healSkillComponent.cpp" />
     <ClCompile Include="Heart.cpp" />
     <ClCompile Include="JadeMonkey.cpp" />
