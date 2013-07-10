@@ -32,3 +32,22 @@ dependency requirements between different functionalities, but many components m
 unique to the entity. Consider this structure :
 
 ![Entity prenormalization](Design\ Documents/EntityPrenormalization.jpg)
+
+As you can see, each of these components add independent functionalities(each of them could be used individually)
+to the entity, yet they duplicate state variables that should be unique to this instance. In this particular
+project, I tried to fix this by storing highly used variables in the entity itself, such as its
+position and velocity. While it fixes this particular problem, there are fundamental architectural flaws :
+
+- While a variable may be needed by multiple components, there will be cases where none of them are included in an 
+entity. In this case, the variables are dead weight, suggesting bad design.
+- Any developer can add a variable as long as two or more of his components use it; This will eventually lead entities
+to be poorly managed containers of non-trivial variables.
+
+Furthermore, this structure does not properly model component dependencies; the only way to communicate is 
+through those instance variables, so what happens if you need access to an interface? Having already coded a big part
+of the project, I was not able to churn out a proper solution due to the large amount of refactoring required, which 
+lead to many problems during development. If you would like see how I eventually fixed these issues, you can head over
+to LINK.
+
+
+  
