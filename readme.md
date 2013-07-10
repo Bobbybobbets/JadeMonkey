@@ -34,8 +34,7 @@ unique to the entity. Consider this structure :
 ![Entity prenormalization](Design\ Documents/EntityPrenormalization.jpg)
 
 As you can see, each of these components add independent functionalities(each of them could be used individually)
-to the entity, yet they duplicate state variables that should be unique to this instance. In this particular
-project, I tried to fix this by storing highly used variables in the entity itself, such as its
+to the entity, yet they duplicate state variables that should be unique to this instance. I tried to fix this by storing highly used variables in the entity itself, such as its
 position and velocity. While it fixes this particular problem, there are fundamental architectural flaws :
 
 - While a variable may be needed by multiple components, there will be cases where none of them are included in an 
