@@ -31,10 +31,10 @@ variables or methods. As we will see, this is not quite as simple as it sounds.
 
 ###Components###
 
-A component is defined as being the implementation of a very specific functionality and should ideally be completely 
-self-contained by managing its own state; I quickly realized that this was not possible. Not only are there usually
-dependency requirements between different functionalities, but many components must also refer to the same state variable
-unique to the entity. Consider this structure :
+A component is defined as being the implementation of a very specific functionality, such as rendering or calculating
+managing movement, and should ideally be completely self-contained by managing its own state; I quickly realized that 
+this was not possible. Not only are there usually dependency requirements between different functionalities, but many 
+components must also refer to the same state variable unique to the entity. Consider this structure :
 
 ![Entity prenormalization](Design\ Documents/EntityPrenormalization.jpg)
 
