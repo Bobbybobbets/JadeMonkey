@@ -50,13 +50,7 @@ to be poorly managed containers of non-trivial variables.
 Furthermore, this structure does not properly model component dependencies; the only way to communicate is 
 through those instance variables; so what happens if you need access to an interface? Having already coded a big part
 of the project, I was not able to churn out a proper solution due to the large amount of refactoring required, which 
-lead to many problems during development. If you would like to see how I eventually fixed these issues, you can head over
-to LINK.
-
-
-Artificial intelligence : Pathfinding
-====
-
+lead to many problems during development.
 
 
 
