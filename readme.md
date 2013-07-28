@@ -45,7 +45,7 @@ position and velocity. While it fixes this particular problem, there are fundame
 - While a variable may be needed by multiple components, there will be cases where none of them are included in an 
 entity. In this case, the variables are dead weight, suggesting bad design.
 - Any developer can add a variable as long as two or more of his components use it; This will eventually lead entities
-to be poorly managed containers of non-trivial variables.
+to be poorly managed containers of non-related variables.
 
 Furthermore, this structure does not properly model component dependencies; the only way to communicate is 
 through those instance variables; so what happens if you need access to an interface? Having already coded a big part
